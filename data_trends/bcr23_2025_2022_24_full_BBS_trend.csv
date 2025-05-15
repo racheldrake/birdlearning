@@ -1,0 +1,382 @@
+common_name,trend
+Acadian Flycatcher,0.16623749999999982
+African Collared-Dove,NA
+Alder Flycatcher,0.012008749999999901
+American Avocet,0.04929575000000008
+American Barn Owl,NA
+American Bittern,-0.01483474999999998
+American Black Duck,-0.0021867499999999977
+American Coot,0.11102950000000011
+American Crow,0.12774024999999867
+American Golden-Plover,NA
+American Goldfinch,-0.7383732499999995
+American Goshawk,1.2374999999999886e-4
+American Herring Gull,NA
+American Kestrel,-0.0460512500000001
+American Pipit,NA
+American Redstart,0.1368592500000001
+American Robin,-1.7948185000000016
+American Tree Sparrow,NA
+American White Pelican,1.3344157500000016
+American Wigeon,-0.04450274999999998
+American Woodcock,1.7074999999999903e-4
+Arctic Tern,NA
+Baird's Sandpiper,NA
+Bald Eagle,0.0418645
+Baltimore Oriole,-0.14030524999999994
+Bank Swallow,-0.15100625
+Barn Swallow,-1.595710500000001
+Barnacle Goose,NA
+Barred Owl,0.014943250000000019
+Barrow's Goldeneye,0.0030147500000000105
+Bay-breasted Warbler,-0.00885074999999999
+Bell's Vireo,0.1550094999999998
+Belted Kingfisher,0.0012732500000000035
+Black Scoter,NA
+Black Swan,NA
+Black Tern,1.38466175
+Black Vulture,0.8442732499999996
+Black-and-white Warbler,0.05986199999999986
+Black-bellied Plover,NA
+Black-bellied Whistling-Duck,4.394612500000001
+Black-billed Cuckoo,0.05150200000000002
+Black-billed Magpie,-0.6580685000000006
+Black-capped Chickadee,-0.29730025000000015
+Black-crowned Night Heron,-0.0013734999999999997
+Black-headed Gull,NA
+Black-legged Kittiwake,NA
+Black-necked Stilt,-0.06938675000000005
+Black-throated Blue Warbler,-0.03771224999999989
+Black-throated Green Warbler,-0.2772709999999998
+Blackburnian Warbler,-0.03132675000000007
+Blackpoll Warbler,0.001932749999999997
+Blue Grosbeak,0.15945674999999992
+Blue Jay,-0.09003024999999987
+Blue-gray Gnatcatcher,-0.3482980000000002
+Blue-headed Vireo,0.1805405
+Blue-winged Teal,0.17814099999999988
+Blue-winged Warbler,-0.006935250000000004
+Bobolink,-0.6191699999999996
+Bohemian Waxwing,NA
+Bonaparte's Gull,NA
+Brambling,NA
+Brant,NA
+Brewer's Blackbird,-1.5546077499999988
+Broad-winged Hawk,0.003372999999999987
+Brown Booby,NA
+Brown Creeper,-0.03459125000000002
+Brown Thrasher,-0.23546224999999987
+Brown-headed Cowbird,-0.22319725000000012
+Budgerigar,NA
+Buff-breasted Sandpiper,NA
+Bufflehead,0.026438500000000004
+Bullock's Oriole,-0.05286349999999995
+Cackling Goose,NA
+California Gull,-3.9480517499999994
+Canada Goose,32.773999249999996
+Canada Warbler,0.02702525
+Canvasback,0.13237249999999995
+Cape May Warbler,0.033028
+Carolina Chickadee,0.3217062500000001
+Carolina Wren,0.5321722500000003
+Caspian Tern,-0.0028352499999999975
+Cassin's Kingbird,-0.24029925000000052
+Cedar Waxwing,-0.5130737500000002
+Cerulean Warbler,-0.005478999999999984
+Chestnut-sided Warbler,0.6243467500000008
+Chimney Swift,-0.6919322500000002
+Chipping Sparrow,-1.1060929999999995
+Chuck-will's-widow,0.02769799999999989
+Chukar,0.25116174999999985
+Cinnamon Teal,-0.05051099999999997
+Clark's Grebe,0.040778249999999794
+Clay-colored Sparrow,-1.1425850000000004
+Cliff Swallow,3.3123317499999985
+Common Gallinule,-0.030193250000000005
+Common Goldeneye,0.0037680000000000005
+Common Grackle,-3.0133230000000033
+Common Loon,-0.036082999999999976
+Common Merganser,0.008333750000000029
+Common Nighthawk,-0.04015324999999992
+Common Raven,-0.2407502499999996
+Common Shelduck,NA
+Common Tern,0.010630500000000015
+Common Yellowthroat,-0.2770827500000008
+Connecticut Warbler,-0.014652750000000006
+Cooper's Hawk,0.0016202500000000036
+Dark-eyed Junco,-0.564643499999999
+Dickcissel,-1.6234199999999994
+Double-crested Cormorant,0.0031010000000000204
+Downy Woodpecker,0.11598450000000016
+Dunlin,NA
+Eared Grebe,1.5341422499999995
+Eastern Bluebird,-1.074412500000001
+Eastern Kingbird,0.08781675
+Eastern Meadowlark,NA
+Eastern Phoebe,-0.44457974999999994
+Eastern Screech-Owl,-3.432499999999998e-4
+Eastern Towhee,-1.0578425000000005
+Eastern Whip-poor-will,-0.002014749999999982
+Eastern Wood-Pewee,0.2322677500000001
+Eurasian Collared-Dove,-0.43589775000000053
+Eurasian Tree Sparrow,0.7143390000000003
+Eurasian Wigeon,NA
+European Goldfinch,NA
+European Starling,-1.6791415000000072
+Evening Grosbeak,0.036309499999999995
+Ferruginous Hawk,0.02162924999999999
+Field Sparrow,-0.6204675000000002
+Fish Crow,0.28271800000000047
+Flame-colored Tanager,NA
+Fork-tailed Flycatcher,NA
+Forster's Tern,0.012747249999999988
+Fox Sparrow,0.013068999999999997
+Franklin's Gull,16.106565500000002
+Fulvous Whistling-Duck,1.124962749999999
+Gadwall,0.2531405000000002
+Garganey,NA
+Glaucous Gull,NA
+Glossy Ibis,5.427704749999998
+Golden Eagle,-0.0027800000000000047
+Golden-crowned Kinglet,-0.22026225
+Golden-crowned Sparrow,NA
+Golden-winged Warbler,0.13269624999999996
+Grasshopper Sparrow,-0.65863725
+Gray Catbird,0.05319400000000041
+Gray Partridge,0.14003924999999998
+Gray-cheeked Thrush,NA
+Graylag Goose,NA
+Great Black-backed Gull,-0.04761149999999997
+Great Blue Heron,-0.04848124999999992
+Great Crested Flycatcher,0.055315249999999594
+Great Egret,-0.31872875
+Great Horned Owl,-0.004188999999999998
+Great Tit,NA
+Greater Prairie-Chicken,-0.1713547499999999
+Greater Scaup,NA
+Greater White-fronted Goose,NA
+Greater Yellowlegs,NA
+Green Heron,-0.00840300000000005
+Green-winged Teal,0.005061749999999976
+Hairy Woodpecker,0.028060500000000044
+Harlequin Duck,NA
+Harris's Sparrow,NA
+Helmeted Guineafowl,NA
+Henslow's Sparrow,-0.0017964999999999925
+Hermit Thrush,-0.6666029999999998
+Hooded Merganser,0.021621
+Hooded Warbler,0.2137917499999995
+Horned Grebe,0.004110249999999996
+Horned Lark,0.09522299999999717
+House Finch,0.5843745000000009
+House Sparrow,0.07684624999999912
+Hudsonian Godwit,NA
+Iceland Gull,NA
+Indian Peafowl,NA
+Indigo Bunting,-0.5419187499999989
+Ivory Gull,NA
+Kentucky Warbler,0.008180000000000076
+Killdeer,-0.6710659999999997
+King Rail,-0.006054749999999998
+Kirtland's Warbler,NA
+Lapland Longspur,NA
+Lark Bunting,-45.631341250000006
+Lark Sparrow,-0.5092242499999999
+Laughing Gull,23.66158999999999
+Lazuli Bunting,-0.04192774999999971
+LeConte's Sparrow,-0.029380000000000017
+Least Bittern,0.009884749999999998
+Least Flycatcher,0.07235049999999998
+Least Sandpiper,NA
+Lesser Black-backed Gull,NA
+Lesser Scaup,0.01546924999999999
+Lesser Yellowlegs,NA
+Lewis's Woodpecker,0.02440049999999999
+Limpkin,NA
+Lincoln's Sparrow,0.0130762499999999
+Little Blue Heron,-0.01833399999999985
+Little Gull,NA
+Loggerhead Shrike,-0.15063825000000008
+Long-billed Dowitcher,NA
+Long-tailed Duck,NA
+Long-tailed Jaeger,NA
+Louisiana Waterthrush,0.01639349999999995
+Magnolia Warbler,-0.28211524999999993
+Mallard,-0.5869467500000001
+Mandarin Duck,NA
+Marbled Godwit,0.33885025000000013
+Marsh Wren,0.390582
+Merlin,0.006551750000000002
+Mississippi Kite,0.07563549999999997
+Mountain Bluebird,-0.7740097499999998
+Mourning Dove,0.5319347500000049
+Mourning Warbler,-4.522499999999319e-4
+Muscovy Duck,NA
+Mute Swan,0.030087500000000045
+Nashville Warbler,-0.16936825000000022
+Nelson's Sparrow,0.017219750000000006
+Neotropic Cormorant,NA
+Northern Bobwhite,-2.460707
+Northern Cardinal,0.567895
+Northern Flicker,-0.2414797500000001
+Northern Harrier,-0.07845375000000004
+Northern House Wren,NA
+Northern Mockingbird,-3.3810292499999974
+Northern Parula,0.10901899999999998
+Northern Pintail,0.4050514999999999
+Northern Rough-winged Swallow,-0.08891500000000008
+Northern Saw-whet Owl,NA
+Northern Shoveler,0.39001249999999976
+Northern Shrike,NA
+Northern Waterthrush,0.01827274999999995
+Olive-sided Flycatcher,0.022692999999999852
+Orange-crowned Warbler,-0.1386687499999999
+Orchard Oriole,0.0036642500000003686
+Osprey,-0.0010702500000000503
+Ovenbird,-0.19237625000000058
+Pacific Loon,NA
+Painted Bunting,0.8799510000000001
+Painted Redstart,NA
+Palm Warbler,0.002229250000000002
+Parasitic Jaeger,NA
+Pectoral Sandpiper,NA
+Peregrine Falcon,0.0028437500000000025
+Philadelphia Vireo,0.007410250000000007
+Pied-billed Grebe,0.034386500000000014
+Pileated Woodpecker,0.07363174999999988
+Pine Grosbeak,0.0033595000000000014
+Pine Siskin,-0.4334287499999996
+Pine Warbler,-0.028993999999999076
+Piping Plover,NA
+Prairie Falcon,7.949999999999624e-5
+Prairie Warbler,-0.1219945
+Prothonotary Warbler,0.002446749999999942
+Purple Finch,-0.019398499999999874
+Purple Martin,-0.4602682499999995
+Red Crossbill,0.6393704999999992
+Red Knot,NA
+Red-bellied Woodpecker,0.10930975000000043
+Red-breasted Merganser,9.644999999999966e-4
+Red-breasted Nuthatch,-0.20960999999999963
+Red-eyed Vireo,0.7710089999999994
+Red-headed Woodpecker,0.1698790000000001
+Red-necked Grebe,0.00440900000000001
+Red-necked Phalarope,NA
+Red-shouldered Hawk,0.17570425000000012
+Red-tailed Hawk,-0.13252799999999998
+Red-throated Loon,NA
+Red-winged Blackbird,-1.6002837500000027
+Redhead,0.5990967499999997
+Redpoll,NA
+Ring-billed Gull,-0.5977384999999984
+Ring-necked Duck,-0.01176824999999998
+Ring-necked Pheasant,-1.5306689999999996
+Rock Pigeon,-0.04791049999999952
+Rose-breasted Grosbeak,0.11147974999999999
+Roseate Spoonbill,-0.8345630000000002
+Ross's Goose,NA
+Rough-legged Hawk,NA
+Royal Tern,0.2402335
+Ruby-crowned Kinglet,-0.3736077500000001
+Ruby-throated Hummingbird,-0.019710500000000075
+Ruddy Duck,0.37770875000000015
+Ruddy Turnstone,NA
+Ruff,NA
+Ruffed Grouse,0.04081850000000001
+Rufous Hummingbird,-0.039661
+Rusty Blackbird,-0.0018200000000000022
+Sage Thrasher,-1.735195000000001
+Sanderling,NA
+Sandhill Crane,0.6434759999999997
+Savannah Sparrow,-2.3048932499999997
+Say's Phoebe,-0.11371350000000024
+Scarlet Tanager,-0.14226000000000005
+Scissor-tailed Flycatcher,-1.1055077499999992
+Sedge Wren,-0.6494692499999999
+Semipalmated Plover,NA
+Semipalmated Sandpiper,NA
+Sharp-shinned Hawk,-9.299999999999933e-5
+Sharp-tailed Grouse,0.15302225000000003
+Sharp-tailed Sandpiper,NA
+Short-billed Dowitcher,NA
+Short-eared Owl,-0.0365215
+Slaty-backed Gull,NA
+Smith's Longspur,NA
+Snow Bunting,NA
+Snow Goose,NA
+Snowy Egret,-0.015371000000000246
+Snowy Owl,NA
+Snowy Plover,-0.20218549999999968
+Solitary Sandpiper,NA
+Song Sparrow,-0.9783562499999992
+Sora,0.13982650000000002
+Spotted Sandpiper,-0.0030807499999999932
+Spotted Towhee,-0.38457525000000103
+Stilt Sandpiper,NA
+Summer Tanager,0.12699025000000042
+Surf Scoter,NA
+Swainson's Hawk,-0.09221975000000016
+Swainson's Thrush,-0.10966349999999991
+Swainson's Warbler,0.08793125000000002
+Swallow-tailed Kite,0.14354349999999994
+Swamp Sparrow,0.022499500000000117
+Swan Goose,NA
+Tennessee Warbler,0.014907749999999997
+Townsend's Solitaire,-0.04448200000000002
+Tree Swallow,-0.5222975000000001
+Tricolored Heron,-0.017611250000000078
+Trumpeter Swan,NA
+Tufted Duck,NA
+Tufted Titmouse,0.16272775000000017
+Tundra Swan,NA
+Turkey Vulture,-0.10104500000000005
+Upland Sandpiper,0.09456549999999986
+Varied Bunting,NA
+Varied Thrush,-0.23383675000000004
+Veery,0.2527350000000004
+Vermilion Flycatcher,0.021814749999999883
+Vesper Sparrow,-0.04468424999999954
+Virginia Rail,-1.4350000000000127e-4
+Wandering Tattler,NA
+Warbling Vireo,0.2880090000000002
+Western Cattle-Egret,0.262151750000001
+Western Grebe,0.040778249999999794
+Western Kingbird,-0.55085725
+Western Meadowlark,NA
+Western Sandpiper,NA
+Western Tanager,0.37411074999999894
+Whimbrel,NA
+White-breasted Nuthatch,0.14468674999999998
+White-crowned Sparrow,-0.2684974999999996
+White-eyed Vireo,0.5358649999999994
+White-faced Ibis,17.719514749999973
+White-rumped Sandpiper,NA
+White-tailed Kite,-0.007184000000000003
+White-throated Sparrow,-1.3806577500000001
+White-winged Crossbill,0.01963625
+White-winged Dove,1.8537102500000024
+White-winged Scoter,NA
+White-winged Tern,NA
+Whooper Swan,NA
+Whooping Crane,NA
+Wild Turkey,0.019228749999999906
+Willet,0.008101750000000019
+Willow Flycatcher,0.012008749999999901
+Wilson's Phalarope,0.02190424999999996
+Wilson's Snipe,-0.07256300000000016
+Wilson's Warbler,-0.09743374999999976
+Winter Wren,0.1199945
+Wood Duck,0.0024992500000000084
+Wood Thrush,0.532483
+Worm-eating Warbler,-0.00513199999999997
+Yellow Rail,NA
+Yellow Warbler,-0.1113445000000004
+Yellow-bellied Flycatcher,0.06715125
+Yellow-bellied Sapsucker,0.0762672499999999
+Yellow-billed Cuckoo,-0.34633499999999984
+Yellow-breasted Chat,-0.11822424999999992
+Yellow-crowned Night Heron,0.0017625000000000002
+Yellow-headed Blackbird,-1.0694612499999998
+Yellow-rumped Warbler,-0.3935627499999992
+Yellow-throated Vireo,0.16680000000000006
+Yellow-throated Warbler,0.09965350000000006

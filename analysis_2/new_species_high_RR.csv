@@ -1,0 +1,21 @@
+species_pre,common_name_pre,mean_pre,species_post,common_name_post,mean_post
+Turdus migratorius,American Robin,0.59545262240455,Turdus migratorius,American Robin,0.6365362970013824
+Agelaius phoeniceus,Red-winged Blackbird,0.5401731876091096,Cardinalis cardinalis,Northern Cardinal,0.5464838020242555
+Cardinalis cardinalis,Northern Cardinal,0.4915208938099904,Agelaius phoeniceus,Red-winged Blackbird,0.5338651900213573
+Poecile atricapillus,Black-capped Chickadee,0.42885229517983087,Poecile atricapillus,Black-capped Chickadee,0.4608445650306476
+Spinus tristis,American Goldfinch,0.4053493647155691,Spinus tristis,American Goldfinch,0.4319238888243291
+Melospiza melodia,Song Sparrow,0.3894481594495981,Cyanocitta cristata,Blue Jay,0.40920737629632686
+Zenaida macroura,Mourning Dove,0.3812374853209649,Zenaida macroura,Mourning Dove,0.3832716919647845
+Cyanocitta cristata,Blue Jay,0.3740993787857132,Melospiza melodia,Song Sparrow,0.35539459444331595
+Branta canadensis,Canada Goose,0.3580296124528081,Corvus brachyrhynchos,American Crow,0.3552584163509744
+Anas platyrhynchos,Mallard,0.34367506724838603,Branta canadensis,Canada Goose,0.3473325284877267
+Corvus brachyrhynchos,American Crow,0.33453224836208245,Dryobates pubescens,Downy Woodpecker,0.34389318272258124
+Dryobates pubescens,Downy Woodpecker,0.30657160950537693,Anas platyrhynchos,Mallard,0.3387355705441523
+Quiscalus quiscula,Common Grackle,0.2824496745522367,Passer domesticus,House Sparrow,0.2985156566180929
+Sitta carolinensis,White-breasted Nuthatch,0.2794208871416218,Sitta carolinensis,White-breasted Nuthatch,0.28974731415273564
+Melanerpes carolinus,Red-bellied Woodpecker,0.27251984845925636,Melanerpes carolinus,Red-bellied Woodpecker,0.28885340489672123
+Passer domesticus,House Sparrow,0.2574281455432027,Quiscalus quiscula,Common Grackle,0.2872582290586714
+Dumetella carolinensis,Gray Catbird,0.21492675101045472,Haemorhous mexicanus,House Finch,0.2684326830929442
+Sturnus vulgaris,European Starling,0.21345911871496315,Dumetella carolinensis,Gray Catbird,0.22689692472586745
+Molothrus ater,Brown-headed Cowbird,0.20504058796769317,Sturnus vulgaris,European Starling,0.2116860230885638
+Tachycineta bicolor,Tree Swallow,0.20424360470532477,Molothrus ater,Brown-headed Cowbird,0.2100110307401371

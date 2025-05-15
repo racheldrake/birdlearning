@@ -39,16 +39,16 @@ projection <- raster::projection
 ## ---------------------------
 
 # data tag
-data_string <- "datahistorical_23"
-
-# where I want processed data to end up
-data_path <- 'SAC/' 
+data_string <- "bcr23_2025"
 
 # habitat path
 spat_path <- 'proc_data/'
 
 # eBird path
 ebd_path <- 'proc_data/'
+
+# where I want processed data to end up
+data_path <- 'SAC/' 
 
 data_tags <- paste0(data_string, c('_2016_19_full', '_2022_24_full', '_2016_19_new', '_2022_24_new'))
 
@@ -68,9 +68,9 @@ for (data_tag in data_tags){
   data <- ebd %>% select(checklist_id, observer_id, observation_date, locality_id, 
                          latitude, longitude, scientific_name, 
                          time_observations_started, duration_minutes, 
-                         effort_distance_km, number_observers, protocol_type) %>%
+                         effort_distance_km, number_observers, protocol_name) %>%
     # extract only stationary and traveling survey protocols (newer datasets this is already done)
-    filter(protocol_type %in% c('Stationary', 'Traveling')) %>%
+    filter(protocol_name %in% c('Stationary', 'Traveling')) %>%
     # extract year, day of year and time of day to numerical values
     mutate(year = year(ymd(observation_date)),
            doy = yday(ymd(observation_date)),
@@ -107,12 +107,13 @@ for (data_tag in data_tags){
     no.species = n(),
     across(everything(), ~ first(.)),
     .groups = "drop") %>%
+    mutate(effort_distance_km = ifelse(protocol_name == 'Stationary', 0, effort_distance_km)) %>%
     # remove any data NAs (missing checklist metadata)
     drop_na() %>% 
     # keep only observers with at least 10 checklists (helps model convergence)
     group_by(observer_id) %>% filter(n() > 10) %>% ungroup() %>%
-    # turn protocol type into a factor
-    mutate(protocol_type = as.factor(protocol_type)) 
+    # turn protocol name into a factor
+    mutate(protocol_name = as.factor(protocol_name)) 
   
   # create an average checklist to use to predict no. species each observer 
   # detects in the same setting
@@ -140,7 +141,7 @@ for (data_tag in data_tags){
            # 1 observer
            number_observers = 1,
            # travelling
-           protocol_type = as.factor('Traveling'),
+           protocol_name = as.factor('Traveling'),
            # allows me to join this data to the indiviudals in the model for
            # predicting the random effects
            join = 1)
@@ -163,7 +164,7 @@ for (data_tag in data_tags){
     
     # find the number of groups
     n_groups <- length(grouped_data)
-    # the last group will have te 'leftovers', we split these again
+    # the last group will have the 'leftovers', we split these again
     leftovers <- grouped_data[[n_groups]] %>% group_by(observer_id) %>% group_split()
     
     # redistribute them between the other groups
@@ -192,7 +193,7 @@ for (data_tag in data_tags){
                           pland_08_woody_savanna + pland_09_savanna + pland_10_grassland + pland_12_cropland + pland_13_urban + 
                           pland_15_barren + GSI +
                           # effort expended for a given checklist
-                          s(doy, bs = 'cc') + protocol_type + effort_distance_km + 
+                          s(doy, bs = 'cc') + protocol_name + effort_distance_km + 
                           number_observers + s(tod, bs = 'tp') + 
                           I(log(checklist.no)) + 
                           # observer-specific effects for the intercept and the slope
@@ -214,16 +215,40 @@ for (data_tag in data_tags){
       p_group <- predict(model_temp, newdata=pred_group, type='link', se.fit=TRUE)
       # extract variables we need
       pred_obs <- data.frame(observer_id=pred_group$observer_id, fit=p_group$fit, se=p_group$se.fit)
-      # convert back from the log link
-      pred_obs$est <- exp(pred_obs$fit)
+      # convert back from the log link - already done by type = link
+      # pred_obs$est <- exp(pred_obs$fit)
       
       #variables for storing
       pred_obs$batch <- i
       pred_obs$observer_id <- as.character(pred_obs$observer_id)
       
+      # find durations for each observer
+      durations <- grouped_data[[i]] %>% select(observer_id, duration_minutes) %>% 
+        group_by(observer_id) %>%
+        # find duration
+        summarise(duration = ifelse(max(duration_minutes >= 300), 
+                                    300, max(duration_minutes)))
+      
+      # make df for predictions on each observer for each timestep (1 min : max_obs)
+      pred_durations <- pred_group %>%
+        left_join(durations, by = "observer_id") %>%
+        select(-duration_minutes) %>%   # drop old static duration_minutes
+        rowwise() %>%
+        mutate(duration_minutes = list(1:duration)) %>%  # create list of durations
+        unnest(duration_minutes) %>%    # unnest to expand
+        ungroup()
+      
+      pred_t <- predict(model_temp, newdata=pred_durations, type='link', se.fit=TRUE )
+      
+      pred_time <- data.frame(observer_id = pred_durations$observer_id, duration_minutes = pred_durations$duration_minutes, fit = pred_t$fit)
+      
       # store all the predictions together
       if(i==1) all_pred <- pred_obs
       if(i>1) all_pred <- rbind(all_pred, pred_obs)
+      
+      # and all the time predictions together
+      if(i==1) all_time <- pred_time
+      if(i>1) all_time <- rbind(all_time, pred_time)
     }
   } else {
     observer_groups <- do.call(rbind, lapply(observer_groups, as.data.frame))
@@ -239,7 +264,7 @@ for (data_tag in data_tags){
                         pland_08_woody_savanna + pland_09_savanna + pland_10_grassland + pland_12_cropland + pland_13_urban + 
                         pland_15_barren + GSI +
                         # effort expended for a given checklist
-                        s(doy, bs = 'cc') + protocol_type + effort_distance_km + 
+                        s(doy, bs = 'cc') + protocol_name + effort_distance_km + 
                         number_observers + s(tod, bs = 'tp') + 
                         I(log(checklist.no)) + 
                         # observer-specific effects for the intercept and the slope
@@ -248,7 +273,7 @@ for (data_tag in data_tags){
                       data = observer_groups, 
                       family = poisson, 
                       discrete = TRUE)
-      
+    
     # create prediction dataframe, with same checklist variables and different
     # observer ID's
     pred_observers <- data.frame(observer_id=unique(observer_groups$observer_id))   
@@ -260,114 +285,209 @@ for (data_tag in data_tags){
     # run prediction
     p_group <- predict(model_temp, newdata=pred_group, type='link', se.fit=TRUE)
     # extract variables we need
-    pred_obs <- data.frame(observer_id=pred_group$observer_id, fit=p_group$fit, se=p_group$se.fit)
+    pred_obs <- data.frame(observer_id=pred_group$observer_id, fit = p_group$fit)
     # convert back from the log link
     pred_obs$est <- exp(pred_obs$fit)
     
     #variables for storing
     pred_obs$observer_id <- as.character(pred_obs$observer_id)
     
+    # find durations for each observer
+    durations <- observer_groups %>% select(observer_id, duration_minutes) %>% 
+      group_by(observer_id) %>%
+      # find duration
+      summarise(duration = ifelse(max(duration_minutes >= 300), 
+                                  300, max(duration_minutes)))
+    
+    # make df for predictions on each observer for each timestep (1 min : max_obs)
+    pred_durations <- pred_group %>%
+      left_join(durations, by = "observer_id") %>%
+      select(-duration_minutes) %>%   # drop old static duration_minutes
+      rowwise() %>%
+      mutate(duration_minutes = list(0:duration)) %>%  # create list of durations
+      unnest(duration_minutes) %>%    # unnest to expand
+      ungroup()
+    
+    pred_t <- predict(model_temp, newdata=pred_durations, type='link', se.fit=TRUE )
+    
+    pred_time <- data.frame(observer_id = pred_durations$observer_id, duration_minutes = pred_durations$duration_minutes, fit = pred_t$fit)
+    
     # store all the predictions together, matching alternate format above
     all_pred <- pred_obs
+    
+    # store all the predictions together, matching alternate format above
+    all_time <- pred_time
   }
   
   # save this before I lose it
   all_pred %>% write_csv(paste0(data_path, data_tag, '_SAC.csv'))
+  all_time %>% write_csv(paste0(data_path, data_tag, '_time.csv'))
   
-  # number of observers predicted for
-  n_rows = length(all_pred$est)
+  if (str_detect(data_tag, 'full')){
   
-  # top and bottom 25% of observer scores to compare for species
-  top_quantile <- all_pred %>% arrange(est) %>% filter(row_number() > n_rows*0.75)
-  bottom_quantile <- all_pred %>% arrange(est) %>% filter(row_number() < n_rows*0.25 + 1) 
+    # number of observers predicted for
+    n_rows = length(all_pred$fit)
   
-  # checklists submitted by the top and bottom 25% of observer scores
-  top_checklists <- data %>% filter(observer_id %in% top_quantile$observer_id)
-  bottom_checklists <- data %>% filter(observer_id %in% bottom_quantile$observer_id)
+    # top and bottom 25% of observer scores to compare for species
+    top_quantile <- all_pred %>% arrange(fit) %>% filter(row_number() > n_rows*0.75)
+    bottom_quantile <- all_pred %>% arrange(fit) %>% filter(row_number() < n_rows*0.25 + 1)
   
-  # species in the top and bottom checklists
-  top_species <- unique(top_checklists$scientific_name)
-  bottom_species <- unique(bottom_checklists$scientific_name)
-  # all species listed
-  all_species <- unique(data$scientific_name)
+    # checklists submitted by the top and bottom 25% of observer scores
+    top_checklists <- data %>% filter(observer_id %in% top_quantile$observer_id)
+    bottom_checklists <- data %>% filter(observer_id %in% bottom_quantile$observer_id)
   
-  # function to return the proportion of checklists containing a specific bird
-  zeros <- function(species, ebird, ...){
-    ebird <- ebird %>%
-      group_by(checklist_id, observer_id) %>%
-      mutate(obs = ifelse(any(scientific_name == species), 1, 0)) %>%
-      ungroup() %>%
-      distinct(checklist_id, .keep_all = TRUE)
-    prop <- length(ebird$obs[ebird$obs == 1])/length(ebird$obs)
-    return(prop)
-  }
+    # species in the top and bottom checklists
+    top_species <- unique(top_checklists$scientific_name)
+    bottom_species <- unique(bottom_checklists$scientific_name)
+    # all species listed
+    all_species <- unique(data$scientific_name)
   
-  all_prop <- sapply(all_species, zeros, ebird = data)
-  all <- data.frame(species = all_species, prop = all_prop)
-  all_filter <- all %>% filter(prop >= 0.01)
-  target_species <- unique(all_filter$species)
-  
-  top_prop <- sapply(target_species, zeros, ebird = top_checklists)
-  bottom_prop <- sapply(target_species, zeros, ebird = bottom_checklists)
-  
-  top <- data.frame(species = target_species, prop = top_prop)
-  bottom <- data.frame(species = target_species, prop = bottom_prop)
-  
-  join <- data.frame(species = target_species, top = top$prop, bottom = bottom$prop)
-  join <- join %>% mutate(diff = top - bottom, ratio = top/bottom)
-  
-  
-  ## THESE BOOTS ARE MADE FOR STRAPPIN'
-  top_observers <- top_quantile$observer_id
-  bottom_observers <- bottom_quantile$observer_id
-  
-  for (i in 1:200){
-    print(paste('Bootstrap no.', i))
-    # Resample Observers
-    observers_top <- sample(top_observers, size = length(top_observers), replace = TRUE)
-    observers_bottom <- sample(bottom_observers, size = length(bottom_observers), replace = TRUE)
-    
-    # Obtain checklists for those observers
-    checklists_top <- top_checklists %>% filter(observer_id %in% observers_top)
-    checklists_bottom <- bottom_checklists %>% filter(observer_id %in% observers_bottom)
-    
-    # Calculate species reporting rate for subsample for species in top/bottom
-    prop_top <- sapply(target_species, zeros, ebird = checklists_top)
-    prop_bottom <- sapply(target_species, zeros, ebird = checklists_bottom)
-    
-    # Append result as new row so each column is species
-    if(i==1) {
-      bootstrap_top <- prop_top
-      bootstrap_bottom <- prop_bottom
-    } 
-    if(i>1){ 
-      bootstrap_top <- rbind(bootstrap_top, prop_top)
-      bootstrap_bottom <- rbind(bootstrap_bottom, prop_bottom)
+    # function to return the proportion of checklists containing a specific bird
+    zeros <- function(species, ebird, ...){
+      ebird <- ebird %>%
+        group_by(checklist_id, observer_id) %>%
+        mutate(obs = ifelse(any(scientific_name == species), 1, 0)) %>%
+        ungroup() %>%
+        distinct(checklist_id, .keep_all = TRUE)
+      prop <- length(ebird$obs[ebird$obs == 1])/length(ebird$obs)
+      return(prop)
     }
+  
+    all_prop <- sapply(all_species, zeros, ebird = data)
+    all <- data.frame(species = all_species, prop = all_prop)
+    all_filter <- all %>% filter(prop >= 0.01)
+    target_species <- unique(all_filter$species)
+  
+    top_prop <- sapply(target_species, zeros, ebird = top_checklists)
+    bottom_prop <- sapply(target_species, zeros, ebird = bottom_checklists)
+  
+    top <- data.frame(species = target_species, prop = top_prop)
+    bottom <- data.frame(species = target_species, prop = bottom_prop)
+  
+    join <- data.frame(species = target_species, top = top$prop, bottom = bottom$prop)
+    join <- join %>% mutate(diff = top - bottom, ratio = top/bottom)
+  
+  
+    ## THESE BOOTS ARE MADE FOR STRAPPIN'
+    top_observers <- top_quantile$observer_id
+    bottom_observers <- bottom_quantile$observer_id
+  
+    for (j in 1:200){
+      print(paste('Bootstrap no.', j))
+      # Resample Observers
+      observers_top <- sample(top_observers, size = length(top_observers), replace = TRUE)
+      observers_bottom <- sample(bottom_observers, size = length(bottom_observers), replace = TRUE)
+  
+      # Obtain checklists for those observers
+      checklists_top <- top_checklists %>% filter(observer_id %in% observers_top)
+      checklists_bottom <- bottom_checklists %>% filter(observer_id %in% observers_bottom)
+  
+      # Calculate species reporting rate for subsample for species in top/bottom
+      prop_top <- sapply(target_species, zeros, ebird = checklists_top)
+      prop_bottom <- sapply(target_species, zeros, ebird = checklists_bottom)
+  
+      # Append result as new row so each column is species
+      if(j==1) {
+        bootstrap_top <- prop_top
+        bootstrap_bottom <- prop_bottom
+      }
+      if(j>1){
+        bootstrap_top <- rbind(bootstrap_top, prop_top)
+        bootstrap_bottom <- rbind(bootstrap_bottom, prop_bottom)
+      }
+    }
+  
+    top_df <- bootstrap_top %>% as.data.frame()
+    bottom_df <- bootstrap_bottom %>% as.data.frame()
+  
+    top_df <- top_df %>% pivot_longer(cols = everything(), names_to = 'species', values_to = 'Metric') %>%
+      group_by(species) %>%
+      summarise(Mean = mean(Metric),
+                CI_low = quantile(Metric, 0.025),
+                CI_high = quantile(Metric, 0.975)) %>% mutate(group = 'top')
+  
+    bottom_df <- bottom_df %>% pivot_longer(cols = everything(), names_to = 'species', values_to = 'Metric') %>%
+      group_by(species) %>%
+      summarise(Mean = mean(Metric),
+                CI_low = quantile(Metric, 0.025),
+                CI_high = quantile(Metric, 0.975)) %>% mutate(group = 'bottom')
+  
+    all_df <- rbind(top_df, bottom_df)
+  
+    join <- join %>% mutate(diff_new = abs(ratio - 1))
+  
+    common_names <- ebd %>% select(species = scientific_name, common_name) %>% distinct()
+    join <- join %>% left_join(common_names, by = 'species')
+  
+    # save this before I lose it too
+    join %>% write_csv(paste0(data_path, data_tag, '_SAC_species.csv'))
+    
+  } else if (str_detect(data_tag, 'new')){
+    # same approach as above but without splitting into quantiles as new observers
+    # don't have the same layout of novice to expert
+    
+    # number of observers predicted for
+    n_rows = length(all_pred$fit)
+    
+    # all species listed
+    all_species <- unique(data$scientific_name)
+    
+    # function to return the proportion of checklists containing a specific bird
+    zeros <- function(species, ebird, ...){
+      ebird <- ebird %>%
+        group_by(checklist_id, observer_id) %>%
+        mutate(obs = ifelse(any(scientific_name == species), 1, 0)) %>%
+        ungroup() %>%
+        distinct(checklist_id, .keep_all = TRUE)
+      prop <- length(ebird$obs[ebird$obs == 1])/length(ebird$obs)
+      return(prop)
+    }
+    
+    all_prop <- sapply(all_species, zeros, ebird = data)
+    all <- data.frame(species = all_species, prop = all_prop)
+    all_filter <- all %>% filter(prop >= 0.01)
+    target_species <- unique(all_filter$species)
+    
+    prop <- sapply(target_species, zeros, ebird = data)
+    
+    result <- data.frame(species = target_species, prop = prop)
+    
+    ## THESE BOOTS ARE MADE FOR STRAPPIN'
+    observers <- all_pred$observer_id
+    
+    for (j in 1:200){
+      print(paste('Bootstrap no.', j))
+      # Resample Observers
+      observers_samp <- sample(observers, size = length(observers), replace = TRUE)
+      
+      # Obtain checklists for those observers
+      checklists <- data %>% filter(observer_id %in% observers_samp)
+      
+      # Calculate species reporting rate for subsample for species in top/bottom
+      prop <- sapply(target_species, zeros, ebird = checklists)
+      
+      # Append result as new row so each column is species
+      if(j==1) {
+        bootstrap <- prop
+      }
+      if(j>1){
+        bootstrap <- rbind(bootstrap, prop)
+      }
+    }
+    
+    df <- bootstrap %>% as.data.frame()
+    
+    all_df <- df %>% pivot_longer(cols = everything(), names_to = 'species', values_to = 'Metric') %>%
+      group_by(species) %>%
+      summarise(Mean = mean(Metric),
+                CI_low = quantile(Metric, 0.025),
+                CI_high = quantile(Metric, 0.975))
+  
+    common_names <- ebd %>% select(species = scientific_name, common_name) %>% distinct()
+    all_df <- all_df %>% left_join(common_names, by = 'species')
+    
+    # save this before I lose it too
+    all_df %>% write_csv(paste0(data_path, data_tag, '_SAC_species.csv'))
+    
   }
-  
-  top_df <- bootstrap_top %>% as.data.frame() 
-  bottom_df <- bootstrap_bottom %>% as.data.frame()
-  
-  top_df <- top_df %>% pivot_longer(cols = everything(), names_to = 'species', values_to = 'Metric') %>%
-    group_by(species) %>%
-    summarise(Mean = mean(Metric),
-              CI_low = quantile(Metric, 0.025),
-              CI_high = quantile(Metric, 0.975)) %>% mutate(group = 'top')
-  
-  bottom_df <- bottom_df %>% pivot_longer(cols = everything(), names_to = 'species', values_to = 'Metric') %>%
-    group_by(species) %>%
-    summarise(Mean = mean(Metric),
-              CI_low = quantile(Metric, 0.025),
-              CI_high = quantile(Metric, 0.975)) %>% mutate(group = 'bottom')
-  
-  all_df <- rbind(top_df, bottom_df)
-  
-  join <- join %>% mutate(diff_new = abs(ratio - 1))
-  
-  common_names <- ebd %>% select(species = scientific_name, common_name) %>% distinct()
-  join <- join %>% left_join(common_names, by = 'species')
-  
-  # save this before I lose it too
-  join %>% write_csv(paste0(data_path, data_tag, '_SAC_species.csv'))
 }

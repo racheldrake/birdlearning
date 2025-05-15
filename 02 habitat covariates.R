@@ -50,7 +50,7 @@ projection <- raster::projection
 ## - Setup                                                                       ####
 
 # string used to identify datasets
-data_string <- 'datahistorical_23'
+data_string <- 'bcr23_2025'
 
 # list of data extractions (this should match ebird/dataset processing)
 data_tags <- paste0(data_string, c('_2016_19_full', '_2022_24_full', '_2016_19_new', '_2022_24_new'))
@@ -76,7 +76,6 @@ bcr <- st_read(file.path(data_spat_path, 'BCR_Terrestrial_master.shp')) %>%
 for (data_tag in data_tags){
   # load in eBird data
   ebird <- read_csv(paste0(data_extr_path, data_tag, '.csv'))
-  
   
   #- Downloading MODIS data                                                         ####
   

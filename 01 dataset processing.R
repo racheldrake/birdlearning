@@ -30,6 +30,9 @@ setwd("G:/R Coding/birdlearning")  	# working directory (windows)
 
 library(tidyverse)
 
+# resolve namespace conflicts
+select <- dplyr::select
+
 ## ---------------------------
 
 # where to find eBird csv from last script
@@ -39,7 +42,7 @@ raw_data_path <- 'data/'
 data_path <- 'proc_data/' 
 
 # name of data extraction
-data_tag <- "datahistorical_23"
+data_tag <- "bcr23_2025"
 
 # ebird data
 ebd <- read_csv(paste0(raw_data_path, data_tag, ".csv"))
@@ -47,22 +50,27 @@ ebd <- read_csv(paste0(raw_data_path, data_tag, ".csv"))
 # full datasets
 # 2016-19
 ebd %>% 
-  filter(year(ymd(observation_date)) %in% c(2004, 2005, 2006, 2007)) %>%
+  rename(checklist_id = sampling_event_identifier) %>%
+  filter(year(ymd(observation_date)) %in% c(2016, 2017, 2018, 2019)) %>%
   filter(month(ymd(observation_date)) %in% 3:8) %>% 
   write_csv(paste0(data_path, data_tag, '_2016_19_full.csv'))
 
 # 2022-24
 ebd %>% 
-  filter(year(ymd(observation_date)) %in% c(2009, 2010, 2011, 2012)) %>%
+  rename(checklist_id = sampling_event_identifier) %>%
+  filter(year(ymd(observation_date)) %in% c(2022, 2023, 2024)) %>%
   filter(month(ymd(observation_date)) %in% 3:8) %>%
   write_csv(paste0(data_path, data_tag, '_2022_24_full.csv'))
 
 # new observer datasets
   
 # 2016-19
-ebd %>% 
+processing <- ebd %>% 
+  rename(checklist_id = sampling_event_identifier) %>%
   # split up multi-observer records to have one checklist copy per observer
-  separate_rows(observer_id, sep = ',') %>%
+  separate_rows(observer_id, sep = ',') 
+
+keepers <- processing %>%
   # group by checklist and observer so we get each checklist for each observer
   group_by(checklist_id, observer_id) %>% 
   # take one record of each checklist, as we don't want each record enumerated separately
@@ -70,20 +78,28 @@ ebd %>%
   # take each observers history and put it in chronological order
   group_by(observer_id) %>% arrange(observation_date, .by_group = TRUE) %>%
   # then assign the checklist number
-  mutate(checklist.no = row_number()) %>% 
-  filter(year(ymd(observation_date)) %in% c(2004, 2005, 2006, 2007)) %>%
-  filter(all(checklist.no %in% 1:100)) %>%
+  mutate(checklist.no = row_number()) %>%
+  filter(year(ymd(observation_date)) %in% c(2016, 2017, 2018, 2019)) %>%
+  filter(checklist.no == 1) %>%
+  pull(observer_id)  
+
+processing %>% 
+  filter(year(ymd(observation_date)) %in% c(2016, 2017, 2018, 2019)) %>%
+  filter(observer_id %in% keepers) %>%
   ungroup() %>% 
-  # keep only the information we need from the dataset
-  select(-checklist.no) %>%
   # filter to breeding season
   filter(month(ymd(observation_date)) %in% 3:8) %>%
   write_csv(paste0(data_path, data_tag, '_2016_19_new.csv'))
+
+test <- read_csv(paste0(data_path, data_tag, '_2016_19_new.csv'))
   
 # 2022-24
-ebd %>% 
+processing <- ebd %>% 
+  rename(checklist_id = sampling_event_identifier) %>%
   # split up multi-observer records to have one checklist copy per observer
-  separate_rows(observer_id, sep = ',') %>%
+  separate_rows(observer_id, sep = ',') 
+
+keepers <- processing %>%
   # group by checklist and observer so we get each checklist for each observer
   group_by(checklist_id, observer_id) %>% 
   # take one record of each checklist, as we don't want each record enumerated separately
@@ -91,12 +107,15 @@ ebd %>%
   # take each observers history and put it in chronological order
   group_by(observer_id) %>% arrange(observation_date, .by_group = TRUE) %>%
   # then assign the checklist number
-  mutate(checklist.no = row_number()) %>% 
-  filter(year(ymd(observation_date)) %in% c(2009, 2010, 2011, 2012)) %>%
-  filter(all(checklist.no %in% 1:100)) %>%
+  mutate(checklist.no = row_number()) %>%
+  filter(year(ymd(observation_date)) %in% c(2022, 2023, 2024)) %>%
+  filter(checklist.no == 1) %>%
+  pull(observer_id)  
+
+processing %>% 
+  filter(year(ymd(observation_date)) %in% c(2022, 2023, 2022)) %>%
+  filter(observer_id %in% keepers) %>%
   ungroup() %>% 
-  # keep only the information we need from the dataset
-  select(-checklist.no) %>%
   # filter to breeding season
   filter(month(ymd(observation_date)) %in% 3:8) %>%
   write_csv(paste0(data_path, data_tag, '_2022_24_new.csv'))
