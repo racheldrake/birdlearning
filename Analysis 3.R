@@ -184,6 +184,6 @@ audio_shift <- pred_data %>%
   scale_colour_viridis_c() + 
   coord_fixed(ratio = 1, xlim = c(0, 10), ylim = c(0, 10)) +
   labs(x = 'Average count per hour 2016-2019', y = 'Average count per hour 2022-2024', colour = 'Audio Index') + 
-  ggtitle('Average count per hour with prediction low and high audio index')
+  ggtitle('New data')
 
 ggsave(paste0(results_path, data_string, '_audio_shift_new.png'), audio_shift, width = 6, height = 6)

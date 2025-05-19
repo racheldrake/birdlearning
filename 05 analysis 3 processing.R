@@ -47,20 +47,22 @@ data_path <- 'SAC/'
 
 data_string <- 'bcr23_2025'
 
-data_proc_path <- 'stdata/'
+data_proc_path <- 'data_trends/'
 
 # eBird path
 ebd_path <- 'proc_data/'
 
 # where I want to save results
-results_path <- 'analysis_3/'
+results_path <- 'analysis_3/data/'
 
 # load in audio index
-audio_index <- read_csv('audio_index.csv')
+audio_index <- read_csv(paste0(ebd_path, 'audio_index.csv'))
 
 #- grab count per hour data ####
 
-full_data_tags <- paste0(data_string, c('_2016_19_new', '_2022_24_new'))
+# it's not very bombproof but I just change these from new to full to process
+# each of the datasets
+full_data_tags <- paste0(data_string, c('_2016_19_full', '_2022_24_full'))
 
 total_N <- function(species, ebd){
   sum(ebd$observation_count[ebd$common_name == species])
@@ -104,25 +106,53 @@ BBS <- read_csv(paste0(data_proc_path, 'BBS_Indices.csv'))
 BBS_codes <- read_csv(paste0(data_proc_path, 'bbs_codes.csv'))
 
 # 4 species here that don't have a match
-main_join <- data.frame(common_name = SAC_species) %>% left_join(BBS_codes, join_by(common_name == BBS_common))
+main_join <- data.frame(common_name = SAC_species) %>% 
+  left_join(BBS_codes, join_by(common_name == BBS_common))
 
 # multiple regions then pivot this wide for the join
-test <- BBS %>% filter(Region %in% 'US1') 
+test <- BBS %>% filter(Region %in% c('US1', 'S23')) %>% 
+  pivot_wider(names_from = 'Region', values_from = 'Index')
+
 joined <- main_join %>% mutate(Year = list(start_year:end_year)) %>% 
   unnest(Year) %>% left_join(test, by = c('AOU', 'Year')) %>% 
-  # do weighted sum across regions here
   mutate(time = ifelse(Year %in% pre, 'pre', NA),
          time = ifelse(Year %in% post, 'post', time),
          time = as.factor(time)) %>% 
-  drop_na(time) %>% group_by(common_name, time) %>%
-  summarise(Index = mean(Index, na.rm = FALSE)) %>% 
-  pivot_wider(names_from = time, values_from = Index) %>%
-  mutate(trend = post - pre) %>% select(-c(pre, post)) 
+  drop_na(time, 'S23') %>%
+  group_by(common_name, time) %>%
+  # calculate average
+  summarise(Index = mean(S23, na.rm = TRUE)) %>%
+  # pivot wide for pre and post
+  pivot_wider(names_from = 'time', values_from = Index) %>%
+  # calculate trend
+  mutate(trend = post - pre) %>% 
+  # remove fluff
+  select(- c(pre, post))
+
+# not enough species to do analysis so I also make a proportional (though less
+## accurate) metric from the full US1 trend for continental US
+
+leftovers <- main_join %>% mutate(Year = list(start_year:end_year)) %>% 
+  unnest(Year) %>% left_join(test, by = c('AOU', 'Year')) %>% 
+  mutate(time = ifelse(Year %in% pre, 'pre', NA),
+         time = ifelse(Year %in% post, 'post', time),
+         time = as.factor(time)) %>% 
+  drop_na(time) %>%
+  filter(is.na(S23) & !is.na(US1)) %>%
+  group_by(common_name, time) %>%
+  # calculate prop of total US
+  summarise(Index = mean(US1 * (242704/11165740), na.rm = TRUE)) %>%
+  # pivot wide for pre and post
+  pivot_wider(names_from = 'time', values_from = Index) %>%
+  # calculate trend
+  mutate(trend = post - pre) %>% 
+  # remove fluff
+  select(- c(pre, post))
+
+joined <- rbind(joined, leftovers)
 
 model_data <- N %>% left_join(joined, by = 'common_name') %>% 
   left_join(audio_index, by = 'common_name') %>% 
-  select(-scientific_name) %>% drop_na() %>% write_csv(paste0(results_path, data_string, '_N_model_new.csv'))
-
-
-
+  select(-scientific_name) %>% drop_na() %>% 
+  write_csv(paste0(results_path, data_string, '_N_model.csv'))
 
