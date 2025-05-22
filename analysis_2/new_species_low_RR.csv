@@ -1,21 +1,21 @@
 species_pre,common_name_pre,mean_pre,species_post,common_name_post,mean_post
-Setophaga americana,Northern Parula,0.01095258902068247,Setophaga striata,Blackpoll Warbler,0.01014464151059024
-Chroicocephalus philadelphia,Bonaparte's Gull,0.01112690152914961,Hydroprogne caspia,Caspian Tern,0.01024113380619804
-Buteo platypterus,Broad-winged Hawk,0.01116724523868625,Phasianus colchicus,Ring-necked Pheasant,0.0104851015796708
-Cardellina pusilla,Wilson's Warbler,0.01127732999538765,Chlidonias niger,Black Tern,0.01058468247712522
-Setophaga striata,Blackpoll Warbler,0.01132002808201098,Buteo platypterus,Broad-winged Hawk,0.01061922660909357
-Strix varia,Barred Owl,0.01192118990814762,Cistothorus stellaris,Sedge Wren,0.01080608060828692
-Haemorhous purpureus,Purple Finch,0.01240362601843219,Cardellina pusilla,Wilson's Warbler,0.01101788904666148
-Mareca americana,American Wigeon,0.01264101406619629,Circus hudsonius,Northern Harrier,0.0113756490768435
-Tringa melanoleuca,Greater Yellowlegs,0.01271812144280667,Strix varia,Barred Owl,0.01155715662553156
-Setophaga fusca,Blackburnian Warbler,0.01275602310541431,Setophaga virens,Black-throated Green Warbler,0.01180697072812737
-Calidris minutilla,Least Sandpiper,0.012860528017034,Haemorhous purpureus,Purple Finch,0.0120107899794749
-Setophaga pinus,Pine Warbler,0.01313725613918198,Passerella iliaca,Fox Sparrow,0.01217683729990171
-Circus hudsonius,Northern Harrier,0.01399639524546318,Setophaga pinus,Pine Warbler,0.01219675386870091
-Tringa solitaria,Solitary Sandpiper,0.01456985428023494,Dolichonyx oryzivorus,Bobolink,0.01237273663542815
-Cistothorus stellaris,Sedge Wren,0.01538468769199359,Vermivora cyanoptera,Blue-winged Warbler,0.01261327253593845
-Aythya valisineria,Canvasback,0.01546837008306851,Tringa melanoleuca,Greater Yellowlegs,0.01288088624880589
-Spiza americana,Dickcissel,0.01555833983760579,Calidris minutilla,Least Sandpiper,0.013000077366469
-Parkesia noveboracensis,Northern Waterthrush,0.01608080321999375,Setophaga fusca,Blackburnian Warbler,0.01310776182191543
-Anas crecca,Green-winged Teal,0.01608476831652445,Spizella pallida,Clay-colored Sparrow,0.01366408027962097
-Podiceps auritus,Horned Grebe,0.01671132800372426,Parkesia noveboracensis,Northern Waterthrush,0.0139110113996243
+Setophaga americana,Northern Parula,0.01094220062762807,Setophaga striata,Blackpoll Warbler,0.01015364943114038
+Chroicocephalus philadelphia,Bonaparte's Gull,0.01112387053595711,Hydroprogne caspia,Caspian Tern,0.01021328312597585
+Buteo platypterus,Broad-winged Hawk,0.01112662790492635,Phasianus colchicus,Ring-necked Pheasant,0.01035165361471913
+Cardellina pusilla,Wilson's Warbler,0.01123443160646771,Chlidonias niger,Black Tern,0.01053350375593067
+Setophaga striata,Blackpoll Warbler,0.01123451137355221,Buteo platypterus,Broad-winged Hawk,0.01072550074551753
+Strix varia,Barred Owl,0.01191567558818754,Cistothorus stellaris,Sedge Wren,0.01078715744204159
+Haemorhous purpureus,Purple Finch,0.01233258532461182,Cardellina pusilla,Wilson's Warbler,0.01101597321346328
+Setophaga fusca,Blackburnian Warbler,0.01270351930004421,Circus hudsonius,Northern Harrier,0.01145772183319775
+Tringa melanoleuca,Greater Yellowlegs,0.01274525799873632,Strix varia,Barred Owl,0.01156687062719951
+Mareca americana,American Wigeon,0.01274641422734555,Setophaga virens,Black-throated Green Warbler,0.01181505633608909
+Calidris minutilla,Least Sandpiper,0.01286308396691594,Haemorhous purpureus,Purple Finch,0.01222620578313173
+Setophaga pinus,Pine Warbler,0.01302230116318099,Passerella iliaca,Fox Sparrow,0.01225950151264803
+Circus hudsonius,Northern Harrier,0.0140670866983134,Setophaga pinus,Pine Warbler,0.0123789725926234
+Tringa solitaria,Solitary Sandpiper,0.01455770918813079,Dolichonyx oryzivorus,Bobolink,0.01249902106828272
+Aythya valisineria,Canvasback,0.01544215551512444,Vermivora cyanoptera,Blue-winged Warbler,0.01264907121272335
+Spiza americana,Dickcissel,0.01545538331493985,Tringa melanoleuca,Greater Yellowlegs,0.01282683171724516
+Cistothorus stellaris,Sedge Wren,0.01546060790146623,Calidris minutilla,Least Sandpiper,0.01294820095730534
+Parkesia noveboracensis,Northern Waterthrush,0.01608819353037643,Setophaga fusca,Blackburnian Warbler,0.01313201317912672
+Anas crecca,Green-winged Teal,0.01623594829486651,Spizella pallida,Clay-colored Sparrow,0.01356965887084055
+Podiceps auritus,Horned Grebe,0.01667646982094111,Parkesia noveboracensis,Northern Waterthrush,0.01383634888579032

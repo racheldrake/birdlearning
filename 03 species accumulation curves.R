@@ -31,6 +31,7 @@ library(tidyverse)
 library(concstats)
 library(mgcv)
 library(purrr)
+library(plotrix)
 # resolve namespace conflicts
 select <- dplyr::select
 map <- purrr::map
@@ -50,7 +51,7 @@ ebd_path <- 'proc_data/'
 # where I want processed data to end up
 data_path <- 'SAC/' 
 
-data_tags <- paste0(data_string, c('_2016_19_full', '_2022_24_full', '_2016_19_new', '_2022_24_new'))
+data_tags <- paste0(data_string, c('_2022_24_full', '_2016_19_new', '_2022_24_new'))
 
 for (data_tag in data_tags){
   # load in habitat data
@@ -364,10 +365,6 @@ for (data_tag in data_tags){
     top <- data.frame(species = target_species, prop = top_prop)
     bottom <- data.frame(species = target_species, prop = bottom_prop)
   
-    join <- data.frame(species = target_species, top = top$prop, bottom = bottom$prop)
-    join <- join %>% mutate(diff = top - bottom, ratio = top/bottom)
-  
-  
     ## THESE BOOTS ARE MADE FOR STRAPPIN'
     top_observers <- top_quantile$observer_id
     bottom_observers <- bottom_quantile$observer_id
@@ -403,24 +400,27 @@ for (data_tag in data_tags){
     top_df <- top_df %>% pivot_longer(cols = everything(), names_to = 'species', values_to = 'Metric') %>%
       group_by(species) %>%
       summarise(Mean = mean(Metric),
-                CI_low = quantile(Metric, 0.025),
-                CI_high = quantile(Metric, 0.975)) %>% mutate(group = 'top')
+                SE = std.error(Metric)) %>% mutate(group = 'top')
   
     bottom_df <- bottom_df %>% pivot_longer(cols = everything(), names_to = 'species', values_to = 'Metric') %>%
       group_by(species) %>%
       summarise(Mean = mean(Metric),
-                CI_low = quantile(Metric, 0.025),
-                CI_high = quantile(Metric, 0.975)) %>% mutate(group = 'bottom')
+                SE = std.error(Metric)) %>% mutate(group = 'bottom')
   
     all_df <- rbind(top_df, bottom_df)
   
-    join <- join %>% mutate(diff_new = abs(ratio - 1))
+    all_df <- all_df %>% pivot_wider(values_from = c(Mean, SE), names_from = group) %>%
+      mutate(diff = Mean_top - Mean_bottom,
+             ratio = Mean_bottom/Mean_top,
+             SE_ratio = sqrt((SE_top/Mean_top)^2 + (SE_bottom/Mean_bottom)^2)*ratio,
+             SE_diff = sqrt(SE_top^2 + SE_bottom^2),
+             diff_new =  abs(ratio - 1))
   
     common_names <- ebd %>% select(species = scientific_name, common_name) %>% distinct()
-    join <- join %>% left_join(common_names, by = 'species')
+    all_df <- all_df %>% left_join(common_names, by = 'species')
   
     # save this before I lose it too
-    join %>% write_csv(paste0(data_path, data_tag, '_SAC_species.csv'))
+    all_df %>% write_csv(paste0(data_path, data_tag, '_SAC_species.csv'))
     
   } else if (str_detect(data_tag, 'new')){
     # same approach as above but without splitting into quantiles as new observers
@@ -480,8 +480,7 @@ for (data_tag in data_tags){
     all_df <- df %>% pivot_longer(cols = everything(), names_to = 'species', values_to = 'Metric') %>%
       group_by(species) %>%
       summarise(Mean = mean(Metric),
-                CI_low = quantile(Metric, 0.025),
-                CI_high = quantile(Metric, 0.975))
+                SE = std.error(Metric))
   
     common_names <- ebd %>% select(species = scientific_name, common_name) %>% distinct()
     all_df <- all_df %>% left_join(common_names, by = 'species')

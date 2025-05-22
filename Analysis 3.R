@@ -39,8 +39,8 @@ data_string <- "bcr23_2025"
 # where I find my trend data
 data_path <- 'stdata/' 
 
-# eBird path
-ebd_path <- 'proc_data/'
+# where the saved datasets are
+ebd_path <- 'analysis_3/data/'
 
 # where I want to save results
 results_path <- 'analysis_3/'
@@ -50,12 +50,12 @@ results_path <- 'analysis_3/'
 ### DATA PREP ---------------------------
 
 # load in model data
-data <- read_csv(paste0(results_path, data_string, '_N_model.csv')) %>%
+data <- read_csv(paste0(ebd_path, data_string, '_N_model.csv')) %>%
   mutate(merlin = factor(time, levels = c('pre', 'post'))) %>% select(-time)
 
 # histogram of data to check for skew
 data %>% pivot_wider(names_from = merlin, values_from = N) %>% 
-  pivot_longer(cols = c(trend, audio_index, pre, post), 
+  pivot_longer(cols = c(Index, audio_index, pre, post), 
                names_to = 'vars', values_to = 'vals') %>%
   ggplot() + geom_histogram(aes(vals), bins = 60) + 
   facet_wrap(~vars, nrow = 2, ncol = 2, scales = 'free') + 
@@ -67,14 +67,14 @@ data <- data %>% group_by(common_name) %>%
   filter(n == 2) %>% ungroup() %>% select(-n)
 
 data$audio_index = as.numeric(scale(log(data$audio_index)))
-data$trend = as.numeric(scale(data$trend))
+data$Index = as.numeric(scale(data$Index))
 data$common_name = factor(as.character(data$common_name))
 
 
 
 # histogram of data to check for skew
 data %>% pivot_wider(names_from = merlin, values_from = N) %>% 
-  pivot_longer(cols = c(trend, audio_index, pre, post), 
+  pivot_longer(cols = c(Index, audio_index, pre, post), 
                names_to = 'vars', values_to = 'vals') %>%
   ggplot() + geom_histogram(aes(vals), bins = 60) + 
   facet_wrap(~vars, nrow = 2, ncol = 2, scales = 'free') + 
@@ -84,16 +84,16 @@ data %>% pivot_wider(names_from = merlin, values_from = N) %>%
 
 # fit model with pre/post factor
 
-fit <- glmer(N ~ trend + merlin + merlin:audio_index + audio_index + (1|common_name), 
+fit <- glmer(N ~ Index + merlin + merlin:audio_index + audio_index + (1|common_name),
            data = data,
            family = gaussian(link = 'log'))
 
-# summary(fit)
+summary(fit)
 
 write_csv(tidy(fit), paste0(results_path, data_string, '_full_model_summary.csv'))
 
 # predict for merlin and no merlin, no trend, constant audio
-pred_data <- data.frame(trend = rep(0, 2*length(data$N)),
+pred_data <- data.frame(Index = rep(mean(data$Index), 2*length(data$N)),
                         merlin = c(rep('pre', length(data$N)/2), rep('post', length(data$N)/2), rep('pre', length(data$N)/2), rep('post', length(data$N)/2)),
                         audio_index = c(rep(quantile(data$audio_index, 0.1), length(data$N)), rep(quantile(data$audio_index, 0.9), length(data$N))),
                         audio_type = c(rep('low', length(data$N)), rep('high', length(data$N))),
@@ -104,17 +104,41 @@ pred_data$merlin <- as.factor(pred_data$merlin)
 
 pred_data$prediction <- predict(fit, newdata = pred_data, type = 'response')
 
-data_plot <- data %>% pivot_wider(names_from = merlin, values_from = N)
+pred_data <- pred_data %>%
+  pivot_wider(names_from = 'merlin', values_from = prediction)
 
-audio_shift <- pred_data %>% 
-  pivot_wider(names_from = merlin, values_from = prediction) %>%
-  ggplot() +geom_point(aes(pre, post, colour = audio_index), data = data_plot) + 
-  geom_line(aes(pre, post, group = audio_type, colour = audio_index)) + theme_bw() +
+extended_lines <- pred_data %>%
+  group_by(audio_type) %>%
+  summarise(
+    audio_index = min(audio_index),
+    slope = coef(lm(post ~ pre))[2],
+    intercept = coef(lm(post ~ pre))[1],
+    .groups = "drop"
+  ) %>%
+  # Extend x range manually
+  mutate(
+    pre_min = exp(log(min(data$N[data$merlin == 'pre']))),
+    pre_max = exp(log(max(data$N[data$merlin == 'pre']))),
+    post_min = intercept + slope * pre_min,
+    post_max = intercept + slope * pre_max
+  ) %>% pivot_longer(cols = c(pre_min, pre_max, post_min, post_max), names_to = 'ignore', values_to = 'values') %>%
+  mutate(type = ifelse(str_detect(ignore, 'pre'), 'pre', 'post'),
+         type2 = ifelse(str_detect(ignore, 'min'), 'min', 'max')) %>%
+  select(-ignore) %>%
+  pivot_wider(names_from = 'type', values_from = 'values')
+
+data_plot <- data %>% select(-Index) %>%
+  mutate(merlin = as.character(merlin)) %>% 
+  pivot_wider(names_from = merlin, values_from = N) 
+
+audio_shift <- ggplot() + 
+  geom_point(aes(pre, post, colour = audio_index), data = data_plot) + 
+  geom_line(aes(pre, post, group = audio_type, colour = audio_index), data = extended_lines) + theme_bw() +
   geom_abline(slope = 1, intercept = 0, linetype = "dashed", color = "grey") +
   scale_colour_viridis_c() + 
-  coord_fixed(ratio = 1, xlim = c(0, 13), ylim = c(0, 13)) +
+  coord_equal() + 
   labs(x = 'Average count per hour 2016-2019', y = 'Average count per hour 2022-2024', colour = 'Audio Index') + 
-  ggtitle('Full data')
+  ggtitle('Average count per hour for all observers')
 
 ggsave(paste0(results_path, data_string, '_audio_shift_full.png'), audio_shift, width = 6, height = 6)
 
@@ -125,28 +149,31 @@ ggsave(paste0(results_path, data_string, '_audio_shift_full.png'), audio_shift, 
 
 
 # load in model data
-data <- read_csv(paste0(results_path, data_string, '_N_model_new.csv')) %>%
+data <- read_csv(paste0(ebd_path, data_string, '_N_model_new.csv')) %>%
   mutate(merlin = factor(time, levels = c('pre', 'post'))) %>% select(-time)
 
 # histogram of data to check for skew
 data %>% pivot_wider(names_from = merlin, values_from = N) %>% 
-  pivot_longer(cols = c(trend, audio_index, pre, post), 
+  pivot_longer(cols = c(Index, audio_index, pre, post), 
                names_to = 'vars', values_to = 'vals') %>%
   ggplot() + geom_histogram(aes(vals), bins = 60) + 
   facet_wrap(~vars, nrow = 2, ncol = 2, scales = 'free') + 
   theme_bw()
 
+# scale parameters, make species name factor for Random Effect
 data <- data %>% group_by(common_name) %>%
   mutate(n = n()) %>%
   filter(n == 2) %>% ungroup() %>% select(-n)
 
 data$audio_index = as.numeric(scale(log(data$audio_index)))
-data$trend = as.numeric(scale(data$trend))
+data$Index = as.numeric(scale(data$Index))
 data$common_name = factor(as.character(data$common_name))
+
+
 
 # histogram of data to check for skew
 data %>% pivot_wider(names_from = merlin, values_from = N) %>% 
-  pivot_longer(cols = c(trend, audio_index, pre, post), 
+  pivot_longer(cols = c(Index, audio_index, pre, post), 
                names_to = 'vars', values_to = 'vals') %>%
   ggplot() + geom_histogram(aes(vals), bins = 60) + 
   facet_wrap(~vars, nrow = 2, ncol = 2, scales = 'free') + 
@@ -156,14 +183,16 @@ data %>% pivot_wider(names_from = merlin, values_from = N) %>%
 
 # fit model with pre/post factor
 
-fit <- glmer(N ~ trend + merlin + merlin:audio_index + audio_index + (1|common_name), 
+fit <- glmer(N ~ Index + merlin + merlin:audio_index + audio_index + (1|common_name), 
              data = data,
              family = gaussian(link = 'log'))
 
-write_csv(tidy(fit), paste0(results_path, data_string, '_new_model_summary.csv'))
+# summary(fit)
+
+write_csv(tidy(fit), paste0(results_path, data_string, '_full_model_summary.csv'))
 
 # predict for merlin and no merlin, no trend, constant audio
-pred_data <- data.frame(trend = rep(0, 2*length(data$N)),
+pred_data <- data.frame(Index = rep(mean(data$Index), 2*length(data$N)),
                         merlin = c(rep('pre', length(data$N)/2), rep('post', length(data$N)/2), rep('pre', length(data$N)/2), rep('post', length(data$N)/2)),
                         audio_index = c(rep(quantile(data$audio_index, 0.1), length(data$N)), rep(quantile(data$audio_index, 0.9), length(data$N))),
                         audio_type = c(rep('low', length(data$N)), rep('high', length(data$N))),
@@ -174,16 +203,40 @@ pred_data$merlin <- as.factor(pred_data$merlin)
 
 pred_data$prediction <- predict(fit, newdata = pred_data, type = 'response')
 
-data_plot <- data %>% pivot_wider(names_from = merlin, values_from = N)
+pred_data <- pred_data %>%
+  pivot_wider(names_from = 'merlin', values_from = prediction)
 
-audio_shift <- pred_data %>% 
-  pivot_wider(names_from = merlin, values_from = prediction) %>%
-  ggplot() +geom_point(aes(pre, post, colour = audio_index), data = data_plot) + 
-  geom_line(aes(pre, post, group = audio_type, colour = audio_index)) + theme_bw() +
+extended_lines <- pred_data %>%
+  group_by(audio_type) %>%
+  summarise(
+    audio_index = min(audio_index),
+    slope = coef(lm(post ~ pre))[2],
+    intercept = coef(lm(post ~ pre))[1],
+    .groups = "drop"
+  ) %>%
+  # Extend x range manually
+  mutate(
+    pre_min = exp(log(min(data$N[data$merlin == 'pre']))),
+    pre_max = exp(log(max(data$N[data$merlin == 'pre']))),
+    post_min = intercept + slope * pre_min,
+    post_max = intercept + slope * pre_max
+  ) %>% pivot_longer(cols = c(pre_min, pre_max, post_min, post_max), names_to = 'ignore', values_to = 'values') %>%
+  mutate(type = ifelse(str_detect(ignore, 'pre'), 'pre', 'post'),
+         type2 = ifelse(str_detect(ignore, 'min'), 'min', 'max')) %>%
+  select(-ignore) %>%
+  pivot_wider(names_from = 'type', values_from = 'values')
+
+data_plot <- data %>% select(-Index) %>%
+  mutate(merlin = as.character(merlin)) %>% 
+  pivot_wider(names_from = merlin, values_from = N) 
+
+audio_shift <- ggplot() + 
+  geom_point(aes(pre, post, colour = audio_index), data = data_plot) + 
+  geom_line(aes(pre, post, group = audio_type, colour = audio_index), data = extended_lines) + theme_bw() +
   geom_abline(slope = 1, intercept = 0, linetype = "dashed", color = "grey") +
   scale_colour_viridis_c() + 
-  coord_fixed(ratio = 1, xlim = c(0, 10), ylim = c(0, 10)) +
+  coord_equal() + 
   labs(x = 'Average count per hour 2016-2019', y = 'Average count per hour 2022-2024', colour = 'Audio Index') + 
-  ggtitle('New data')
+  ggtitle('Average count per hour for new observers')
 
 ggsave(paste0(results_path, data_string, '_audio_shift_new.png'), audio_shift, width = 6, height = 6)

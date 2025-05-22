@@ -1,21 +1,21 @@
 species_pre,common_name_pre,ratio_pre,species_post,common_name_post,ratio_post
-Empidonax virescens,Acadian Flycatcher,11.413598719465517,Calidris melanotos,Pectoral Sandpiper,8.294697700766935
-Vireo flavifrons,Yellow-throated Vireo,9.021976718473235,Eremophila alpestris,Horned Lark,7.706449064656483
-Thryothorus ludovicianus,Carolina Wren,8.285385589634581,Calidris minutilla,Least Sandpiper,5.918104397476824
-Calidris pusilla,Semipalmated Sandpiper,7.893092442932703,Empidonax virescens,Acadian Flycatcher,5.896853849153318
-Passerculus sandwichensis,Savannah Sparrow,7.771934281036295,Empidonax traillii,Willow Flycatcher,5.810210945713972
-Setophaga americana,Northern Parula,7.495893834467442,Gallinago delicata,Wilson's Snipe,5.702132701842685
-Pooecetes gramineus,Vesper Sparrow,7.392626054777266,Setophaga pinus,Pine Warbler,5.6957217773263125
-Vermivora cyanoptera,Blue-winged Warbler,6.707299904682544,Vermivora cyanoptera,Blue-winged Warbler,5.422729057044919
-Calidris melanotos,Pectoral Sandpiper,6.413987453148146,Riparia riparia,Bank Swallow,5.401559392327751
-Coccyzus americanus,Yellow-billed Cuckoo,6.258437396932405,Chroicocephalus philadelphia,Bonaparte's Gull,5.398567000205922
-Calidris minutilla,Least Sandpiper,6.055665891306452,Tringa melanoleuca,Greater Yellowlegs,5.309873852391014
-Empidonax traillii,Willow Flycatcher,6.034754641905581,Vireo flavifrons,Yellow-throated Vireo,5.218978981631628
-Setophaga virens,Black-throated Green Warbler,6.028164855194484,Tringa flavipes,Lesser Yellowlegs,5.092426304944841
-Melospiza georgiana,Swamp Sparrow,5.974081872380989,Setophaga americana,Northern Parula,4.997551474938919
-Setophaga pinus,Pine Warbler,5.8166535521268665,Polioptila caerulea,Blue-gray Gnatcatcher,4.915651886614116
-Catharus fuscescens,Veery,5.733856767587338,Pipilo erythrophthalmus,Eastern Towhee,4.772158677008902
-Polioptila caerulea,Blue-gray Gnatcatcher,5.710633385142398,Anas crecca,Green-winged Teal,4.735052666370755
-Vireo gilvus,Warbling Vireo,5.518219960692673,Parkesia noveboracensis,Northern Waterthrush,4.706550794729763
-Vireo solitarius,Blue-headed Vireo,5.4945873938775325,Setophaga virens,Black-throated Green Warbler,4.686473010041991
-Leiothlypis peregrina,Tennessee Warbler,5.32499432935615,Actitis macularius,Spotted Sandpiper,4.563166152755173
+Empidonax virescens,Acadian Flycatcher,0.08765595094257167,Calidris melanotos,Pectoral Sandpiper,0.1178526456019883
+Vireo flavifrons,Yellow-throated Vireo,0.11203423336886588,Eremophila alpestris,Horned Lark,0.12868027526200929
+Thryothorus ludovicianus,Carolina Wren,0.120665473496603,Calidris minutilla,Least Sandpiper,0.1663232052111367
+Calidris pusilla,Semipalmated Sandpiper,0.12774629327486176,Empidonax traillii,Willow Flycatcher,0.1720329900427629
+Passerculus sandwichensis,Savannah Sparrow,0.1280320347888465,Empidonax virescens,Acadian Flycatcher,0.1730776673327691
+Setophaga americana,Northern Parula,0.13375011663599878,Gallinago delicata,Wilson's Snipe,0.17402369732684472
+Pooecetes gramineus,Vesper Sparrow,0.1341723392208231,Setophaga pinus,Pine Warbler,0.17624001620384053
+Vermivora cyanoptera,Blue-winged Warbler,0.14925554989791984,Chroicocephalus philadelphia,Bonaparte's Gull,0.18443123180883017
+Calidris melanotos,Pectoral Sandpiper,0.15560795785351375,Vermivora cyanoptera,Blue-winged Warbler,0.18447892754230652
+Coccyzus americanus,Yellow-billed Cuckoo,0.16016769883565413,Riparia riparia,Bank Swallow,0.18643854172443736
+Calidris minutilla,Least Sandpiper,0.1654069253641726,Tringa melanoleuca,Greater Yellowlegs,0.1867972095598636
+Melospiza georgiana,Swamp Sparrow,0.1659142679653118,Vireo flavifrons,Yellow-throated Vireo,0.19331591708245485
+Empidonax traillii,Willow Flycatcher,0.16595831182072157,Tringa flavipes,Lesser Yellowlegs,0.1933317466647329
+Setophaga virens,Black-throated Green Warbler,0.16614669022966327,Setophaga americana,Northern Parula,0.1990573052050509
+Setophaga pinus,Pine Warbler,0.1702523958452898,Polioptila caerulea,Blue-gray Gnatcatcher,0.20404566508510744
+Catharus fuscescens,Veery,0.17387209298380998,Anas crecca,Green-winged Teal,0.2085709379049148
+Polioptila caerulea,Blue-gray Gnatcatcher,0.17527260144380388,Parkesia noveboracensis,Northern Waterthrush,0.2103588592193458
+Vireo solitarius,Blue-headed Vireo,0.1812738200812539,Pipilo erythrophthalmus,Eastern Towhee,0.21084464543856565
+Vireo gilvus,Warbling Vireo,0.18134911056266803,Setophaga virens,Black-throated Green Warbler,0.2134458916237759
+Leiothlypis peregrina,Tennessee Warbler,0.18717274457896432,Actitis macularius,Spotted Sandpiper,0.21779715571085287

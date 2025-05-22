@@ -47,10 +47,10 @@ results_path <- 'analysis_2/'
 
 # coef_labels <- c('int' = 'Random Effect Observer', 'slope' = 'Random Effect Observer:Duration')
 dataset_labels <- c('bcr23_2025_2016_19_full' = '2016-2019', 'bcr23_2025_2022_24_full' = '2022-2024', 'bcr23_2025_2016_19_new' = '2016-2019', 'bcr23_2025_2022_24_new' = '2022-2024')
-quantile_labels <- c('bottom' = 'Lower Quantile of Observers', 'top' = 'Upper Quantile of Observers')
+quantile_labels <- c('Mean_bottom' = 'Lower Quantile of Observers', 'Mean_top' = 'Upper Quantile of Observers')
 
 # load in audio index
-audio_index <- read_csv('audio_index.csv')
+audio_index <- read_csv(paste0(ebd_path, 'audio_index.csv'))
 audio_index$audio_index <- log(audio_index$audio_index)
 #- FULL ####
 
@@ -75,13 +75,18 @@ most_similar_old <- SAC_data %>% filter(dataset == 'bcr23_2025_2016_19_full') %>
 most_similar_new <- SAC_data %>% filter(dataset == 'bcr23_2025_2022_24_full') %>% arrange(diff_new) %>% slice_head(n = 20) %>% select(c(species_pre = species, common_name_pre = common_name, ratio_pre = ratio))
 cbind(most_similar_old, most_similar_new) %>% write_csv(paste0(results_path, 'full_species_high.csv'))
 
-# plot of the relative reporting rate for the 20 least similar species in 2016
-least <- SAC_data %>% filter(species %in% least_similar_old$species_pre) %>% 
-  mutate(ratio = bottom/top, # calculate relative reporting rate
-         # factor the dataset variable so I can make everything plot the way I want
+# plot of the relative reporting rate for the 20 least similar species in 2016 also present in 2022
+# find species in both
+common_species <- SAC_data %>% select(dataset, common_name, diff_new) %>% 
+  pivot_wider(names_from = dataset, values_from = diff_new) %>% drop_na() %>%
+  arrange(-bcr23_2025_2016_19_full) %>% slice_head(n = 20) %>% select(common_name)
+
+
+least <- SAC_data %>% filter(common_name %in% common_species$common_name) %>% 
+  mutate(low = ratio - SE_ratio,
+         high = ratio + SE_ratio,
+    # factor the dataset variable so I can make everything plot the way I want
          dataset = factor(dataset, levels = c("bcr23_2025_2022_24_full", "bcr23_2025_2016_19_full"))) %>%
-  # fill in blanks so that all the bars are the same size
-  complete(common_name, dataset, fill = list(ratio = 0)) %>%
   # add an ordering variable so the bars are aesthetically pleasing
   group_by(common_name) %>%
   mutate(ordering_val = ratio[dataset == "bcr23_2025_2016_19_full"]) %>%
@@ -91,10 +96,16 @@ least <- SAC_data %>% filter(species %in% least_similar_old$species_pre) %>%
   # plot time
   ggplot(aes(y = reorder(common_name, ordering_val), x = ratio, fill = dataset)) +
   # dodge makes them plot next to each other nicely
-  geom_bar(stat = "identity", position = "dodge", width = 0.7) +
-  labs(x = "Relative reporting rate of bottom/top quantile", y = 'Species', fill = 'Years') +
+  geom_bar(stat = "identity", position = "dodge", width = 0.7) +  
+  geom_errorbar(
+    aes(xmin = low, xmax = high),
+    position = position_dodge(width = 0.7),
+    width = 0.3,
+    linewidth = 0.3
+  ) +
+  labs(x = "Relative reporting rate of novice/expert quantile", y = 'Species', fill = 'Time Period') +
   theme_minimal() +
-  coord_cartesian(expand = FALSE, xlim = c(0, 0.32)) + 
+  coord_cartesian(expand = FALSE, xlim = c(0, 0.35)) + 
   theme(
     panel.grid.major.y = element_blank(),
     panel.grid.minor.y = element_blank()  
@@ -108,15 +119,18 @@ least <- SAC_data %>% filter(species %in% least_similar_old$species_pre) %>%
     ),
     labels = c("2016–2019", "2022–2024")
   ) +
-  ggtitle('Relative reporting rate for all observers: least similar species')
+  ggtitle('Relative reporting rate for all observers: lowest in 2016-19')
 
 # exactly the same again but this time the 20 most similar species
-most <- SAC_data %>% filter(species %in% most_similar_old$species_pre) %>% 
-  mutate(ratio = bottom/top, # calculate relative reporting rate
+common_species <- SAC_data %>% select(dataset, common_name, diff_new) %>% 
+  pivot_wider(names_from = dataset, values_from = diff_new) %>% drop_na() %>%
+  arrange(bcr23_2025_2016_19_full) %>% slice_head(n = 20) %>% select(common_name)
+
+most <- SAC_data %>% filter(common_name %in% common_species$common_name) %>% 
+  mutate(low = ratio - SE_ratio,
+         high = ratio + SE_ratio,
          # factor the dataset variable so I can make everything plot the way I want
          dataset = factor(dataset, levels = c("bcr23_2025_2022_24_full", "bcr23_2025_2016_19_full"))) %>%
-  # fill in blanks so that all the bars are the same size
-  complete(common_name, dataset, fill = list(ratio = 0)) %>%
   # add an ordering variable so the bars are aesthetically pleasing
   group_by(common_name) %>%
   mutate(ordering_val = ratio[dataset == "bcr23_2025_2016_19_full"]) %>%
@@ -126,14 +140,20 @@ most <- SAC_data %>% filter(species %in% most_similar_old$species_pre) %>%
   # plot time
   ggplot(aes(y = reorder(common_name, ordering_val), x = ratio, fill = dataset)) +
   # dodge makes them plot next to each other nicely
-  geom_bar(stat = "identity", position = "dodge", width = 0.7) +
-  labs(x = "Relative reporting rate of bottom/top quantile", y = 'Species', fill = 'Years') +
+  geom_bar(stat = "identity", position = "dodge", width = 0.7) +  
+  geom_errorbar(
+    aes(xmin = low, xmax = high),
+    position = position_dodge(width = 0.7),
+    width = 0.3,
+    linewidth = 0.3
+  ) +
+  labs(x = "Relative reporting rate of novice/expert quantile", y = 'Species', fill = 'Time Period') +
   theme_minimal() +
+  coord_cartesian(expand = FALSE, xlim = c(0, 1)) + 
   theme(
     panel.grid.major.y = element_blank(),
-    panel.grid.minor.y = element_blank()
+    panel.grid.minor.y = element_blank()  
   ) +
-  coord_cartesian(expand = FALSE) + 
   # whole load of nonsense here to make the colours and values the right way round
   scale_fill_manual(
     breaks = c("bcr23_2025_2016_19_full", "bcr23_2025_2022_24_full"),  # legend order
@@ -143,12 +163,150 @@ most <- SAC_data %>% filter(species %in% most_similar_old$species_pre) %>%
     ),
     labels = c("2016–2019", "2022–2024")
   ) +
-  ggtitle('Relative reporting rate for all observers: most similar species')
+  ggtitle('Relative reporting rate for all observers: highest in 2016-19')
+
+# plot of the relative reporting rate for the 20 least changed species in 2016 also present in 2022
+# find species in both
+common_species <- SAC_data %>% select(dataset, common_name, diff_new) %>% 
+  pivot_wider(names_from = dataset, values_from = diff_new) %>% drop_na() %>%
+  mutate(diff = abs(bcr23_2025_2022_24_full - bcr23_2025_2016_19_full)) %>%
+  arrange(diff) %>% slice_head(n = 20)
+
+least_changed <- SAC_data %>% filter(common_name %in% common_species$common_name) %>% 
+  mutate(low = ratio - SE_ratio,
+         high = ratio + SE_ratio,
+         # factor the dataset variable so I can make everything plot the way I want
+         dataset = factor(dataset, levels = c("bcr23_2025_2022_24_full", "bcr23_2025_2016_19_full"))) %>%
+  # add an ordering variable so the bars are aesthetically pleasing
+  group_by(common_name) %>%
+  mutate(ordering_val = ratio[dataset == "bcr23_2025_2016_19_full"]) %>%
+  ungroup() %>%
+  # reorder to ~descend~
+  mutate(common_name = fct_reorder(common_name, ordering_val, .desc = TRUE)) %>%
+  # plot time
+  ggplot(aes(y = reorder(common_name, ordering_val), x = ratio, fill = dataset)) +
+  # dodge makes them plot next to each other nicely
+  geom_bar(stat = "identity", position = "dodge", width = 0.7) +  
+  geom_errorbar(
+    aes(xmin = low, xmax = high),
+    position = position_dodge(width = 0.7),
+    width = 0.3,
+    linewidth = 0.3
+  ) +
+  labs(x = "Relative reporting rate of novice/expert quantile", y = 'Species', fill = 'Time Period') +
+  theme_minimal() +
+  coord_cartesian(expand = FALSE, xlim = c(0, 0.6)) + 
+  theme(
+    panel.grid.major.y = element_blank(),
+    panel.grid.minor.y = element_blank()  
+  ) +
+  # whole load of nonsense here to make the colours and values the right way round
+  scale_fill_manual(
+    breaks = c("bcr23_2025_2016_19_full", "bcr23_2025_2022_24_full"),  # legend order
+    values = c(
+      "bcr23_2025_2016_19_full" = "grey40",  # 2016–2019
+      "bcr23_2025_2022_24_full" = "grey70"   # 2022–2024
+    ),
+    labels = c("2016–2019", "2022–2024")
+  ) +
+  ggtitle('Relative reporting rate for all observers: least changed species')
+
+# exactly the same again but this time the 20 most changed positively
+common_species <- SAC_data %>% select(dataset, common_name, diff_new) %>% 
+  pivot_wider(names_from = dataset, values_from = diff_new) %>% drop_na() %>%
+  mutate(diff = bcr23_2025_2022_24_full - bcr23_2025_2016_19_full) %>%
+  filter(diff < 0) %>%
+  arrange(diff) %>% slice_head(n = 20)
+
+most_changed_pos <- SAC_data %>% filter(common_name %in% common_species$common_name) %>% 
+  mutate(low = ratio - SE_ratio,
+         high = ratio + SE_ratio,
+         # factor the dataset variable so I can make everything plot the way I want
+         dataset = factor(dataset, levels = c("bcr23_2025_2022_24_full", "bcr23_2025_2016_19_full"))) %>%
+  # add an ordering variable so the bars are aesthetically pleasing
+  group_by(common_name) %>%
+  mutate(ordering_val = ratio[dataset == "bcr23_2025_2016_19_full"]) %>%
+  ungroup() %>%
+  # reorder to ~descend~
+  mutate(common_name = fct_reorder(common_name, ordering_val, .desc = TRUE)) %>%
+  # plot time
+  ggplot(aes(y = reorder(common_name, ordering_val), x = ratio, fill = dataset)) +
+  # dodge makes them plot next to each other nicely
+  geom_bar(stat = "identity", position = "dodge", width = 0.7) +  
+  geom_errorbar(
+    aes(xmin = low, xmax = high),
+    position = position_dodge(width = 0.7),
+    width = 0.3,
+    linewidth = 0.3
+  ) +
+  labs(x = "Relative reporting rate of novice/expert quantile", y = 'Species', fill = 'Time Period') +
+  theme_minimal() +
+  coord_cartesian(expand = FALSE, xlim = c(0, 1)) + 
+  theme(
+    panel.grid.major.y = element_blank(),
+    panel.grid.minor.y = element_blank()  
+  ) +
+  # whole load of nonsense here to make the colours and values the right way round
+  scale_fill_manual(
+    breaks = c("bcr23_2025_2016_19_full", "bcr23_2025_2022_24_full"),  # legend order
+    values = c(
+      "bcr23_2025_2016_19_full" = "grey40",  # 2016–2019
+      "bcr23_2025_2022_24_full" = "grey70"   # 2022–2024
+    ),
+    labels = c("2016–2019", "2022–2024")
+  ) +
+  ggtitle('Relative reporting rate for all observers: most increased species')
+
+# exactly the same again but this time the 20 most changed negatively
+common_species <- SAC_data %>% select(dataset, common_name, diff_new) %>% 
+  pivot_wider(names_from = dataset, values_from = diff_new) %>% drop_na() %>%
+  mutate(diff = bcr23_2025_2022_24_full - bcr23_2025_2016_19_full) %>%
+  filter(diff > 0) %>%
+  arrange(-(diff)) %>% slice_head(n = 20)
+
+most_changed_neg <- SAC_data %>% filter(common_name %in% common_species$common_name) %>% 
+  mutate(low = ratio - SE_ratio,
+         high = ratio + SE_ratio,
+         # factor the dataset variable so I can make everything plot the way I want
+         dataset = factor(dataset, levels = c("bcr23_2025_2022_24_full", "bcr23_2025_2016_19_full"))) %>%
+  # add an ordering variable so the bars are aesthetically pleasing
+  group_by(common_name) %>%
+  mutate(ordering_val = ratio[dataset == "bcr23_2025_2016_19_full"]) %>%
+  ungroup() %>%
+  # reorder to ~descend~
+  mutate(common_name = fct_reorder(common_name, ordering_val, .desc = TRUE)) %>%
+  # plot time
+  ggplot(aes(y = reorder(common_name, ordering_val), x = ratio, fill = dataset)) +
+  # dodge makes them plot next to each other nicely
+  geom_bar(stat = "identity", position = "dodge", width = 0.7) +  
+  geom_errorbar(
+    aes(xmin = low, xmax = high),
+    position = position_dodge(width = 0.7),
+    width = 0.3,
+    linewidth = 0.3
+  ) +
+  labs(x = "Relative reporting rate of novice/expert quantile", y = 'Species', fill = 'Time Period') +
+  theme_minimal() +
+  coord_cartesian(expand = FALSE, xlim = c(0, 1)) + 
+  theme(
+    panel.grid.major.y = element_blank(),
+    panel.grid.minor.y = element_blank()  
+  ) +
+  # whole load of nonsense here to make the colours and values the right way round
+  scale_fill_manual(
+    breaks = c("bcr23_2025_2016_19_full", "bcr23_2025_2022_24_full"),  # legend order
+    values = c(
+      "bcr23_2025_2016_19_full" = "grey40",  # 2016–2019
+      "bcr23_2025_2022_24_full" = "grey70"   # 2022–2024
+    ),
+    labels = c("2016–2019", "2022–2024")
+  ) +
+  ggtitle('Relative reporting rate for all observers: most decreased species')
 
 # comparing the reporting rate for each quantile before/after merlin
 point_full <- SAC_data %>%
   # combine quantiles into one variable
-  pivot_longer(cols = c(top, bottom), names_to = "quantile", values_to = "SAC") %>%
+  pivot_longer(cols = c(Mean_top, Mean_bottom), names_to = "quantile", values_to = "SAC") %>%
   select(species, common_name, quantile, dataset, SAC) %>%
   # add the audio ID index for each species
   left_join(audio_index, by = 'common_name') %>%
@@ -173,7 +331,7 @@ point_full <- SAC_data %>%
 # also the same as one above but now one plot and the axis are a ratio
 point_full_combined <- SAC_data %>%
   # make the ratio
-  mutate(SAC = bottom/top) %>%
+  mutate(SAC = Mean_bottom/Mean_top) %>%
   select(species, common_name, dataset, SAC) %>%
   # add in the audio index for each species
   left_join(audio_index, by = 'common_name') %>%
@@ -189,13 +347,28 @@ point_full_combined <- SAC_data %>%
   coord_fixed(xlim = c(0, 1), ylim = c(0, 1), expand = FALSE, ratio = 1) +
   # make audio colours pretty-ish
   scale_colour_viridis_c() + 
-  labs(x = 'Relative reporting rate of bottom/top quantile 2016-2019', 
-       y = 'Relative reporting rate of bottom/top quantile 2022-2024', 
+  labs(x = 'Relative reporting rate of novice/expert quantile 2016-2019', 
+       y = 'Relative reporting rate of novice/expert quantile 2022-2024', 
        colour = 'Audio Index') + ggtitle('Relative reporting rate across years for full dataset')
+
+# write relative ratios for analysis 3
+SAC_data %>%
+  # make the ratio
+  mutate(SAC = Mean_bottom/Mean_top) %>%
+  select(species, common_name, dataset, SAC) %>%
+  # add in the audio index for each species
+  left_join(audio_index, by = 'common_name') %>%
+  mutate(audio_index = as.numeric(scale(audio_index)),
+         time = ifelse(str_detect(dataset, '2016_19'), 'pre', 'post')) %>%
+  select(-dataset, -scientific_name, N = SAC) %>% write_csv(paste0(results_path, data_string, '_relative_RR.csv'))
+  
 
 # save everything
 ggsave(paste0(results_path, data_string, '_least.png'), least, width = 8, height = 4)
 ggsave(paste0(results_path, data_string, '_most.png'), most, width = 8, height = 4)
+ggsave(paste0(results_path, data_string, '_least_changed.png'), least_changed, width = 8, height = 4)
+ggsave(paste0(results_path, data_string, '_most_changed_pos.png'), most_changed_pos, width = 8, height = 4)
+ggsave(paste0(results_path, data_string, '_most_changed_neg.png'), most_changed_neg, width = 8, height = 4)
 ggsave(paste0(results_path, data_string, '_point_full.png'), point_full, width = 10, height = 5)
 ggsave(paste0(results_path, data_string, '_point_full_comb.png'), point_full_combined, width = 6, height = 6)
 
@@ -228,50 +401,41 @@ highest_old <- SAC_data %>% filter(dataset == 'bcr23_2025_2016_19_new') %>% arra
 highest_new <- SAC_data %>% filter(dataset == 'bcr23_2025_2022_24_new') %>% arrange(-Mean) %>% slice_head(n = 20) %>% select(c(species_post = species, common_name_post = common_name, mean_post = Mean))
 cbind(highest_old, highest_new) %>% write_csv(paste0(results_path, 'new_species_high_RR.csv'))
 
-# same plots as above but we have no ratio so we just use the reporting rate
-new_low <- SAC_data %>% filter(species %in% lowest_old$species_pre) %>% 
-  mutate(dataset = factor(dataset, levels = c("bcr23_2025_2022_24_new", "bcr23_2025_2016_19_new"))) %>%
-  complete(common_name, dataset, fill = list(Mean = 0)) %>%
-  group_by(common_name) %>%
-  mutate(ordering_val = Mean[dataset == "bcr23_2025_2016_19_new"]) %>%
-  ungroup() %>%
-  mutate(common_name = fct_reorder(common_name, ordering_val, .desc = TRUE)) %>%
-  ggplot(aes(y = reorder(common_name, ordering_val), x = Mean, fill = dataset)) +
-  geom_bar(stat = "identity", position = "dodge", width = 0.7) +
-  labs(x = "Reporting rate", y = 'Species', fill = 'Years') +
-  theme_minimal() +
-  coord_cartesian(expand = FALSE) +
-  theme(
-    panel.grid.major.y = element_blank(),
-    panel.grid.minor.y = element_blank() 
-  ) + 
-  scale_fill_manual(
-    breaks = c("bcr23_2025_2016_19_new", "bcr23_2025_2022_24_new"),  # legend order
-    values = c(
-      "bcr23_2025_2016_19_new" = "grey40",  # 2016–2019
-      "bcr23_2025_2022_24_new" = "grey70"   # 2022–2024
-    ),
-    labels = c("2016–2019", "2022–2024")
-  ) +  # Custom colors for Low and High
-  ggtitle('Reporting rate for new observers: least reported species in 2016-19')
+# plot of the relative reporting rate for the 20 least similar species in 2016 also present in 2022
+# find species in both
+common_species <- SAC_data %>% select(dataset, common_name, Mean) %>% 
+  pivot_wider(names_from = dataset, values_from = Mean) %>% drop_na() %>%
+  arrange(bcr23_2025_2016_19_new) %>% slice_head(n = 20)
 
-# and again
-new_high <- SAC_data %>% filter(species %in% highest_old$species_pre) %>% 
-  mutate(dataset = factor(dataset, levels = c("bcr23_2025_2022_24_new", "bcr23_2025_2016_19_new"))) %>%
-  complete(common_name, dataset, fill = list(Mean = 0)) %>%
+new_low <- SAC_data %>% filter(common_name %in% common_species$common_name) %>% 
+  mutate(low = Mean - SE,
+         high = Mean + SE,
+         # factor the dataset variable so I can make everything plot the way I want
+         dataset = factor(dataset, levels = c("bcr23_2025_2022_24_new", "bcr23_2025_2016_19_new"))) %>%
+  # add an ordering variable so the bars are aesthetically pleasing
   group_by(common_name) %>%
   mutate(ordering_val = Mean[dataset == "bcr23_2025_2016_19_new"]) %>%
   ungroup() %>%
+  # reorder to ~descend~
   mutate(common_name = fct_reorder(common_name, ordering_val, .desc = TRUE)) %>%
+  # plot time
   ggplot(aes(y = reorder(common_name, ordering_val), x = Mean, fill = dataset)) +
-  geom_bar(stat = "identity", position = "dodge", width = 0.7) + 
-  labs(x = "Reporting rate", y = 'Species', fill = 'Years') +
+  # dodge makes them plot next to each other nicely
+  geom_bar(stat = "identity", position = "dodge", width = 0.7) +  
+  geom_errorbar(
+    aes(xmin = low, xmax = high),
+    position = position_dodge(width = 0.7),
+    width = 0.3,
+    linewidth = 0.3
+  ) +
+  labs(x = "Reporting Rate", y = 'Species', fill = 'Time Period') +
   theme_minimal() +
-  coord_cartesian(expand = FALSE) +
+  coord_cartesian(expand = FALSE, xlim = c(0, 0.025)) + 
   theme(
     panel.grid.major.y = element_blank(),
-    panel.grid.minor.y = element_blank() 
-  ) + 
+    panel.grid.minor.y = element_blank()  
+  ) +
+  # whole load of nonsense here to make the colours and values the right way round
   scale_fill_manual(
     breaks = c("bcr23_2025_2016_19_new", "bcr23_2025_2022_24_new"),  # legend order
     values = c(
@@ -279,8 +443,188 @@ new_high <- SAC_data %>% filter(species %in% highest_old$species_pre) %>%
       "bcr23_2025_2022_24_new" = "grey70"   # 2022–2024
     ),
     labels = c("2016–2019", "2022–2024")
-  ) +  # Custom colors for Low and High
-  ggtitle('Reporting rate for new observers: most reported species in 2016-19')
+  ) +
+  ggtitle('Least reported species in 2016-19 for new observers')
+
+# exactly the same again but this time the 20 most similar species
+common_species <- SAC_data %>% select(dataset, common_name, Mean) %>% 
+  pivot_wider(names_from = dataset, values_from = Mean) %>% drop_na() %>%
+  arrange(-bcr23_2025_2016_19_new) %>% slice_head(n = 20)
+
+new_high <- SAC_data %>% filter(common_name %in% common_species$common_name) %>% 
+  mutate(low = Mean - SE,
+         high = Mean + SE,
+         # factor the dataset variable so I can make everything plot the way I want
+         dataset = factor(dataset, levels = c("bcr23_2025_2022_24_new", "bcr23_2025_2016_19_new"))) %>%
+  # add an ordering variable so the bars are aesthetically pleasing
+  group_by(common_name) %>%
+  mutate(ordering_val = Mean[dataset == "bcr23_2025_2016_19_new"]) %>%
+  ungroup() %>%
+  # reorder to ~descend~
+  mutate(common_name = fct_reorder(common_name, ordering_val, .desc = TRUE)) %>%
+  # plot time
+  ggplot(aes(y = reorder(common_name, ordering_val), x = Mean, fill = dataset)) +
+  # dodge makes them plot next to each other nicely
+  geom_bar(stat = "identity", position = "dodge", width = 0.7) +  
+  geom_errorbar(
+    aes(xmin = low, xmax = high),
+    position = position_dodge(width = 0.7),
+    width = 0.3,
+    linewidth = 0.3
+  ) +
+  labs(x = "Reporting Rate", y = 'Species', fill = 'Time Period') +
+  theme_minimal() +
+  coord_cartesian(expand = FALSE, xlim = c(0, 0.65)) + 
+  theme(
+    panel.grid.major.y = element_blank(),
+    panel.grid.minor.y = element_blank()  
+  ) +
+  # whole load of nonsense here to make the colours and values the right way round
+  scale_fill_manual(
+    breaks = c("bcr23_2025_2016_19_new", "bcr23_2025_2022_24_new"),  # legend order
+    values = c(
+      "bcr23_2025_2016_19_new" = "grey40",  # 2016–2019
+      "bcr23_2025_2022_24_new" = "grey70"   # 2022–2024
+    ),
+    labels = c("2016–2019", "2022–2024")
+  ) +
+  ggtitle('Most reported species in 2016-19 for new observers')
+
+# plot of the relative reporting rate for the 20 least changed species in 2016 also present in 2022
+# find species in both
+common_species <- SAC_data %>% select(dataset, common_name, Mean) %>% 
+  pivot_wider(names_from = dataset, values_from = Mean) %>% drop_na() %>%
+  mutate(diff = abs(bcr23_2025_2022_24_new - bcr23_2025_2016_19_new)) %>%
+  arrange(diff) %>% slice_head(n = 20)
+
+new_least_changed <- SAC_data %>% filter(common_name %in% common_species$common_name) %>% 
+  mutate(low = Mean - SE,
+         high = Mean + SE,
+         # factor the dataset variable so I can make everything plot the way I want
+         dataset = factor(dataset, levels = c("bcr23_2025_2022_24_new", "bcr23_2025_2016_19_new"))) %>%
+  # add an ordering variable so the bars are aesthetically pleasing
+  group_by(common_name) %>%
+  mutate(ordering_val = Mean[dataset == "bcr23_2025_2016_19_new"]) %>%
+  ungroup() %>%
+  # reorder to ~descend~
+  mutate(common_name = fct_reorder(common_name, ordering_val, .desc = TRUE)) %>%
+  # plot time
+  ggplot(aes(y = reorder(common_name, ordering_val), x = Mean, fill = dataset)) +
+  # dodge makes them plot next to each other nicely
+  geom_bar(stat = "identity", position = "dodge", width = 0.7) +  
+  geom_errorbar(
+    aes(xmin = low, xmax = high),
+    position = position_dodge(width = 0.7),
+    width = 0.3,
+    linewidth = 0.3
+  ) +
+  labs(x = "Reporting Rate", y = 'Species', fill = 'Time Period') +
+  theme_minimal() +
+  coord_cartesian(expand = FALSE, xlim = c(0, 0.15)) + 
+  theme(
+    panel.grid.major.y = element_blank(),
+    panel.grid.minor.y = element_blank()  
+  ) +
+  # whole load of nonsense here to make the colours and values the right way round
+  scale_fill_manual(
+    breaks = c("bcr23_2025_2016_19_new", "bcr23_2025_2022_24_new"),  # legend order
+    values = c(
+      "bcr23_2025_2016_19_new" = "grey40",  # 2016–2019
+      "bcr23_2025_2022_24_new" = "grey70"   # 2022–2024
+    ),
+    labels = c("2016–2019", "2022–2024")
+  ) +
+  ggtitle('Species with least changed reporting rate for new observers')
+
+common_species <- SAC_data %>% select(dataset, common_name, Mean) %>% 
+  pivot_wider(names_from = dataset, values_from = Mean) %>% drop_na() %>%
+  mutate(diff = bcr23_2025_2022_24_new - bcr23_2025_2016_19_new) %>%
+  filter(diff > 0) %>%
+  arrange(-diff) %>% slice_head(n = 20)
+
+new_most_changed_pos <- SAC_data %>% filter(common_name %in% common_species$common_name) %>% 
+  mutate(low = Mean - SE,
+         high = Mean + SE,
+         # factor the dataset variable so I can make everything plot the way I want
+         dataset = factor(dataset, levels = c("bcr23_2025_2022_24_new", "bcr23_2025_2016_19_new"))) %>%
+  # add an ordering variable so the bars are aesthetically pleasing
+  group_by(common_name) %>%
+  mutate(ordering_val = Mean[dataset == "bcr23_2025_2016_19_new"]) %>%
+  ungroup() %>%
+  # reorder to ~descend~
+  mutate(common_name = fct_reorder(common_name, ordering_val, .desc = TRUE)) %>%
+  # plot time
+  ggplot(aes(y = reorder(common_name, ordering_val), x = Mean, fill = dataset)) +
+  # dodge makes them plot next to each other nicely
+  geom_bar(stat = "identity", position = "dodge", width = 0.7) +  
+  geom_errorbar(
+    aes(xmin = low, xmax = high),
+    position = position_dodge(width = 0.7),
+    width = 0.3,
+    linewidth = 0.3
+  ) +
+  labs(x = "Reporting Rate", y = 'Species', fill = 'Time Period') +
+  theme_minimal() +
+  coord_cartesian(expand = FALSE, xlim = c(0, 0.65)) + 
+  theme(
+    panel.grid.major.y = element_blank(),
+    panel.grid.minor.y = element_blank()  
+  ) +
+  # whole load of nonsense here to make the colours and values the right way round
+  scale_fill_manual(
+    breaks = c("bcr23_2025_2016_19_new", "bcr23_2025_2022_24_new"),  # legend order
+    values = c(
+      "bcr23_2025_2016_19_new" = "grey40",  # 2016–2019
+      "bcr23_2025_2022_24_new" = "grey70"   # 2022–2024
+    ),
+    labels = c("2016–2019", "2022–2024")
+  ) +
+  ggtitle('Species with most increased reporting rate for new observers')
+
+common_species <- SAC_data %>% select(dataset, common_name, Mean) %>% 
+  pivot_wider(names_from = dataset, values_from = Mean) %>% drop_na() %>%
+  mutate(diff = bcr23_2025_2022_24_new - bcr23_2025_2016_19_new) %>%
+  filter(diff < 0) %>%
+  arrange(-abs(diff)) %>% slice_head(n = 20)
+
+new_most_changed_neg <- SAC_data %>% filter(common_name %in% common_species$common_name) %>% 
+  mutate(low = Mean - SE,
+         high = Mean + SE,
+         # factor the dataset variable so I can make everything plot the way I want
+         dataset = factor(dataset, levels = c("bcr23_2025_2022_24_new", "bcr23_2025_2016_19_new"))) %>%
+  # add an ordering variable so the bars are aesthetically pleasing
+  group_by(common_name) %>%
+  mutate(ordering_val = Mean[dataset == "bcr23_2025_2016_19_new"]) %>%
+  ungroup() %>%
+  # reorder to ~descend~
+  mutate(common_name = fct_reorder(common_name, ordering_val, .desc = TRUE)) %>%
+  # plot time
+  ggplot(aes(y = reorder(common_name, ordering_val), x = Mean, fill = dataset)) +
+  # dodge makes them plot next to each other nicely
+  geom_bar(stat = "identity", position = "dodge", width = 0.7) +  
+  geom_errorbar(
+    aes(xmin = low, xmax = high),
+    position = position_dodge(width = 0.7),
+    width = 0.3,
+    linewidth = 0.3
+  ) +
+  labs(x = "Reporting Rate", y = 'Species', fill = 'Time Period') +
+  theme_minimal() +
+  coord_cartesian(expand = FALSE, xlim = c(0, 0.4)) + 
+  theme(
+    panel.grid.major.y = element_blank(),
+    panel.grid.minor.y = element_blank()  
+  ) +
+  # whole load of nonsense here to make the colours and values the right way round
+  scale_fill_manual(
+    breaks = c("bcr23_2025_2016_19_new", "bcr23_2025_2022_24_new"),  # legend order
+    values = c(
+      "bcr23_2025_2016_19_new" = "grey40",  # 2016–2019
+      "bcr23_2025_2022_24_new" = "grey70"   # 2022–2024
+    ),
+    labels = c("2016–2019", "2022–2024")
+  ) +
+  ggtitle('Species with most decreased reporting rate for new observers')
 
 # obviously only one point graph as the second one for the full data was using 
 # the ratio of quantiles which we don't have but this is otherwise the same
@@ -301,4 +645,7 @@ point_new <- SAC_data %>%
 # save it all again
 ggsave(paste0(results_path, data_string, '_new_low.png'), new_low, width = 8, height = 4)
 ggsave(paste0(results_path, data_string, '_new_high.png'), new_high, width = 8, height = 4)
+ggsave(paste0(results_path, data_string, '_new_least.png'), new_least_changed, width = 8, height = 4)
+ggsave(paste0(results_path, data_string, '_new_most_pos.png'), new_most_changed_pos, width = 8, height = 4)
+ggsave(paste0(results_path, data_string, '_new_most_neg.png'), new_most_changed_neg, width = 8, height = 4)
 ggsave(paste0(results_path, data_string, '_point_new.png'), point_new, width = 6, height = 6)

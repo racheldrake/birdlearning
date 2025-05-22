@@ -96,7 +96,7 @@ lines_iqr <- time_data %>%
   coord_fixed(4.5) +
   scale_colour_manual(values = c("2022-24" = "#003366",
                                  "2016-19" = "#660033")) +  
-  labs(x = 'Duration (Minutes)', y = 'Estimated No. Species') + ggtitle('Average species accumulation curve for all observers')
+  labs(x = 'Duration (Minutes)', y = 'Estimated No. Species', fill = 'Time Period', colour = 'Time Period') + ggtitle('Average species accumulation curve for all observers')
 
 
 # same as the histogram plot at just 60 minutes below but at each time interval
@@ -107,7 +107,9 @@ for (i in 1:120){
     mutate(subset = ifelse(str_detect(dataset, 'full'), 'full', 'new'),
            time = ifelse(str_detect(dataset, '2016_19'), 'pre', 'post')) %>%
     group_by(subset, time) %>%
-    summarise(mean_fit = mean(fit), .groups = "drop")
+    summarise(mean_fit = mean(fit),
+              low_q = quantile( fit, 0.25),
+              up_q = quantile( fit, 0.75), .groups = "drop")
   
   hist <- time_data %>%
     filter(duration_minutes == i) %>%
@@ -116,8 +118,14 @@ for (i in 1:120){
     ggplot() + 
     geom_vline(data = means,
                aes(xintercept = mean_fit, group = time),
-               colour = c("pre" = "#003366", "post" = "#660033")[means$time],
+               colour = c("pre" = "#660033", "post" = "#003366")[means$time],
                show.legend = FALSE, linetype = 'dashed') +
+    # geom_rect(data = means,
+    #           aes(xmin = low_q, xmax = up_q, ymin = -Inf, ymax = Inf),
+    #           fill = c("pre" = "#F8766D", "post" = "#00BFC4")[means$time],
+    #           alpha = 0.1,
+    #           inherit.aes = FALSE,
+    #           show.legend = FALSE) +
     geom_density(aes(fit,
                      fill = time),
                  position = 'identity', 
@@ -128,7 +136,10 @@ for (i in 1:120){
     coord_cartesian(expand = FALSE) + 
     theme_bw() + labs(x = 'Checklist Calibration Index (CCI)', y = 'Density', fill = 'Time Period') + 
     ggtitle(paste0('Checklist Calibration Index (CCI) at ', i, ' minutes' )) + 
-    scale_fill_discrete(labels = c('2022-2024', '2016-2019'))
+    scale_fill_manual(
+      values = c("pre" = "#F8766D", "post" = "#00BFC4"),
+      labels = c("pre" = "2016-2019", "post" = "2022-2024")
+    )
     
   ggsave(paste0(results_path, data_string,'time_hist/', i, '_hist.png'), hist, width = 10, height = 5)
   
@@ -158,13 +169,15 @@ hist <- index_data %>%
   coord_cartesian(expand = FALSE, ylim = c(0, 0.08)) + 
   theme_bw() + labs(x = 'Checklist Calibration Index (CCI)', y = 'Density', fill = 'Time Period') + 
   ggtitle('Checklist Calibration Index (CCI) estimates for all and new observers') + 
-  scale_fill_discrete(labels = c('2022-2024', '2016-2019'))
+  scale_fill_manual(
+    values = c("pre" = "#F8766D", "post" = "#00BFC4"),
+    labels = c("pre" = "2016-2019", "post" = "2022-2024")
+  )
 
 # save all results
 ggsave(paste0(results_path, data_string, '_full_lines.png'), full_lines, width = 8, height = 5)
 ggsave(paste0(results_path, data_string, '_new_lines.png'), new_lines, width = 8, height = 5)
 ggsave(paste0(results_path, data_string, '_lines_IQR.png'), lines_iqr, width = 8, height = 5)
-ggsave(paste0(results_path, data_string, '_new_lines_IQR.png'), new_lines_iqr, width = 8, height = 5)
 ggsave(paste0(results_path, data_string, 'hist.png'), hist, width = 10, height = 5)
 
 # table with data summary plotted for reference
