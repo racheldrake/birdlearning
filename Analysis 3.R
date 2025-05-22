@@ -136,7 +136,7 @@ audio_shift <- ggplot() +
   geom_line(aes(pre, post, group = audio_type, colour = audio_index), data = extended_lines) + theme_bw() +
   geom_abline(slope = 1, intercept = 0, linetype = "dashed", color = "grey") +
   scale_colour_viridis_c() + 
-  coord_equal() + 
+  coord_equal(xlim = c(0, 13), ylim = c(0, 13)) + 
   labs(x = 'Average count per hour 2016-2019', y = 'Average count per hour 2022-2024', colour = 'Audio Index') + 
   ggtitle('Average count per hour for all observers')
 
@@ -235,7 +235,7 @@ audio_shift <- ggplot() +
   geom_line(aes(pre, post, group = audio_type, colour = audio_index), data = extended_lines) + theme_bw() +
   geom_abline(slope = 1, intercept = 0, linetype = "dashed", color = "grey") +
   scale_colour_viridis_c() + 
-  coord_equal() + 
+  coord_equal(xlim = c(0, 9), ylim = c(0, 9)) + 
   labs(x = 'Average count per hour 2016-2019', y = 'Average count per hour 2022-2024', colour = 'Audio Index') + 
   ggtitle('Average count per hour for new observers')
 
