@@ -94,6 +94,7 @@ lines_iqr <- time_data %>%
   geom_line(aes(duration_minutes, mid, colour = time), linewidth = 1, alpha = 2) +
   facet_wrap(vars(type), labeller = as_labeller(coef_labels)) + theme_bw() + 
   coord_fixed(4.5) +
+  geom_vline(xintercept = 60, linetype = 'dashed', colour = 'darkgrey') + 
   scale_colour_manual(values = c("2022-24" = "#003366",
                                  "2016-19" = "#660033")) +  
   labs(x = 'Duration (Minutes)', y = 'Estimated No. Species', fill = 'Time Period', colour = 'Time Period') + ggtitle('Average species accumulation curve for all observers')
