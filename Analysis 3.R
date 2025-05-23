@@ -1,8 +1,8 @@
 ## ---------------------------
 ##
-## Script name: Analysis 2
+## Script name: Analysis 3
 ##
-## Purpose of script: Comparing SAC for species
+## Purpose of script: Modelling species count rate per hour
 ##
 ## Author: Rachel Drake
 ##
@@ -66,7 +66,7 @@ data <- data %>% group_by(common_name) %>%
   mutate(n = n()) %>%
   filter(n == 2) %>% ungroup() %>% select(-n)
 
-data$audio_index = as.numeric(scale(log(data$audio_index)))
+data$audio_index = (log(data$audio_index)) - min(log(data$audio_index))
 data$Index = as.numeric(scale(data$Index))
 data$common_name = factor(as.character(data$common_name))
 
@@ -84,7 +84,7 @@ data %>% pivot_wider(names_from = merlin, values_from = N) %>%
 
 # fit model with pre/post factor
 
-fit <- glmer(N ~ Index + merlin + merlin:audio_index + audio_index + (1|common_name),
+fit <- glmer(N ~ Index + merlin + audio_index + merlin:audio_index + (1|common_name),
            data = data,
            family = gaussian(link = 'log'))
 
@@ -142,6 +142,18 @@ audio_shift <- ggplot() +
 
 ggsave(paste0(results_path, data_string, '_audio_shift_full.png'), audio_shift, width = 6, height = 6)
 
+audio_shift_log <- ggplot() + 
+  geom_point(aes(pre, post, colour = audio_index), data = data_plot) + 
+  geom_line(aes(pre, post, group = audio_type, colour = audio_index), data = extended_lines) + theme_bw() +
+  geom_abline(slope = 1, intercept = 0, linetype = "dashed", color = "grey") +
+  scale_colour_viridis_c() + 
+  scale_x_log10() +
+  scale_y_log10() +
+  labs(x = 'Average count per hour 2016-2019', y = 'Average count per hour 2022-2024', colour = 'Audio Index') + 
+  ggtitle('Average count per hour for all observers')
+
+ggsave(paste0(results_path, data_string, '_audio_shift_full_log.png'), audio_shift_log, width = 6, height = 6)
+
 
 # NEW DATA ----------------
 
@@ -165,7 +177,7 @@ data <- data %>% group_by(common_name) %>%
   mutate(n = n()) %>%
   filter(n == 2) %>% ungroup() %>% select(-n)
 
-data$audio_index = as.numeric(scale(log(data$audio_index)))
+data$audio_index = log(data$audio_index) - min(log(data$audio_index))
 data$Index = as.numeric(scale(data$Index))
 data$common_name = factor(as.character(data$common_name))
 
@@ -183,11 +195,11 @@ data %>% pivot_wider(names_from = merlin, values_from = N) %>%
 
 # fit model with pre/post factor
 
-fit <- glmer(N ~ Index + merlin + merlin:audio_index + audio_index + (1|common_name), 
+fit <- glmer(N ~ Index + merlin + merlin:audio_index + (1|common_name), 
              data = data,
              family = gaussian(link = 'log'))
 
-# summary(fit)
+summary(fit)
 
 write_csv(tidy(fit), paste0(results_path, data_string, '_full_model_summary.csv'))
 
@@ -240,3 +252,15 @@ audio_shift <- ggplot() +
   ggtitle('Average count per hour for new observers')
 
 ggsave(paste0(results_path, data_string, '_audio_shift_new.png'), audio_shift, width = 6, height = 6)
+
+audio_shift_log <- ggplot() + 
+  geom_point(aes(pre, post, colour = audio_index), data = data_plot) + 
+  geom_line(aes(pre, post, group = audio_type, colour = audio_index), data = extended_lines) + theme_bw() +
+  geom_abline(slope = 1, intercept = 0, linetype = "dashed", color = "grey") +
+  scale_colour_viridis_c() + 
+  scale_x_log10() +
+  scale_y_log10() +
+  labs(x = 'Average count per hour 2016-2019', y = 'Average count per hour 2022-2024', colour = 'Audio Index') + 
+  ggtitle('Average count per hour for new observers')
+
+ggsave(paste0(results_path, data_string, '_audio_shift_new_log.png'), audio_shift_log, width = 6, height = 6)

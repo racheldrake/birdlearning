@@ -81,7 +81,6 @@ common_species <- SAC_data %>% select(dataset, common_name, diff_new) %>%
   pivot_wider(names_from = dataset, values_from = diff_new) %>% drop_na() %>%
   arrange(-bcr23_2025_2016_19_full) %>% slice_head(n = 20) %>% select(common_name)
 
-
 least <- SAC_data %>% filter(common_name %in% common_species$common_name) %>% 
   mutate(low = ratio - SE_ratio,
          high = ratio + SE_ratio,

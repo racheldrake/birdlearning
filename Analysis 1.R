@@ -135,8 +135,8 @@ for (i in 1:120){
     xlim(c(0, 60)) + 
     ylim(c(0, 0.305)) +
     coord_cartesian(expand = FALSE) + 
-    theme_bw() + labs(x = 'Checklist Calibration Index (CCI)', y = 'Density', fill = 'Time Period') + 
-    ggtitle(paste0('Checklist Calibration Index (CCI) at ', i, ' minutes' )) + 
+    theme_bw() + labs(x = 'Estimated No. Species', y = 'Density', fill = 'Time Period') + 
+    ggtitle(paste0('Estimated No. Species at ', i, ' minutes' )) + 
     scale_fill_manual(
       values = c("pre" = "#F8766D", "post" = "#00BFC4"),
       labels = c("pre" = "2016-2019", "post" = "2022-2024")
