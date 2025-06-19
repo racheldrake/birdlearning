@@ -51,7 +51,6 @@ quantile_labels <- c('Mean_bottom' = 'Lower Quantile of Observers', 'Mean_top' =
 
 # load in audio index
 audio_index <- read_csv(paste0(ebd_path, 'audio_index.csv'))
-audio_index$audio_index <- log(audio_index$audio_index)
 #- FULL ####
 
 full_data_tags <- paste0(data_string, c('_2016_19_full', '_2022_24_full'))
@@ -309,7 +308,7 @@ point_full <- SAC_data %>%
   select(species, common_name, quantile, dataset, SAC) %>%
   # add the audio ID index for each species
   left_join(audio_index, by = 'common_name') %>%
-  mutate(audio_index = as.numeric(scale(audio_index))) %>%
+  mutate(audio_index = log(audio_index) - min(log(audio_index)))%>%
   # make each dataset its own column
   pivot_wider(names_from = dataset, values_from = SAC) %>% ggplot() +
   # datasets are axis
@@ -334,7 +333,7 @@ point_full_combined <- SAC_data %>%
   select(species, common_name, dataset, SAC) %>%
   # add in the audio index for each species
   left_join(audio_index, by = 'common_name') %>%
-  mutate(audio_index = as.numeric(scale(audio_index))) %>%
+  mutate(audio_index = log(audio_index) - min(log(audio_index))) %>%
   # make each dataset a column for the axis
   pivot_wider(names_from = dataset, values_from = SAC) %>% 
   # plot time
@@ -630,7 +629,7 @@ new_most_changed_neg <- SAC_data %>% filter(common_name %in% common_species$comm
 point_new <- SAC_data %>%
   select(species, common_name, dataset, Mean) %>%
   left_join(audio_index, by = 'common_name') %>%
-  mutate(audio_index = as.numeric(scale(audio_index))) %>%
+  mutate(audio_index = log(audio_index) - min(log(audio_index))) %>%
   pivot_wider(names_from = dataset, values_from = Mean) %>% ggplot() +
   geom_point(aes(bcr23_2025_2016_19_new, bcr23_2025_2022_24_new, colour = audio_index)) + theme_bw() +
   geom_abline(slope = 1, intercept = 0, linetype = "dashed", color = "grey") +

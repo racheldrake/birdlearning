@@ -27,8 +27,8 @@ setwd("G:/R Coding/birdlearning")  	# working directory (windows)
 ## load up the packages we will need:
 
 library(tidyverse)
-library(lme4)
 library(broom.mixed)
+library(glmmTMB)
 
 # resolve namespace conflicts
 select <- dplyr::select
@@ -43,14 +43,14 @@ data_path <- 'stdata/'
 ebd_path <- 'analysis_3/data/'
 
 # where I want to save results
-results_path <- 'analysis_3/'
+results_path <- 'analysis_3/prop/'
 
 # FULL DATA ----------------
 
 ### DATA PREP ---------------------------
 
 # load in model data
-data <- read_csv(paste0(ebd_path, data_string, '_N_model.csv')) %>%
+data <- read_csv(paste0(ebd_path, data_string, '_N_model_prop.csv')) %>%
   mutate(merlin = factor(time, levels = c('pre', 'post'))) %>% select(-time)
 
 # histogram of data to check for skew
@@ -81,24 +81,22 @@ data %>% pivot_wider(names_from = merlin, values_from = N) %>%
 ### MODEL ONE ----------------------------
 
 # fit model with pre/post factor
-
-fit <- glmer(N ~ Index + merlin + merlin:audio_index + (1|common_name),
-           data = data,
-           family = gaussian(link = 'log'))
+fit <- glmmTMB(N ~ Index + merlin + audio_index + merlin:audio_index + (1|common_name),
+             data = data)
 
 summary(fit)
 
 write_csv(tidy(fit), paste0(results_path, data_string, '_full_model_summary.csv'))
 
-# predict for merlin and no merlin, no trend, constant audio at two levels
+# predict for merlin and no merlin, no trend, constant audio
 pred_data <- data.frame(Index = rep(mean(data$Index), 2*length(data$N)),
                         merlin = c(rep('pre', length(data$N)/2), rep('post', length(data$N)/2), rep('pre', length(data$N)/2), rep('post', length(data$N)/2)),
                         audio_index = c(rep(quantile(data$audio_index, 0.1), length(data$N)), rep(quantile(data$audio_index, 0.9), length(data$N))),
                         audio_type = c(rep('low', length(data$N)), rep('high', length(data$N))),
                         common_name = rep(unique(data$common_name), 4))
 
-pred_data$common_name <- as.factor(pred_data$common_name)
-pred_data$merlin <- as.factor(pred_data$merlin)
+# pred_data$common_name <- as.factor(pred_data$common_name)
+# pred_data$merlin <- as.factor(pred_data$merlin)
 
 pred_data$prediction <- predict(fit, newdata = pred_data, type = 'response')
 
@@ -134,9 +132,9 @@ audio_shift <- ggplot() +
   geom_line(aes(pre, post, group = audio_type, colour = audio_index), data = extended_lines) + theme_bw() +
   geom_abline(slope = 1, intercept = 0, linetype = "dashed", color = "grey") +
   scale_colour_viridis_c() + 
-  coord_equal(xlim = c(0, 13), ylim = c(0, 13)) + 
-  labs(x = 'Average count per hour 2016-2019', y = 'Average count per hour 2022-2024', colour = 'Audio Index') + 
-  ggtitle('Average count per hour for all observers')
+  coord_equal(xlim = c(0, 0.75), ylim = c(0, 0.75)) + 
+  labs(x = 'Reporting rate 2016-2019', y = 'Reporting rate 2022-2024', colour = 'Audio Index') + 
+  ggtitle('Species reporting rate for all observers')
 
 ggsave(paste0(results_path, data_string, '_audio_shift_full.png'), audio_shift, width = 6, height = 6)
 
@@ -147,60 +145,19 @@ audio_shift_log <- ggplot() +
   scale_colour_viridis_c() + 
   scale_x_log10() +
   scale_y_log10() +
-  labs(x = 'Average count per hour 2016-2019', y = 'Average count per hour 2022-2024', colour = 'Audio Index') + 
-  ggtitle('Average count per hour for all observers')
+  labs(x = 'Reporting rate 2016-2019', y = 'Reporting rate 2022-2024', colour = 'Audio Index') + 
+  ggtitle('Species reporting rate for all observers')
 
 ggsave(paste0(results_path, data_string, '_audio_shift_full_log.png'), audio_shift_log, width = 6, height = 6)
 
-# Predict over changing pre/post merlin for all audio index levels
-# predict for merlin and no merlin, no trend, constant audio at two levels
-pred_data <- data.frame(Index = rep(mean(data$Index), 1000),
-                        merlin = c(rep('pre', 500), rep('post', 500)),
-                        audio_index = rep(seq(min(data$audio_index), max(data$audio_index), length.out = 500), 2),
-                        common_name = rep('new_species', 1000))
-
-pred_data$prediction <- predict(fit, newdata = pred_data, type = 'response', allow.new.levels = TRUE)
-
-audio_continuous <- ggplot(pred_data) + 
-  geom_line(aes(audio_index, prediction, colour = merlin), linewidth = 0.7) + 
-  theme_bw() + xlab('Audio Index') + ylab('Expected N') + 
-  labs(colour = 'Time Period') + 
-  scale_colour_discrete(labels = c('pre' = 'Pre Merlin', 
-                                   'post' = 'Post Merlin')) + 
-  coord_cartesian(ylim = c(0, max(pred_data$prediction)), xlim = c(0, max(pred_data$audio_index))) +
-  ggtitle('Expected count on checklist wrt audio index pre/post Merlin')
-
-ggsave(paste0(results_path, data_string, '_audio_continuous_full.png'), audio_continuous, width = 6, height = 4)
-
-# Predict over changing pre/post merlin for all audio index levels
-# predict for merlin and no merlin, no trend, constant audio at two levels
-pred_data <- data.frame(Index = c(rep(quantile(data$Index, 0.1), 1000), rep(median(data$Index), 1000), rep(quantile(data$Index, 0.9), 1000)),
-                        Index_level = c(rep('10th Quantile', 1000), rep('Median', 1000), rep('90th Quantile', 1000)),
-                        merlin = rep(c(rep('pre', 500), rep('post', 500)), 3),
-                        audio_index = rep(rep(seq(min(data$audio_index), max(data$audio_index), length.out = 500), 2), 3),
-                        common_name = rep('new_species', 3000))
-
-pred_data$prediction <- predict(fit, newdata = pred_data, type = 'response', allow.new.levels = TRUE)
-
-audio_continuous_level <- ggplot(pred_data) + 
-  geom_line(aes(audio_index, prediction, colour = merlin), linewidth = 0.7) + 
-  theme_bw() + xlab('Audio Index') + ylab('Expected N') + 
-  labs(colour = 'Time Period') + 
-  scale_colour_discrete(labels = c('pre' = 'Pre Merlin', 
-                                   'post' = 'Post Merlin')) +
-  coord_cartesian(ylim = c(0, max(pred_data$prediction)), xlim = c(0, max(pred_data$audio_index))) +
-  ggtitle('Expected count on checklist wrt audio index pre/post Merlin across species level') + 
-  facet_wrap(~Index_level)
-
-ggsave(paste0(results_path, data_string, '_audio_continuous_level_full.png'), audio_continuous_level, width = 10, height = 4)
-
-
 
 # NEW DATA ----------------
+
 ### DATA PREP ---------------------------
 
+
 # load in model data
-data <- read_csv(paste0(ebd_path, data_string, '_N_model_new.csv')) %>%
+data <- read_csv(paste0(ebd_path, data_string, '_N_model_new_prop.csv')) %>%
   mutate(merlin = factor(time, levels = c('pre', 'post'))) %>% select(-time)
 
 # histogram of data to check for skew
@@ -216,9 +173,11 @@ data <- data %>% group_by(common_name) %>%
   mutate(n = n()) %>%
   filter(n == 2) %>% ungroup() %>% select(-n)
 
-data$audio_index = (log(data$audio_index)) - min(log(data$audio_index))
+data$audio_index = log(data$audio_index) - min(log(data$audio_index))
 data$Index = as.numeric(log(data$Index))
 data$common_name = factor(as.character(data$common_name))
+
+
 
 # histogram of data to check for skew
 data %>% pivot_wider(names_from = merlin, values_from = N) %>% 
@@ -232,23 +191,23 @@ data %>% pivot_wider(names_from = merlin, values_from = N) %>%
 
 # fit model with pre/post factor
 
-fit <- glmer(N ~ Index + merlin + audio_index + merlin:audio_index + (1|common_name),
+fit <- glmmTMB(N ~ Index + merlin + merlin:audio_index + (1|common_name), 
              data = data,
-             family = gaussian(link = 'log'))
+             family = beta_family())
 
 summary(fit)
 
 write_csv(tidy(fit), paste0(results_path, data_string, '_new_model_summary.csv'))
 
-# predict for merlin and no merlin, no trend, constant audio at two levels
+# predict for merlin and no merlin, no trend, constant audio
 pred_data <- data.frame(Index = rep(mean(data$Index), 2*length(data$N)),
                         merlin = c(rep('pre', length(data$N)/2), rep('post', length(data$N)/2), rep('pre', length(data$N)/2), rep('post', length(data$N)/2)),
                         audio_index = c(rep(quantile(data$audio_index, 0.1), length(data$N)), rep(quantile(data$audio_index, 0.9), length(data$N))),
                         audio_type = c(rep('low', length(data$N)), rep('high', length(data$N))),
                         common_name = rep(unique(data$common_name), 4))
 
-pred_data$common_name <- as.factor(pred_data$common_name)
-pred_data$merlin <- as.factor(pred_data$merlin)
+# pred_data$common_name <- as.factor(pred_data$common_name)
+# pred_data$merlin <- as.factor(pred_data$merlin)
 
 pred_data$prediction <- predict(fit, newdata = pred_data, type = 'response')
 
@@ -284,9 +243,9 @@ audio_shift <- ggplot() +
   geom_line(aes(pre, post, group = audio_type, colour = audio_index), data = extended_lines) + theme_bw() +
   geom_abline(slope = 1, intercept = 0, linetype = "dashed", color = "grey") +
   scale_colour_viridis_c() + 
-  coord_equal(xlim = c(0, 13), ylim = c(0, 13)) + 
-  labs(x = 'Average count per hour 2016-2019', y = 'Average count per hour 2022-2024', colour = 'Audio Index') + 
-  ggtitle('Average count per hour for all observers')
+  coord_equal(xlim = c(0, 0.75), ylim = c(0, 0.75)) + 
+  labs(x = 'Reporting rate 2016-2019', y = 'Reporting rate 2022-2024', colour = 'Audio Index') + 
+  ggtitle('Species reporting rate for new observers')
 
 ggsave(paste0(results_path, data_string, '_audio_shift_new.png'), audio_shift, width = 6, height = 6)
 
@@ -297,51 +256,7 @@ audio_shift_log <- ggplot() +
   scale_colour_viridis_c() + 
   scale_x_log10() +
   scale_y_log10() +
-  labs(x = 'Average count per hour 2016-2019', y = 'Average count per hour 2022-2024', colour = 'Audio Index') + 
-  ggtitle('Average count per hour for all observers')
+  labs(x = 'Reporting rate 2016-2019', y = 'Reporting rate 2022-2024', colour = 'Audio Index') + 
+  ggtitle('Species reporting rate for new observers')
 
 ggsave(paste0(results_path, data_string, '_audio_shift_new_log.png'), audio_shift_log, width = 6, height = 6)
-
-# Predict over changing pre/post merlin for all audio index levels
-# predict for merlin and no merlin, no trend, constant audio at two levels
-pred_data <- data.frame(Index = rep(mean(data$Index), 1000),
-                        merlin = c(rep('pre', 500), rep('post', 500)),
-                        audio_index = rep(seq(min(data$audio_index), max(data$audio_index), length.out = 500), 2),
-                        common_name = rep('new_species', 1000))
-
-pred_data$prediction <- predict(fit, newdata = pred_data, type = 'response', allow.new.levels = TRUE)
-
-audio_continuous <- ggplot(pred_data) + 
-  geom_line(aes(audio_index, prediction, colour = merlin), linewidth = 0.7) + 
-  theme_bw() + xlab('Audio Index') + ylab('Expected N') + 
-  labs(colour = 'Time Period') + 
-  scale_colour_discrete(labels = c('pre' = 'Pre Merlin', 
-                                   'post' = 'Post Merlin')) + 
-  coord_cartesian(ylim = c(0, max(pred_data$prediction)), xlim = c(0, max(pred_data$audio_index))) +
-  ggtitle('Expected count on checklist wrt audio index pre/post Merlin')
-
-ggsave(paste0(results_path, data_string, '_audio_continuous_new.png'), audio_continuous, width = 6, height = 4)
-
-# Predict over changing pre/post merlin for all audio index levels
-# predict for merlin and no merlin, no trend, constant audio at two levels
-pred_data <- data.frame(Index = c(rep(quantile(data$Index, 0.1), 1000), rep(median(data$Index), 1000), rep(quantile(data$Index, 0.9), 1000)),
-                        Index_level = c(rep('10th Quantile', 1000), rep('Median', 1000), rep('90th Quantile', 1000)),
-                        merlin = rep(c(rep('pre', 500), rep('post', 500)), 3),
-                        audio_index = rep(rep(seq(min(data$audio_index), max(data$audio_index), length.out = 500), 2), 3),
-                        common_name = rep('new_species', 3000))
-
-pred_data$prediction <- predict(fit, newdata = pred_data, type = 'response', allow.new.levels = TRUE)
-
-audio_continuous_level <- ggplot(pred_data) + 
-  geom_line(aes(audio_index, prediction, colour = merlin), linewidth = 0.7) + 
-  theme_bw() + xlab('Audio Index') + ylab('Expected N') + 
-  labs(colour = 'Time Period') + 
-  scale_colour_discrete(labels = c('pre' = 'Pre Merlin', 
-                                   'post' = 'Post Merlin')) + 
-  coord_cartesian(ylim = c(0, max(pred_data$prediction)), xlim = c(0, max(pred_data$audio_index))) +
-  ggtitle('Expected count on checklist wrt audio index pre/post Merlin across species level') + 
-  facet_wrap(~Index_level)
-
-ggsave(paste0(results_path, data_string, '_audio_continuous_level_new.png'), audio_continuous_level, width = 10, height = 4)
-
-

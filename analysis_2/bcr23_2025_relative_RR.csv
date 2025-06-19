@@ -1,319 +1,319 @@
 species,common_name,N,audio_index,time
-Actitis macularius,Spotted Sandpiper,0.2073835521553173,-0.3755228939426579,pre
-Agelaius phoeniceus,Red-winged Blackbird,0.5919455080722394,0.40751927824096984,pre
-Aix sponsa,Wood Duck,0.4461946539799752,-0.7044939116316719,pre
-Anas crecca,Green-winged Teal,0.24168860936184905,-0.6461328493763393,pre
-Anas platyrhynchos,Mallard,0.5629932336464698,-0.8316283552899344,pre
-Antigone canadensis,Sandhill Crane,0.4251378449757314,-0.04795452461337031,pre
-Archilochus colubris,Ruby-throated Hummingbird,0.958170935405283,-0.748959232609749,pre
-Ardea alba,Great Egret,0.6724070184246268,-1.516928372890033,pre
-Ardea herodias,Great Blue Heron,0.5275781529617758,-1.1491087738138028,pre
-Astur cooperii,Cooper's Hawk,0.36488216597126977,-0.2554678578366795,pre
-Aythya affinis,Lesser Scaup,0.3346167263766768,-2.7442999972713333,pre
-Aythya americana,Redhead,0.37899688675456983,-2.0583769322576813,pre
-Aythya collaris,Ring-necked Duck,0.3968635222296118,-1.728892125748346,pre
-Aythya marila,Greater Scaup,0.25698716156227086,-2.650311603891718,pre
-Aythya valisineria,Canvasback,0.4065236477378595,-2.2793350042715144,pre
-Baeolophus bicolor,Tufted Titmouse,0.4067471868272077,1.0403157200708941,pre
-Bombycilla cedrorum,Cedar Waxwing,0.2797588409678451,-0.2804704360512954,pre
-Branta canadensis,Canada Goose,0.57846676537123,-0.24294647206734568,pre
-Bubo virginianus,Great Horned Owl,0.4908954901738025,0.9308623844828642,pre
-Bucephala albeola,Bufflehead,0.43845496752913354,-1.9256419417703046,pre
-Bucephala clangula,Common Goldeneye,0.39081676371204144,-1.4202759839137236,pre
-Buteo jamaicensis,Red-tailed Hawk,0.4011864589424392,-0.8923634693555595,pre
-Buteo platypterus,Broad-winged Hawk,0.3860727041759542,0.1362015444097658,pre
-Butorides virescens,Green Heron,0.44419821193491266,-0.39846363674696095,pre
-Calidris melanotos,Pectoral Sandpiper,0.15560795785351347,-1.2016186200080887,pre
-Calidris minutilla,Least Sandpiper,0.16540692536417254,-0.5760395570990836,pre
-Calidris pusilla,Semipalmated Sandpiper,0.1277462932748612,-0.9475392210548887,pre
-Cardellina pusilla,Wilson's Warbler,0.31860318973601354,0.6881961609387514,pre
-Cardinalis cardinalis,Northern Cardinal,0.7117666440344624,0.6526542390618777,pre
-Cathartes aura,Turkey Vulture,0.44930845635274125,-2.8288834388220296,pre
-Catharus fuscescens,Veery,0.17387209298380998,1.6114356788675628,pre
-Catharus guttatus,Hermit Thrush,0.3619160221456641,0.7028909506647012,pre
-Catharus ustulatus,Swainson's Thrush,0.305205778776777,1.4806864834371998,pre
-Certhia americana,Brown Creeper,0.3683897553564507,0.6016800969657009,pre
-Chaetura pelagica,Chimney Swift,0.27030344992345184,0.7616658066380082,pre
-Charadrius vociferus,Killdeer,0.2755593013397977,0.09206104882452357,pre
-Chroicocephalus philadelphia,Bonaparte's Gull,0.2423726358026751,-1.1428655735677653,pre
-Circus hudsonius,Northern Harrier,0.42748673730478526,-1.3799079384874102,pre
-Cistothorus palustris,Marsh Wren,0.2765188120291901,1.350275419854384,pre
-Cistothorus stellaris,Sedge Wren,0.2280597728133379,1.533216277551275,pre
-Coccyzus americanus,Yellow-billed Cuckoo,0.1601676988356537,0.944968018701756,pre
-Colaptes auratus,Northern Flicker,0.2844080294554404,0.27472454845503935,pre
-Columba livia,Rock Pigeon,0.3732858888083675,-0.8434255647469465,pre
-Contopus virens,Eastern Wood-Pewee,0.258684781281212,0.8159466106773976,pre
-Corthylio calendula,Ruby-crowned Kinglet,0.36351298844672303,0.28580944953821624,pre
-Corvus brachyrhynchos,American Crow,0.5223146456084914,0.8893359091070989,pre
-Cyanocitta cristata,Blue Jay,0.6293986646289709,0.9490726867150355,pre
-Cygnus buccinator,Trumpeter Swan,0.7101197847298986,-0.5022569538168681,pre
-Cygnus olor,Mute Swan,0.5344704939446481,-1.1533960747624827,pre
-Dolichonyx oryzivorus,Bobolink,0.2833672619157547,0.6294882912162766,pre
-Dryobates pubescens,Downy Woodpecker,0.6250418659013014,0.03983725538924959,pre
-Dryobates villosus,Hairy Woodpecker,0.5598412087657356,0.6369150120150615,pre
-Dryocopus pileatus,Pileated Woodpecker,0.5177742736206136,0.4626804793199197,pre
-Dumetella carolinensis,Gray Catbird,0.427322435919118,0.9053238462612663,pre
-Empidonax minimus,Least Flycatcher,0.2121426320621777,0.9437387021709044,pre
-Empidonax traillii,Willow Flycatcher,0.1659583118207215,1.1582893720019452,pre
-Empidonax virescens,Acadian Flycatcher,0.0876559509425716,1.8380223123927695,pre
-Eremophila alpestris,Horned Lark,0.20519419398274347,0.021109070472215316,pre
-Falco sparverius,American Kestrel,0.44361609687328385,-0.938543418208577,pre
-Fulica americana,American Coot,0.5948574199648782,-0.8492653421485331,pre
-Gallinago delicata,Wilson's Snipe,0.23762477066548582,-0.0881375785618742,pre
-Gavia immer,Common Loon,0.6356614640518657,-0.5369236131081473,pre
-Geothlypis trichas,Common Yellowthroat,0.276145177391477,0.7982179919110536,pre
-Haemorhous mexicanus,House Finch,0.6858704316246026,0.22514620178276817,pre
-Haemorhous purpureus,Purple Finch,0.7644782937779816,0.46784549601618003,pre
-Haliaeetus leucocephalus,Bald Eagle,0.7421777010192193,-1.2912230243068328,pre
-Hirundo rustica,Barn Swallow,0.36371810194897786,-0.22851590129081611,pre
-Hydroprogne caspia,Caspian Tern,0.34556760110614465,-0.5505722767525719,pre
-Hylocichla mustelina,Wood Thrush,0.19762519906848347,1.9328977156335323,pre
-Icterus galbula,Baltimore Oriole,0.5081088262306189,0.16883110410543464,pre
-Icterus spurius,Orchard Oriole,0.34284369286699246,0.5594809210715957,pre
-Junco hyemalis,Dark-eyed Junco,0.8739148984470698,0.20037457132059397,pre
-Larus delawarensis,Ring-billed Gull,0.37518985620729706,-0.8230497296241944,pre
-Larus smithsonianus,American Herring Gull,0.2360470743701783,-0.87353275169846345,pre
-Leiothlypis peregrina,Tennessee Warbler,0.18717274457896432,0.7244930492853145,pre
-Leiothlypis ruficapilla,Nashville Warbler,0.20834829067788535,0.6907414437225299,pre
-Lophodytes cucullatus,Hooded Merganser,0.524409403257372,-1.6888131532275288,pre
-Mareca americana,American Wigeon,0.23020417570493873,-0.9364837052593261,pre
-Mareca strepera,Gadwall,0.27159835138102445,-0.8193887261225908,pre
-Megaceryle alcyon,Belted Kingfisher,0.36059890635990655,-0.15161301559937404,pre
-Melanerpes carolinus,Red-bellied Woodpecker,0.5123254150681013,0.28510595008214845,pre
-Melanerpes erythrocephalus,Red-headed Woodpecker,0.678493878702574,0.11835196632494903,pre
-Meleagris gallopavo,Wild Turkey,0.6435980668065318,-0.33830028646160387,pre
-Melospiza georgiana,Swamp Sparrow,0.16591426796531178,0.5790637602567431,pre
-Melospiza melodia,Song Sparrow,0.3378555578615567,0.5472075887281274,pre
-Mergus merganser,Common Merganser,0.4842117361275369,-1.5057568685837501,pre
-Mergus serrator,Red-breasted Merganser,0.3698097336461956,-2.580335147554955,pre
-Mniotilta varia,Black-and-white Warbler,0.32853814735817843,0.43344995551512794,pre
-Molothrus ater,Brown-headed Cowbird,0.3711148972106276,0.18388225763787924,pre
-Myiarchus crinitus,Great Crested Flycatcher,0.22203921939338433,0.869085537083709,pre
-Nannopterum auritum,Double-crested Cormorant,0.48720789661688507,-1.8010570029558195,pre
-Oxyura jamaicensis,Ruddy Duck,0.3609329387997747,-1.9667124856364047,pre
-Pandion haliaetus,Osprey,0.5739667357894314,-0.66595910501404465,pre
-Parkesia noveboracensis,Northern Waterthrush,0.18906010738610862,1.310892388630982,pre
-Passer domesticus,House Sparrow,0.6506600024622085,0.3783048071987633,pre
-Passerculus sandwichensis,Savannah Sparrow,0.12803203478884642,0.35510073382509666,pre
-Passerella iliaca,Fox Sparrow,0.43151523660835717,0.8370696156038613,pre
-Passerina cyanea,Indigo Bunting,0.23179763090178046,0.8388957072311356,pre
-Pelecanus erythrorhynchos,American White Pelican,0.5777011759750592,-3.250143966937119,pre
-Petrochelidon pyrrhonota,Cliff Swallow,0.3057360764632407,0.0029047390512793275,pre
-Phasianus colchicus,Ring-necked Pheasant,0.4783179407396066,0.031334125150656283,pre
-Pheucticus ludovicianus,Rose-breasted Grosbeak,0.4581929735416726,0.5524365746452984,pre
-Pipilo erythrophthalmus,Eastern Towhee,0.268291257770724,1.2045924353530864,pre
-Piranga olivacea,Scarlet Tanager,0.2162614367964374,0.753626850249922,pre
-Podiceps auritus,Horned Grebe,0.33414032347355804,-1.9979262000828504,pre
-Podilymbus podiceps,Pied-billed Grebe,0.41379111179316813,-0.8223441775811061,pre
-Poecile atricapillus,Black-capped Chickadee,0.7426727055861122,0.756388382073711,pre
-Polioptila caerulea,Blue-gray Gnatcatcher,0.17527260144380383,0.44359795105469235,pre
-Pooecetes gramineus,Vesper Sparrow,0.1341723392208229,0.43844101685856385,pre
-Porzana carolina,Sora,0.3153086906536183,0.8122392157694601,pre
-Progne subis,Purple Martin,0.25075041453541747,0.36966447006235104,pre
-Quiscalus quiscula,Common Grackle,0.4611084492106002,0.1904075195456425,pre
-Regulus satrapa,Golden-crowned Kinglet,0.2906961981333857,0.6954867114112622,pre
-Riparia riparia,Bank Swallow,0.2491635570132813,-0.3545062879646161,pre
-Sayornis phoebe,Eastern Phoebe,0.3754753630890457,0.10782402975384488,pre
-Seiurus aurocapilla,Ovenbird,0.18772680204872644,1.4028259990101994,pre
-Setophaga americana,Northern Parula,0.13375011663599876,0.778362702845911,pre
-Setophaga coronata,Yellow-rumped Warbler,0.5135760158297006,-0.06771793611872538,pre
-Setophaga fusca,Blackburnian Warbler,0.2355187665932588,0.47804303820268645,pre
-Setophaga magnolia,Magnolia Warbler,0.31378240121881096,0.4569079269001738,pre
-Setophaga palmarum,Palm Warbler,0.4315232051829273,-0.29930659475145655,pre
-Setophaga pensylvanica,Chestnut-sided Warbler,0.2616624035719899,0.6930653012493441,pre
-Setophaga petechia,Yellow Warbler,0.29862507627985796,0.5343980985326431,pre
-Setophaga pinus,Pine Warbler,0.17025239584528945,0.6118190042048821,pre
-Setophaga ruticilla,American Redstart,0.32754832407207723,0.8087335324015125,pre
-Setophaga striata,Blackpoll Warbler,0.23265679102105044,0.398585948993304,pre
-Setophaga virens,Black-throated Green Warbler,0.16614669022966314,0.4456226112527847,pre
-Sialia sialis,Eastern Bluebird,0.4813919886834261,-0.36836077269720435,pre
-Sitta canadensis,Red-breasted Nuthatch,0.5789904265315656,0.6339057985489943,pre
-Sitta carolinensis,White-breasted Nuthatch,0.6023100143272937,0.40898959599572215,pre
-Spatula clypeata,Northern Shoveler,0.40397699934545633,-1.6515873369561962,pre
-Spatula discors,Blue-winged Teal,0.45411350375118564,-1.257224510604358,pre
-Sphyrapicus varius,Yellow-bellied Sapsucker,0.3809132903254815,0.05510019318928054,pre
-Spinus pinus,Pine Siskin,0.5290503333515599,0.41092375245981905,pre
-Spinus tristis,American Goldfinch,0.5953463935138471,0.1918024076846225,pre
-Spiza americana,Dickcissel,0.34169521176644785,0.9502502909855306,pre
-Spizella pallida,Clay-colored Sparrow,0.3603227177676753,0.3690745259768011,pre
-Spizella passerina,Chipping Sparrow,0.40878303993009585,0.5439050156191141,pre
-Spizella pusilla,Field Sparrow,0.2989643847376976,0.848783514485259,pre
-Spizelloides arborea,American Tree Sparrow,0.49243924444142484,0.018572249811996823,pre
-Stelgidopteryx serripennis,Northern Rough-winged Swallow,0.2130108472003193,-0.24136693726929312,pre
-Sterna forsteri,Forster's Tern,0.36545586184288364,-0.7105581075671715,pre
-Strix varia,Barred Owl,0.6091970418098072,0.9454230521537939,pre
-Sturnella magna,Eastern Meadowlark,0.29951178610272194,0.7458203472976725,pre
-Sturnus vulgaris,European Starling,0.4024057919363436,-0.023904305070916718,pre
-Tachycineta bicolor,Tree Swallow,0.4091608427529673,-0.4149570783306604,pre
-Thryothorus ludovicianus,Carolina Wren,0.12066547349660296,1.451263559061716,pre
-Toxostoma rufum,Brown Thrasher,0.37491662723772673,0.7290381414448603,pre
-Tringa flavipes,Lesser Yellowlegs,0.20592495999635776,-0.47606522635979415,pre
-Tringa melanoleuca,Greater Yellowlegs,0.2319082749778857,-0.16368022775851856,pre
-Tringa solitaria,Solitary Sandpiper,0.20827310490351167,-0.2704823820502621,pre
-Troglodytes aedon,Northern House Wren,0.3392730011298562,1.1198199022123632,pre
-Turdus migratorius,American Robin,0.6722885705652534,0.4111876698462532,pre
-Tyrannus tyrannus,Eastern Kingbird,0.35819763373080227,-0.30665699320671364,pre
-Vermivora cyanoptera,Blue-winged Warbler,0.14925554989791984,0.9299311879190018,pre
-Vireo flavifrons,Yellow-throated Vireo,0.11203423336886577,1.4070999306303655,pre
-Vireo gilvus,Warbling Vireo,0.18134911056266798,1.1512435279589939,pre
-Vireo olivaceus,Red-eyed Vireo,0.1949081922975099,1.2598374902260576,pre
-Vireo solitarius,Blue-headed Vireo,0.18127382008125337,0.9078557465425467,pre
-Zenaida macroura,Mourning Dove,0.5825516427052757,-0.38288638221003635,pre
-Zonotrichia albicollis,White-throated Sparrow,0.4183921808118097,0.6171131445327823,pre
-Zonotrichia leucophrys,White-crowned Sparrow,0.6034569083082172,0.16385136214541451,pre
-Actitis macularius,Spotted Sandpiper,0.2177971557108529,-0.3755228939426579,post
-Agelaius phoeniceus,Red-winged Blackbird,0.5880440849187263,0.40751927824096984,post
-Aix sponsa,Wood Duck,0.4504401685576558,-0.7044939116316719,post
-Anas crecca,Green-winged Teal,0.20857093790491482,-0.6461328493763393,post
-Anas platyrhynchos,Mallard,0.557462351822331,-0.8316283552899344,post
-Antigone canadensis,Sandhill Crane,0.3696720623716409,-0.04795452461337031,post
-Archilochus colubris,Ruby-throated Hummingbird,0.8514126954960347,-0.748959232609749,post
-Ardea alba,Great Egret,0.5983809364451876,-1.516928372890033,post
-Ardea herodias,Great Blue Heron,0.5076486093926045,-1.1491087738138028,post
-Astur cooperii,Cooper's Hawk,0.38790367273836873,-0.2554678578366795,post
-Aythya affinis,Lesser Scaup,0.28333144014068345,-2.7442999972713333,post
-Aythya americana,Redhead,0.3132098755747064,-2.0583769322576813,post
-Aythya collaris,Ring-necked Duck,0.36805815415381804,-1.728892125748346,post
-Aythya valisineria,Canvasback,0.2744473609454463,-2.2793350042715144,post
-Baeolophus bicolor,Tufted Titmouse,0.43648378375019864,1.0403157200708941,post
-Bombycilla cedrorum,Cedar Waxwing,0.33431608856716394,-0.2804704360512954,post
-Branta canadensis,Canada Goose,0.5450410728420607,-0.24294647206734568,post
-Bucephala albeola,Bufflehead,0.3990864224983426,-1.9256419417703046,post
-Bucephala clangula,Common Goldeneye,0.3525638837838849,-1.4202759839137236,post
-Buteo jamaicensis,Red-tailed Hawk,0.38551705687752974,-0.8923634693555595,post
-Buteo lineatus,Red-shouldered Hawk,0.32864188854001136,0.19352596334324687,post
-Buteo platypterus,Broad-winged Hawk,0.42975011799450624,0.1362015444097658,post
-Butorides virescens,Green Heron,0.49139994337431936,-0.39846363674696095,post
-Calidris melanotos,Pectoral Sandpiper,0.11785264560198812,-1.2016186200080887,post
-Calidris minutilla,Least Sandpiper,0.1663232052111366,-0.5760395570990836,post
-Cardellina pusilla,Wilson's Warbler,0.3034185437805732,0.6881961609387514,post
-Cardinalis cardinalis,Northern Cardinal,0.7830683676444179,0.6526542390618777,post
-Cathartes aura,Turkey Vulture,0.40367264565953165,-2.8288834388220296,post
-Catharus fuscescens,Veery,0.22797630298427168,1.6114356788675628,post
-Catharus guttatus,Hermit Thrush,0.40114593706414226,0.7028909506647012,post
-Catharus ustulatus,Swainson's Thrush,0.3034365848315404,1.4806864834371998,post
-Certhia americana,Brown Creeper,0.42298262183792684,0.6016800969657009,post
-Chaetura pelagica,Chimney Swift,0.38436088391325307,0.7616658066380082,post
-Charadrius vociferus,Killdeer,0.28534885852887576,0.09206104882452357,post
-Chroicocephalus philadelphia,Bonaparte's Gull,0.1844312318088301,-1.1428655735677653,post
-Circus hudsonius,Northern Harrier,0.3463679950263902,-1.3799079384874102,post
-Cistothorus palustris,Marsh Wren,0.23708807651240368,1.350275419854384,post
-Cistothorus stellaris,Sedge Wren,0.23985239889386248,1.533216277551275,post
-Colaptes auratus,Northern Flicker,0.38372333001790543,0.27472454845503935,post
-Columba livia,Rock Pigeon,0.3813526172014464,-0.8434255647469465,post
-Contopus virens,Eastern Wood-Pewee,0.3417402511927059,0.8159466106773976,post
-Corthylio calendula,Ruby-crowned Kinglet,0.4233855761580012,0.28580944953821624,post
-Corvus brachyrhynchos,American Crow,0.5627377157200922,0.8893359091070989,post
-Cyanocitta cristata,Blue Jay,0.7220297818753626,0.9490726867150355,post
-Cygnus buccinator,Trumpeter Swan,0.6224841946495882,-0.5022569538168681,post
-Cygnus olor,Mute Swan,0.5198365120354752,-1.1533960747624827,post
-Dolichonyx oryzivorus,Bobolink,0.2920135955409053,0.6294882912162766,post
-Dryobates pubescens,Downy Woodpecker,0.6946954417506758,0.03983725538924959,post
-Dryobates villosus,Hairy Woodpecker,0.6134130385833709,0.6369150120150615,post
-Dryocopus pileatus,Pileated Woodpecker,0.5479551091839006,0.4626804793199197,post
-Dumetella carolinensis,Gray Catbird,0.4936297726073024,0.9053238462612663,post
-Empidonax minimus,Least Flycatcher,0.22325195613499912,0.9437387021709044,post
-Empidonax traillii,Willow Flycatcher,0.17203299004276273,1.1582893720019452,post
-Empidonax virescens,Acadian Flycatcher,0.17307766733276908,1.8380223123927695,post
-Eremophila alpestris,Horned Lark,0.12868027526200917,0.021109070472215316,post
-Falco sparverius,American Kestrel,0.3079400424717907,-0.938543418208577,post
-Fulica americana,American Coot,0.4460555433272864,-0.8492653421485331,post
-Gallinago delicata,Wilson's Snipe,0.17402369732684453,-0.0881375785618742,post
-Gavia immer,Common Loon,0.5597021654400671,-0.5369236131081473,post
-Geothlypis trichas,Common Yellowthroat,0.3285855930055861,0.7982179919110536,post
-Haemorhous mexicanus,House Finch,0.7813317170362339,0.22514620178276817,post
-Haemorhous purpureus,Purple Finch,0.6869216512973548,0.46784549601618003,post
-Haliaeetus leucocephalus,Bald Eagle,0.5611449212704688,-1.2912230243068328,post
-Hirundo rustica,Barn Swallow,0.3374133724903263,-0.22851590129081611,post
-Hydroprogne caspia,Caspian Tern,0.29764063957761694,-0.5505722767525719,post
-Hylocichla mustelina,Wood Thrush,0.2308444475310461,1.9328977156335323,post
-Icterus galbula,Baltimore Oriole,0.5424137634727707,0.16883110410543464,post
-Icterus spurius,Orchard Oriole,0.32758323746712703,0.5594809210715957,post
-Junco hyemalis,Dark-eyed Junco,0.9014308274995706,0.20037457132059397,post
-Larus delawarensis,Ring-billed Gull,0.3278111746767044,-0.8230497296241944,post
-Larus smithsonianus,American Herring Gull,0.24823255792715346,-0.87353275169846345,post
-Leiothlypis peregrina,Tennessee Warbler,0.2922107221979181,0.7244930492853145,post
-Leiothlypis ruficapilla,Nashville Warbler,0.32153231934534665,0.6907414437225299,post
-Lophodytes cucullatus,Hooded Merganser,0.4819790845412058,-1.6888131532275288,post
-Mareca americana,American Wigeon,0.23769589373274488,-0.9364837052593261,post
-Mareca strepera,Gadwall,0.23869724329331174,-0.8193887261225908,post
-Megaceryle alcyon,Belted Kingfisher,0.37451675287256203,-0.15161301559937404,post
-Melanerpes carolinus,Red-bellied Woodpecker,0.5937340464965433,0.28510595008214845,post
-Melanerpes erythrocephalus,Red-headed Woodpecker,0.41415455501704224,0.11835196632494903,post
-Meleagris gallopavo,Wild Turkey,0.546694802552954,-0.33830028646160387,post
-Melospiza georgiana,Swamp Sparrow,0.2207637334102859,0.5790637602567431,post
-Melospiza melodia,Song Sparrow,0.3746438555800573,0.5472075887281274,post
-Mergus merganser,Common Merganser,0.40590155417316637,-1.5057568685837501,post
-Mergus serrator,Red-breasted Merganser,0.3800123314485609,-2.580335147554955,post
-Mniotilta varia,Black-and-white Warbler,0.318045131118685,0.43344995551512794,post
-Molothrus ater,Brown-headed Cowbird,0.4561614104536946,0.18388225763787924,post
-Myiarchus crinitus,Great Crested Flycatcher,0.3525676819605081,0.869085537083709,post
-Nannopterum auritum,Double-crested Cormorant,0.46657074161555395,-1.8010570029558195,post
-Oxyura jamaicensis,Ruddy Duck,0.2826574652201568,-1.9667124856364047,post
-Pandion haliaetus,Osprey,0.5134558046456995,-0.66595910501404465,post
-Parkesia noveboracensis,Northern Waterthrush,0.21035885921934563,1.310892388630982,post
-Passer domesticus,House Sparrow,0.8483946457738948,0.3783048071987633,post
-Passerculus sandwichensis,Savannah Sparrow,0.2221288305346559,0.35510073382509666,post
-Passerella iliaca,Fox Sparrow,0.36804975953335245,0.8370696156038613,post
-Passerina cyanea,Indigo Bunting,0.3173924673375851,0.8388957072311356,post
-Pelecanus erythrorhynchos,American White Pelican,0.4478188377508765,-3.250143966937119,post
-Petrochelidon pyrrhonota,Cliff Swallow,0.22616096111579215,0.0029047390512793275,post
-Phasianus colchicus,Ring-necked Pheasant,0.30446917102721255,0.031334125150656283,post
-Pheucticus ludovicianus,Rose-breasted Grosbeak,0.4652628196520069,0.5524365746452984,post
-Pipilo erythrophthalmus,Eastern Towhee,0.21084464543856563,1.2045924353530864,post
-Piranga olivacea,Scarlet Tanager,0.2514669100096918,0.753626850249922,post
-Podiceps auritus,Horned Grebe,0.361535632454057,-1.9979262000828504,post
-Podilymbus podiceps,Pied-billed Grebe,0.3524452501727524,-0.8223441775811061,post
-Poecile atricapillus,Black-capped Chickadee,0.7903894319381066,0.756388382073711,post
-Polioptila caerulea,Blue-gray Gnatcatcher,0.2040456650851074,0.44359795105469235,post
-Porzana carolina,Sora,0.27894046719129345,0.8122392157694601,post
-Progne subis,Purple Martin,0.2516583516295144,0.36966447006235104,post
-Quiscalus quiscula,Common Grackle,0.5339748043033211,0.1904075195456425,post
-Regulus satrapa,Golden-crowned Kinglet,0.3076245388820266,0.6954867114112622,post
-Riparia riparia,Bank Swallow,0.18643854172443716,-0.3545062879646161,post
-Sayornis phoebe,Eastern Phoebe,0.3560878895976939,0.10782402975384488,post
-Seiurus aurocapilla,Ovenbird,0.2362700018981796,1.4028259990101994,post
-Setophaga americana,Northern Parula,0.19905730520505066,0.778362702845911,post
-Setophaga coronata,Yellow-rumped Warbler,0.533403728206784,-0.06771793611872538,post
-Setophaga fusca,Blackburnian Warbler,0.23028805072027173,0.47804303820268645,post
-Setophaga magnolia,Magnolia Warbler,0.3425439783912184,0.4569079269001738,post
-Setophaga palmarum,Palm Warbler,0.41325639831296873,-0.29930659475145655,post
-Setophaga pensylvanica,Chestnut-sided Warbler,0.2762299441243637,0.6930653012493441,post
-Setophaga petechia,Yellow Warbler,0.3420292073538039,0.5343980985326431,post
-Setophaga pinus,Pine Warbler,0.17624001620384022,0.6118190042048821,post
-Setophaga ruticilla,American Redstart,0.37057893302333456,0.8087335324015125,post
-Setophaga striata,Blackpoll Warbler,0.2402717320344114,0.398585948993304,post
-Setophaga virens,Black-throated Green Warbler,0.21344589162377564,0.4456226112527847,post
-Sialia sialis,Eastern Bluebird,0.40813938455044,-0.36836077269720435,post
-Sitta canadensis,Red-breasted Nuthatch,0.616632321345699,0.6339057985489943,post
-Sitta carolinensis,White-breasted Nuthatch,0.680049362612145,0.40898959599572215,post
-Spatula clypeata,Northern Shoveler,0.33996032209485283,-1.6515873369561962,post
-Spatula discors,Blue-winged Teal,0.38260153201474956,-1.257224510604358,post
-Sphyrapicus varius,Yellow-bellied Sapsucker,0.37844299675330895,0.05510019318928054,post
-Spinus pinus,Pine Siskin,0.6437950010292258,0.41092375245981905,post
-Spinus tristis,American Goldfinch,0.6698694340322369,0.1918024076846225,post
-Spiza americana,Dickcissel,0.3258206266811303,0.9502502909855306,post
-Spizella pallida,Clay-colored Sparrow,0.25898171173228995,0.3690745259768011,post
-Spizella passerina,Chipping Sparrow,0.4513717194359499,0.5439050156191141,post
-Spizella pusilla,Field Sparrow,0.26949250476862924,0.848783514485259,post
-Spizelloides arborea,American Tree Sparrow,0.40244144898889395,0.018572249811996823,post
-Stelgidopteryx serripennis,Northern Rough-winged Swallow,0.23130411225704567,-0.24136693726929312,post
-Strix varia,Barred Owl,0.4772683303274241,0.9454230521537939,post
-Sturnella magna,Eastern Meadowlark,0.243888855568622,0.7458203472976725,post
-Sturnus vulgaris,European Starling,0.47449698540409796,-0.023904305070916718,post
-Tachycineta bicolor,Tree Swallow,0.3700012787199183,-0.4149570783306604,post
-Thryothorus ludovicianus,Carolina Wren,0.2816103009798038,1.451263559061716,post
-Toxostoma rufum,Brown Thrasher,0.3493589419482361,0.7290381414448603,post
-Tringa flavipes,Lesser Yellowlegs,0.1933317466647328,-0.47606522635979415,post
-Tringa melanoleuca,Greater Yellowlegs,0.18679720955986365,-0.16368022775851856,post
-Tringa solitaria,Solitary Sandpiper,0.24067303826363695,-0.2704823820502621,post
-Troglodytes aedon,Northern House Wren,0.45314798945002566,1.1198199022123632,post
-Turdus migratorius,American Robin,0.7413473653977877,0.4111876698462532,post
-Tyrannus tyrannus,Eastern Kingbird,0.36033024681740755,-0.30665699320671364,post
-Vermivora cyanoptera,Blue-winged Warbler,0.18447892754230644,0.9299311879190018,post
-Vireo flavifrons,Yellow-throated Vireo,0.19331591708245477,1.4070999306303655,post
-Vireo gilvus,Warbling Vireo,0.24745127163885444,1.1512435279589939,post
-Vireo olivaceus,Red-eyed Vireo,0.33169809186873994,1.2598374902260576,post
-Zenaida macroura,Mourning Dove,0.6309299440697085,-0.38288638221003635,post
-Zonotrichia albicollis,White-throated Sparrow,0.5000620267769746,0.6171131445327823,post
-Zonotrichia leucophrys,White-crowned Sparrow,0.5374502820406277,0.16385136214541451,post
+Actitis macularius,Spotted Sandpiper,0.2073835521553173,-0.6097626405158161,pre
+Agelaius phoeniceus,Red-winged Blackbird,0.5919455080722394,-0.10801949465250073,pre
+Aix sponsa,Wood Duck,0.4461946539799752,-0.7013724885265519,pre
+Anas crecca,Green-winged Teal,0.24168860936184905,-0.6880847434271142,pre
+Anas platyrhynchos,Mallard,0.5629932336464698,-0.7267668763942254,pre
+Antigone canadensis,Sandhill Crane,0.4251378449757314,-0.4642390269922714,pre
+Archilochus colubris,Ruby-throated Hummingbird,0.958170935405283,-0.7107810291851745,pre
+Ardea alba,Great Egret,0.6724070184246268,-0.8065267335608414,pre
+Ardea herodias,Great Blue Heron,0.5275781529617758,-0.7733141229537233,pre
+Astur cooperii,Cooper's Hawk,0.36488216597126977,-0.5641074506956222,pre
+Aythya affinis,Lesser Scaup,0.3346167263766768,-0.8463947798521367,pre
+Aythya americana,Redhead,0.37899688675456983,-0.8324680371915645,pre
+Aythya collaris,Ring-necked Duck,0.3968635222296118,-0.819100532968047,pre
+Aythya marila,Greater Scaup,0.25698716156227086,-0.8451898864084743,pre
+Aythya valisineria,Canvasback,0.4065236477378595,-0.8384970510044393,pre
+Baeolophus bicolor,Tufted Titmouse,0.4067471868272077,0.9829449349406033,pre
+Bombycilla cedrorum,Cedar Waxwing,0.2797588409678451,-0.5742690500206021,pre
+Branta canadensis,Canada Goose,0.57846676537123,-0.5588809865148447,pre
+Bubo virginianus,Great Horned Owl,0.4908954901738025,0.7178757612801967,pre
+Bucephala albeola,Bufflehead,0.43845496752913354,-0.8278220700803391,pre
+Bucephala clangula,Common Goldeneye,0.39081676371204144,-0.7994067061988044,pre
+Buteo jamaicensis,Red-tailed Hawk,0.4011864589424392,-0.737369243891594,pre
+Buteo platypterus,Broad-winged Hawk,0.3860727041759542,-0.34721765438342117,pre
+Butorides virescens,Green Heron,0.44419821193491266,-0.6176334720293872,pre
+Calidris melanotos,Pectoral Sandpiper,0.15560795785351347,-0.7791822409304212,pre
+Calidris minutilla,Least Sandpiper,0.16540692536417254,-0.6705961806754852,pre
+Calidris pusilla,Semipalmated Sandpiper,0.1277462932748612,-0.7462381373248768,pre
+Cardellina pusilla,Wilson's Warbler,0.31860318973601354,0.25862893286632477,pre
+Cardinalis cardinalis,Northern Cardinal,0.7117666440344624,0.20371308568582747,pre
+Cathartes aura,Turkey Vulture,0.44930845635274125,-0.8473495895857518,pre
+Catharus fuscescens,Veery,0.17387209298380998,3.2876428933676434,pre
+Catharus guttatus,Hermit Thrush,0.3619160221456641,0.2821580527510016,pre
+Catharus ustulatus,Swainson's Thrush,0.305205778776777,2.5843353130053766,pre
+Certhia americana,Brown Creeper,0.3683897553564507,0.12964675067579848,pre
+Chaetura pelagica,Chimney Swift,0.27030344992345184,0.38134528800136525,pre
+Charadrius vociferus,Killdeer,0.2755593013397977,-0.37812150616391865,pre
+Chroicocephalus philadelphia,Bonaparte's Gull,0.2423726358026751,-0.7725868099934883,pre
+Circus hudsonius,Northern Harrier,0.42748673730478526,-0.7961305423278,pre
+Cistothorus palustris,Marsh Wren,0.2765188120291901,2.0018097324911404,pre
+Cistothorus stellaris,Sedge Wren,0.2280597728133379,2.851276640257924,pre
+Coccyzus americanus,Yellow-billed Cuckoo,0.1601676988356537,0.7497637640916867,pre
+Colaptes auratus,Northern Flicker,0.2844080294554404,-0.2366126817575314,pre
+Columba livia,Rock Pigeon,0.3732858888083675,-0.7288986190588653,pre
+Contopus virens,Eastern Wood-Pewee,0.258684781281212,0.480617517902266,pre
+Corthylio calendula,Ruby-crowned Kinglet,0.36351298844672303,-0.22678350307998632,pre
+Corvus brachyrhynchos,American Crow,0.5223146456084914,0.6276304786317227,pre
+Cyanocitta cristata,Blue Jay,0.6293986646289709,0.7591638824985554,pre
+Cygnus buccinator,Trumpeter Swan,0.7101197847298986,-0.6502017815912788,pre
+Cygnus olor,Mute Swan,0.5344704939446481,-0.7738098506602765,pre
+Dolichonyx oryzivorus,Bobolink,0.2833672619157547,0.1693858676435185,pre
+Dryobates pubescens,Downy Woodpecker,0.6250418659013014,-0.4122639293074683,pre
+Dryobates villosus,Hairy Woodpecker,0.5598412087657356,0.18026775753586152,pre
+Dryocopus pileatus,Pileated Woodpecker,0.5177742736206136,-0.047035267255776454,pre
+Dumetella carolinensis,Gray Catbird,0.427322435919118,0.6617455473879175,pre
+Empidonax minimus,Least Flycatcher,0.2121426320621777,0.7469591690312674,pre
+Empidonax traillii,Willow Flycatcher,0.1659583118207215,1.3188871710100953,pre
+Empidonax virescens,Acadian Flycatcher,0.0876559509425716,4.863860855262843,pre
+Eremophila alpestris,Horned Lark,0.20519419398274347,-0.42390275841668723,pre
+Falco sparverius,American Kestrel,0.44361609687328385,-0.7448392516866397,pre
+Fulica americana,American Coot,0.5948574199648782,-0.7299406913154729,pre
+Gallinago delicata,Wilson's Snipe,0.23762477066548582,-0.48594678648843953,pre
+Gavia immer,Common Loon,0.6356614640518657,-0.660050980600909,pre
+Geothlypis trichas,Common Yellowthroat,0.276145177391477,0.4473473390922218,pre
+Haemorhous mexicanus,House Finch,0.6858704316246026,-0.2787257762563663,pre
+Haemorhous purpureus,Purple Finch,0.7644782937779816,-0.04107608407070365,pre
+Haliaeetus leucocephalus,Bald Eagle,0.7421777010192193,-0.7882367548593807,pre
+Hirundo rustica,Barn Swallow,0.36371810194897786,-0.5527409699895472,pre
+Hydroprogne caspia,Caspian Tern,0.34556760110614465,-0.6637973592766895,pre
+Hylocichla mustelina,Wood Thrush,0.19762519906848347,5.690511951808309,pre
+Icterus galbula,Baltimore Oriole,0.5081088262306189,-0.32309209742038825,pre
+Icterus spurius,Orchard Oriole,0.34284369286699246,0.07226775076164958,pre
+Junco hyemalis,Dark-eyed Junco,0.8739148984470698,-0.2986800926313205,pre
+Larus delawarensis,Ring-billed Gull,0.37518985620729706,-0.7251940990564412,pre
+Larus smithsonianus,American Herring Gull,0.2360470743701783,-0.7341794794942523,pre
+Leiothlypis peregrina,Tennessee Warbler,0.18717274457896432,0.3176527704663232,pre
+Leiothlypis ruficapilla,Nashville Warbler,0.20834829067788535,0.26266925775873257,pre
+Lophodytes cucullatus,Hooded Merganser,0.524409403257372,-0.817004393515421,pre
+Mareca americana,American Wigeon,0.23020417570493873,-0.7445164301549445,pre
+Mareca strepera,Gadwall,0.27159835138102445,-0.7245170351002034,pre
+Megaceryle alcyon,Belted Kingfisher,0.36059890635990655,-0.5178059367606227,pre
+Melanerpes carolinus,Red-bellied Woodpecker,0.5123254150681013,-0.22741192698839227,pre
+Melanerpes erythrocephalus,Red-headed Woodpecker,0.678493878702574,-0.3599488130829573,pre
+Meleagris gallopavo,Wild Turkey,0.6435980668065318,-0.5964322520536565,pre
+Melospiza georgiana,Swamp Sparrow,0.16591426796531178,0.09846674799789915,pre
+Melospiza melodia,Song Sparrow,0.3378555578615567,0.056216128404891645,pre
+Mergus merganser,Common Merganser,0.4842117361275369,-0.8057529346158766,pre
+Mergus serrator,Red-breasted Merganser,0.3698097336461956,-0.8441821435314464,pre
+Mniotilta varia,Black-and-white Warbler,0.32853814735817843,-0.0799471853908042,pre
+Molothrus ater,Brown-headed Cowbird,0.3711148972106276,-0.3115804025658777,pre
+Myiarchus crinitus,Great Crested Flycatcher,0.22203921939338433,0.585519600413197,pre
+Nannopterum auritum,Double-crested Cormorant,0.48720789661688507,-0.822586123628847,pre
+Oxyura jamaicensis,Ruddy Duck,0.3609329387997747,-0.829354438599549,pre
+Pandion haliaetus,Osprey,0.5739667357894314,-0.6927231224774173,pre
+Parkesia noveboracensis,Northern Waterthrush,0.18906010738610862,1.8461147786021423,pre
+Passer domesticus,House Sparrow,0.6506600024622085,-0.1384303234964461,pre
+Passerculus sandwichensis,Savannah Sparrow,0.12803203478884642,-0.1616997023498459,pre
+Passerella iliaca,Fox Sparrow,0.43151523660835717,0.5213692907554002,pre
+Passerina cyanea,Indigo Bunting,0.23179763090178046,0.5249501624632106,pre
+Pelecanus erythrorhynchos,American White Pelican,0.5777011759750592,-0.8507154063752302,pre
+Petrochelidon pyrrhonota,Cliff Swallow,0.3057360764632407,-0.4349225890678657,pre
+Phasianus colchicus,Ring-necked Pheasant,0.4783179407396066,-0.4175867511070042,pre
+Pheucticus ludovicianus,Rose-breasted Grosbeak,0.4581929735416726,0.06302057145412561,pre
+Pipilo erythrophthalmus,Eastern Towhee,0.268291257770724,1.4669417891575167,pre
+Piranga olivacea,Scarlet Tanager,0.2162614367964374,0.36728423554314377,pre
+Podiceps auritus,Horned Grebe,0.33414032347355804,-0.8304605915480462,pre
+Podilymbus podiceps,Pied-billed Grebe,0.41379111179316813,-0.7250638889026227,pre
+Poecile atricapillus,Black-capped Chickadee,0.7426727055861122,0.3720963429846743,pre
+Polioptila caerulea,Blue-gray Gnatcatcher,0.17527260144380383,-0.06867592360114512,pre
+Pooecetes gramineus,Vesper Sparrow,0.1341723392208229,-0.07442401113718512,pre
+Porzana carolina,Sora,0.3153086906536183,0.4735905035704693,pre
+Progne subis,Purple Martin,0.25075041453541747,-0.14718489045580574,pre
+Quiscalus quiscula,Common Grackle,0.4611084492106002,-0.3065125014914977,pre
+Regulus satrapa,Golden-crowned Kinglet,0.2906961981333857,0.2702409759933661,pre
+Riparia riparia,Bank Swallow,0.2491635570132813,-0.6023229287713212,pre
+Sayornis phoebe,Eastern Phoebe,0.3754753630890457,-0.367307605310642,pre
+Seiurus aurocapilla,Ovenbird,0.18772680204872644,2.223627402850709,pre
+Setophaga americana,Northern Parula,0.13375011663599876,0.4110691683532123,pre
+Setophaga coronata,Yellow-rumped Warbler,0.5135760158297006,-0.47507078869365676,pre
+Setophaga fusca,Blackburnian Warbler,0.2355187665932588,-0.029181189057796705,pre
+Setophaga magnolia,Magnolia Warbler,0.31378240121881096,-0.05364377282747253,pre
+Setophaga palmarum,Palm Warbler,0.4315232051829273,-0.5816892032393105,pre
+Setophaga pensylvanica,Chestnut-sided Warbler,0.2616624035719899,0.26637089917967127,pre
+Setophaga petechia,Yellow Warbler,0.29862507627985796,0.03975961584140015,pre
+Setophaga pinus,Pine Warbler,0.17025239584528945,0.1439538609963378,pre
+Setophaga ruticilla,American Redstart,0.32754832407207723,0.46697983057714826,pre
+Setophaga striata,Blackpoll Warbler,0.23265679102105044,-0.11745320197941986,pre
+Setophaga virens,Black-throated Green Warbler,0.16614669022966314,-0.06640761402656051,pre
+Sialia sialis,Eastern Bluebird,0.4813919886834261,-0.6072522594909827,pre
+Sitta canadensis,Red-breasted Nuthatch,0.5789904265315656,0.17584468956097984,pre
+Sitta carolinensis,White-breasted Nuthatch,0.6023100143272937,-0.10645529459124943,pre
+Spatula clypeata,Northern Shoveler,0.40397699934545633,-0.8149474228869289,pre
+Spatula discors,Blue-winged Teal,0.45411350375118564,-0.7849363985867338,pre
+Sphyrapicus varius,Yellow-bellied Sapsucker,0.3809132903254815,-0.4025465044198349,pre
+Spinus pinus,Pine Siskin,0.5290503333515599,-0.1043926481468924,pre
+Spinus tristis,American Goldfinch,0.5953463935138471,-0.30542303087999134,pre
+Spiza americana,Dickcissel,0.34169521176644785,0.7618708708976235,pre
+Spizella pallida,Clay-colored Sparrow,0.3603227177676753,-0.14777871728069822,pre
+Spizella passerina,Chipping Sparrow,0.40878303993009585,0.05194452849662272,pre
+Spizella pusilla,Field Sparrow,0.2989643847376976,0.5445020829011872,pre
+Spizelloides arborea,American Tree Sparrow,0.49243924444142484,-0.4254555727908966,pre
+Stelgidopteryx serripennis,Northern Rough-winged Swallow,0.2130108472003193,-0.5582150443332954,pre
+Sterna forsteri,Forster's Tern,0.36545586184288364,-0.7026909561929374,pre
+Strix varia,Barred Owl,0.6091970418098072,0.7508031341702808,pre
+Sturnella magna,Eastern Meadowlark,0.29951178610272194,0.3537828586034336,pre
+Sturnus vulgaris,European Starling,0.4024057919363436,-0.4506401768831818,pre
+Tachycineta bicolor,Tree Swallow,0.4091608427529673,-0.6231355830537926,pre
+Thryothorus ludovicianus,Carolina Wren,0.12066547349660296,2.443308422384972,pre
+Toxostoma rufum,Brown Thrasher,0.37491662723772673,0.3252608318890611,pre
+Tringa flavipes,Lesser Yellowlegs,0.20592495999635776,-0.6424314361508067,pre
+Tringa melanoleuca,Greater Yellowlegs,0.2319082749778857,-0.5235437883394216,pre
+Tringa solitaria,Solitary Sandpiper,0.20827310490351167,-0.5702529993273276,pre
+Troglodytes aedon,Northern House Wren,0.3392730011298562,1.2030872923163562,pre
+Turdus migratorius,American Robin,0.6722885705652534,-0.10411075774145234,pre
+Tyrannus tyrannus,Eastern Kingbird,0.35819763373080227,-0.5845312312231777,pre
+Vermivora cyanoptera,Blue-winged Warbler,0.14925554989791984,0.7157930829481279,pre
+Vireo flavifrons,Yellow-throated Vireo,0.11203423336886577,2.2424078233190188,pre
+Vireo gilvus,Warbling Vireo,0.18134911056266798,1.297200999183674,pre
+Vireo olivaceus,Red-eyed Vireo,0.1949081922975099,1.6568391034894727,pre
+Vireo solitarius,Blue-headed Vireo,0.18127382008125337,0.6672196658748173,pre
+Zenaida macroura,Mourning Dove,0.5825516427052757,-0.6123170648799199,pre
+Zonotrichia albicollis,White-throated Sparrow,0.4183921808118097,0.1515069139638638,pre
+Zonotrichia leucophrys,White-crowned Sparrow,0.6034569083082172,-0.32684683059097575,pre
+Actitis macularius,Spotted Sandpiper,0.2177971557108529,-0.6097626405158161,post
+Agelaius phoeniceus,Red-winged Blackbird,0.5880440849187263,-0.10801949465250073,post
+Aix sponsa,Wood Duck,0.4504401685576558,-0.7013724885265519,post
+Anas crecca,Green-winged Teal,0.20857093790491482,-0.6880847434271142,post
+Anas platyrhynchos,Mallard,0.557462351822331,-0.7267668763942254,post
+Antigone canadensis,Sandhill Crane,0.3696720623716409,-0.4642390269922714,post
+Archilochus colubris,Ruby-throated Hummingbird,0.8514126954960347,-0.7107810291851745,post
+Ardea alba,Great Egret,0.5983809364451876,-0.8065267335608414,post
+Ardea herodias,Great Blue Heron,0.5076486093926045,-0.7733141229537233,post
+Astur cooperii,Cooper's Hawk,0.38790367273836873,-0.5641074506956222,post
+Aythya affinis,Lesser Scaup,0.28333144014068345,-0.8463947798521367,post
+Aythya americana,Redhead,0.3132098755747064,-0.8324680371915645,post
+Aythya collaris,Ring-necked Duck,0.36805815415381804,-0.819100532968047,post
+Aythya valisineria,Canvasback,0.2744473609454463,-0.8384970510044393,post
+Baeolophus bicolor,Tufted Titmouse,0.43648378375019864,0.9829449349406033,post
+Bombycilla cedrorum,Cedar Waxwing,0.33431608856716394,-0.5742690500206021,post
+Branta canadensis,Canada Goose,0.5450410728420607,-0.5588809865148447,post
+Bucephala albeola,Bufflehead,0.3990864224983426,-0.8278220700803391,post
+Bucephala clangula,Common Goldeneye,0.3525638837838849,-0.7994067061988044,post
+Buteo jamaicensis,Red-tailed Hawk,0.38551705687752974,-0.737369243891594,post
+Buteo lineatus,Red-shouldered Hawk,0.32864188854001136,-0.30407386566703537,post
+Buteo platypterus,Broad-winged Hawk,0.42975011799450624,-0.34721765438342117,post
+Butorides virescens,Green Heron,0.49139994337431936,-0.6176334720293872,post
+Calidris melanotos,Pectoral Sandpiper,0.11785264560198812,-0.7791822409304212,post
+Calidris minutilla,Least Sandpiper,0.1663232052111366,-0.6705961806754852,post
+Cardellina pusilla,Wilson's Warbler,0.3034185437805732,0.25862893286632477,post
+Cardinalis cardinalis,Northern Cardinal,0.7830683676444179,0.20371308568582747,post
+Cathartes aura,Turkey Vulture,0.40367264565953165,-0.8473495895857518,post
+Catharus fuscescens,Veery,0.22797630298427168,3.2876428933676434,post
+Catharus guttatus,Hermit Thrush,0.40114593706414226,0.2821580527510016,post
+Catharus ustulatus,Swainson's Thrush,0.3034365848315404,2.5843353130053766,post
+Certhia americana,Brown Creeper,0.42298262183792684,0.12964675067579848,post
+Chaetura pelagica,Chimney Swift,0.38436088391325307,0.38134528800136525,post
+Charadrius vociferus,Killdeer,0.28534885852887576,-0.37812150616391865,post
+Chroicocephalus philadelphia,Bonaparte's Gull,0.1844312318088301,-0.7725868099934883,post
+Circus hudsonius,Northern Harrier,0.3463679950263902,-0.7961305423278,post
+Cistothorus palustris,Marsh Wren,0.23708807651240368,2.0018097324911404,post
+Cistothorus stellaris,Sedge Wren,0.23985239889386248,2.851276640257924,post
+Colaptes auratus,Northern Flicker,0.38372333001790543,-0.2366126817575314,post
+Columba livia,Rock Pigeon,0.3813526172014464,-0.7288986190588653,post
+Contopus virens,Eastern Wood-Pewee,0.3417402511927059,0.480617517902266,post
+Corthylio calendula,Ruby-crowned Kinglet,0.4233855761580012,-0.22678350307998632,post
+Corvus brachyrhynchos,American Crow,0.5627377157200922,0.6276304786317227,post
+Cyanocitta cristata,Blue Jay,0.7220297818753626,0.7591638824985554,post
+Cygnus buccinator,Trumpeter Swan,0.6224841946495882,-0.6502017815912788,post
+Cygnus olor,Mute Swan,0.5198365120354752,-0.7738098506602765,post
+Dolichonyx oryzivorus,Bobolink,0.2920135955409053,0.1693858676435185,post
+Dryobates pubescens,Downy Woodpecker,0.6946954417506758,-0.4122639293074683,post
+Dryobates villosus,Hairy Woodpecker,0.6134130385833709,0.18026775753586152,post
+Dryocopus pileatus,Pileated Woodpecker,0.5479551091839006,-0.047035267255776454,post
+Dumetella carolinensis,Gray Catbird,0.4936297726073024,0.6617455473879175,post
+Empidonax minimus,Least Flycatcher,0.22325195613499912,0.7469591690312674,post
+Empidonax traillii,Willow Flycatcher,0.17203299004276273,1.3188871710100953,post
+Empidonax virescens,Acadian Flycatcher,0.17307766733276908,4.863860855262843,post
+Eremophila alpestris,Horned Lark,0.12868027526200917,-0.42390275841668723,post
+Falco sparverius,American Kestrel,0.3079400424717907,-0.7448392516866397,post
+Fulica americana,American Coot,0.4460555433272864,-0.7299406913154729,post
+Gallinago delicata,Wilson's Snipe,0.17402369732684453,-0.48594678648843953,post
+Gavia immer,Common Loon,0.5597021654400671,-0.660050980600909,post
+Geothlypis trichas,Common Yellowthroat,0.3285855930055861,0.4473473390922218,post
+Haemorhous mexicanus,House Finch,0.7813317170362339,-0.2787257762563663,post
+Haemorhous purpureus,Purple Finch,0.6869216512973548,-0.04107608407070365,post
+Haliaeetus leucocephalus,Bald Eagle,0.5611449212704688,-0.7882367548593807,post
+Hirundo rustica,Barn Swallow,0.3374133724903263,-0.5527409699895472,post
+Hydroprogne caspia,Caspian Tern,0.29764063957761694,-0.6637973592766895,post
+Hylocichla mustelina,Wood Thrush,0.2308444475310461,5.690511951808309,post
+Icterus galbula,Baltimore Oriole,0.5424137634727707,-0.32309209742038825,post
+Icterus spurius,Orchard Oriole,0.32758323746712703,0.07226775076164958,post
+Junco hyemalis,Dark-eyed Junco,0.9014308274995706,-0.2986800926313205,post
+Larus delawarensis,Ring-billed Gull,0.3278111746767044,-0.7251940990564412,post
+Larus smithsonianus,American Herring Gull,0.24823255792715346,-0.7341794794942523,post
+Leiothlypis peregrina,Tennessee Warbler,0.2922107221979181,0.3176527704663232,post
+Leiothlypis ruficapilla,Nashville Warbler,0.32153231934534665,0.26266925775873257,post
+Lophodytes cucullatus,Hooded Merganser,0.4819790845412058,-0.817004393515421,post
+Mareca americana,American Wigeon,0.23769589373274488,-0.7445164301549445,post
+Mareca strepera,Gadwall,0.23869724329331174,-0.7245170351002034,post
+Megaceryle alcyon,Belted Kingfisher,0.37451675287256203,-0.5178059367606227,post
+Melanerpes carolinus,Red-bellied Woodpecker,0.5937340464965433,-0.22741192698839227,post
+Melanerpes erythrocephalus,Red-headed Woodpecker,0.41415455501704224,-0.3599488130829573,post
+Meleagris gallopavo,Wild Turkey,0.546694802552954,-0.5964322520536565,post
+Melospiza georgiana,Swamp Sparrow,0.2207637334102859,0.09846674799789915,post
+Melospiza melodia,Song Sparrow,0.3746438555800573,0.056216128404891645,post
+Mergus merganser,Common Merganser,0.40590155417316637,-0.8057529346158766,post
+Mergus serrator,Red-breasted Merganser,0.3800123314485609,-0.8441821435314464,post
+Mniotilta varia,Black-and-white Warbler,0.318045131118685,-0.0799471853908042,post
+Molothrus ater,Brown-headed Cowbird,0.4561614104536946,-0.3115804025658777,post
+Myiarchus crinitus,Great Crested Flycatcher,0.3525676819605081,0.585519600413197,post
+Nannopterum auritum,Double-crested Cormorant,0.46657074161555395,-0.822586123628847,post
+Oxyura jamaicensis,Ruddy Duck,0.2826574652201568,-0.829354438599549,post
+Pandion haliaetus,Osprey,0.5134558046456995,-0.6927231224774173,post
+Parkesia noveboracensis,Northern Waterthrush,0.21035885921934563,1.8461147786021423,post
+Passer domesticus,House Sparrow,0.8483946457738948,-0.1384303234964461,post
+Passerculus sandwichensis,Savannah Sparrow,0.2221288305346559,-0.1616997023498459,post
+Passerella iliaca,Fox Sparrow,0.36804975953335245,0.5213692907554002,post
+Passerina cyanea,Indigo Bunting,0.3173924673375851,0.5249501624632106,post
+Pelecanus erythrorhynchos,American White Pelican,0.4478188377508765,-0.8507154063752302,post
+Petrochelidon pyrrhonota,Cliff Swallow,0.22616096111579215,-0.4349225890678657,post
+Phasianus colchicus,Ring-necked Pheasant,0.30446917102721255,-0.4175867511070042,post
+Pheucticus ludovicianus,Rose-breasted Grosbeak,0.4652628196520069,0.06302057145412561,post
+Pipilo erythrophthalmus,Eastern Towhee,0.21084464543856563,1.4669417891575167,post
+Piranga olivacea,Scarlet Tanager,0.2514669100096918,0.36728423554314377,post
+Podiceps auritus,Horned Grebe,0.361535632454057,-0.8304605915480462,post
+Podilymbus podiceps,Pied-billed Grebe,0.3524452501727524,-0.7250638889026227,post
+Poecile atricapillus,Black-capped Chickadee,0.7903894319381066,0.3720963429846743,post
+Polioptila caerulea,Blue-gray Gnatcatcher,0.2040456650851074,-0.06867592360114512,post
+Porzana carolina,Sora,0.27894046719129345,0.4735905035704693,post
+Progne subis,Purple Martin,0.2516583516295144,-0.14718489045580574,post
+Quiscalus quiscula,Common Grackle,0.5339748043033211,-0.3065125014914977,post
+Regulus satrapa,Golden-crowned Kinglet,0.3076245388820266,0.2702409759933661,post
+Riparia riparia,Bank Swallow,0.18643854172443716,-0.6023229287713212,post
+Sayornis phoebe,Eastern Phoebe,0.3560878895976939,-0.367307605310642,post
+Seiurus aurocapilla,Ovenbird,0.2362700018981796,2.223627402850709,post
+Setophaga americana,Northern Parula,0.19905730520505066,0.4110691683532123,post
+Setophaga coronata,Yellow-rumped Warbler,0.533403728206784,-0.47507078869365676,post
+Setophaga fusca,Blackburnian Warbler,0.23028805072027173,-0.029181189057796705,post
+Setophaga magnolia,Magnolia Warbler,0.3425439783912184,-0.05364377282747253,post
+Setophaga palmarum,Palm Warbler,0.41325639831296873,-0.5816892032393105,post
+Setophaga pensylvanica,Chestnut-sided Warbler,0.2762299441243637,0.26637089917967127,post
+Setophaga petechia,Yellow Warbler,0.3420292073538039,0.03975961584140015,post
+Setophaga pinus,Pine Warbler,0.17624001620384022,0.1439538609963378,post
+Setophaga ruticilla,American Redstart,0.37057893302333456,0.46697983057714826,post
+Setophaga striata,Blackpoll Warbler,0.2402717320344114,-0.11745320197941986,post
+Setophaga virens,Black-throated Green Warbler,0.21344589162377564,-0.06640761402656051,post
+Sialia sialis,Eastern Bluebird,0.40813938455044,-0.6072522594909827,post
+Sitta canadensis,Red-breasted Nuthatch,0.616632321345699,0.17584468956097984,post
+Sitta carolinensis,White-breasted Nuthatch,0.680049362612145,-0.10645529459124943,post
+Spatula clypeata,Northern Shoveler,0.33996032209485283,-0.8149474228869289,post
+Spatula discors,Blue-winged Teal,0.38260153201474956,-0.7849363985867338,post
+Sphyrapicus varius,Yellow-bellied Sapsucker,0.37844299675330895,-0.4025465044198349,post
+Spinus pinus,Pine Siskin,0.6437950010292258,-0.1043926481468924,post
+Spinus tristis,American Goldfinch,0.6698694340322369,-0.30542303087999134,post
+Spiza americana,Dickcissel,0.3258206266811303,0.7618708708976235,post
+Spizella pallida,Clay-colored Sparrow,0.25898171173228995,-0.14777871728069822,post
+Spizella passerina,Chipping Sparrow,0.4513717194359499,0.05194452849662272,post
+Spizella pusilla,Field Sparrow,0.26949250476862924,0.5445020829011872,post
+Spizelloides arborea,American Tree Sparrow,0.40244144898889395,-0.4254555727908966,post
+Stelgidopteryx serripennis,Northern Rough-winged Swallow,0.23130411225704567,-0.5582150443332954,post
+Strix varia,Barred Owl,0.4772683303274241,0.7508031341702808,post
+Sturnella magna,Eastern Meadowlark,0.243888855568622,0.3537828586034336,post
+Sturnus vulgaris,European Starling,0.47449698540409796,-0.4506401768831818,post
+Tachycineta bicolor,Tree Swallow,0.3700012787199183,-0.6231355830537926,post
+Thryothorus ludovicianus,Carolina Wren,0.2816103009798038,2.443308422384972,post
+Toxostoma rufum,Brown Thrasher,0.3493589419482361,0.3252608318890611,post
+Tringa flavipes,Lesser Yellowlegs,0.1933317466647328,-0.6424314361508067,post
+Tringa melanoleuca,Greater Yellowlegs,0.18679720955986365,-0.5235437883394216,post
+Tringa solitaria,Solitary Sandpiper,0.24067303826363695,-0.5702529993273276,post
+Troglodytes aedon,Northern House Wren,0.45314798945002566,1.2030872923163562,post
+Turdus migratorius,American Robin,0.7413473653977877,-0.10411075774145234,post
+Tyrannus tyrannus,Eastern Kingbird,0.36033024681740755,-0.5845312312231777,post
+Vermivora cyanoptera,Blue-winged Warbler,0.18447892754230644,0.7157930829481279,post
+Vireo flavifrons,Yellow-throated Vireo,0.19331591708245477,2.2424078233190188,post
+Vireo gilvus,Warbling Vireo,0.24745127163885444,1.297200999183674,post
+Vireo olivaceus,Red-eyed Vireo,0.33169809186873994,1.6568391034894727,post
+Zenaida macroura,Mourning Dove,0.6309299440697085,-0.6123170648799199,post
+Zonotrichia albicollis,White-throated Sparrow,0.5000620267769746,0.1515069139638638,post
+Zonotrichia leucophrys,White-crowned Sparrow,0.5374502820406277,-0.32684683059097575,post

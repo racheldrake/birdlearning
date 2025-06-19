@@ -58,11 +58,11 @@ results_path <- 'analysis_3/data/'
 # load in audio index
 audio_index <- read_csv(paste0(ebd_path, 'audio_index.csv'))
 
-#- grab count per hour data ####
+#- grab checklist prop data ####
 
 # it's not very bombproof but I just change these from new to full to process
 # each of the datasets
-full_data_tags <- paste0(data_string, c('_2016_19_new', '_2022_24_new'))
+full_data_tags <- paste0(data_string, c('_2016_19_full', '_2022_24_full'))
 
 total_N <- function(species, ebd){
   sum(ebd$observation_count[ebd$common_name == species])
@@ -73,20 +73,12 @@ for (data_tag in full_data_tags){
   # going to load each dataset one by one and calculate each species count/hour
   ebd <- read_csv(paste0(ebd_path, data_tag, '.csv'))
   
-  # filter to only checklists of length 1 hour and above
-  ebd_1hr <- ebd %>%
-    # filter(duration_minutes >= 60) %>%
-    filter(observation_count != 'X') %>%
-    mutate(observation_count = as.numeric(observation_count))
+  # calculate the total number of checklists
+  total_checklists <- length(unique(ebd$checklist_id))
   
-  # calculate the total number of hours spent birding
-  total_duration <- ebd_1hr %>% distinct(checklist_id, .keep_all = TRUE)
-  total_duration <- sum(total_duration$duration_minutes) / 60
-  
-  species_list <- unique(ebd_1hr$common_name)
-  
-  output <- sapply(species_list, total_N, ebd = ebd_1hr)
-  N_data <- data.frame(common_name = names(output), N = as.numeric(output)/total_duration, time = ifelse(str_detect(data_tag, '2016'), 'pre', 'post'))
+  output <- ebd %>% group_by(common_name) %>%
+    summarise(N = n()/total_checklists)
+  N_data <- data.frame(common_name = output$common_name, N = output$N, time = ifelse(str_detect(data_tag, '2016'), 'pre', 'post'))
   N <- rbind(N, N_data)
 }
 
@@ -125,19 +117,19 @@ joined <- main_join %>% mutate(Year = list(start_year:end_year)) %>%
 # not enough species to do analysis so I also make a proportional (though less
 ## accurate) metric from the full US1 trend for continental US
 
-# leftovers <- main_join %>% mutate(Year = list(start_year:end_year)) %>% 
-#   unnest(Year) %>% left_join(test, by = c('AOU', 'Year')) %>% 
-#   mutate(time = ifelse(Year %in% pre, 'pre', NA),
-#          time = ifelse(Year %in% post, 'post', time)) %>% 
-#   drop_na(time) %>%
-#   filter(is.na(S23) & !is.na(US1)) %>%
-#   group_by(common_name, time) %>%
-#   # calculate prop of total US
-#   summarise(Index = mean(US1 * (242704/11165740), na.rm = TRUE))
-# 
-# joined <- rbind(joined, leftovers)
+leftovers <- main_join %>% mutate(Year = list(start_year:end_year)) %>%
+  unnest(Year) %>% left_join(test, by = c('AOU', 'Year')) %>%
+  mutate(time = ifelse(Year %in% pre, 'pre', NA),
+         time = ifelse(Year %in% post, 'post', time)) %>%
+  drop_na(time) %>%
+  filter(is.na(S23) & !is.na(US1)) %>%
+  group_by(common_name, time) %>%
+  # calculate prop of total US
+  summarise(Index = mean(US1 * (242704/11165740), na.rm = TRUE))
+
+joined <- rbind(joined, leftovers)
 
 model_data <- N %>% left_join(joined, by = c('common_name', 'time'))%>% 
   left_join(audio_index, by = 'common_name') %>% 
   select(-scientific_name) %>% drop_na() %>% 
-  write_csv(paste0(results_path, data_string, '_N_model_new.csv'))
+  write_csv(paste0(results_path, data_string, '_N_model_prop.csv'))
