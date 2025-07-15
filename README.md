@@ -3,12 +3,12 @@
 ### Repository layout
 Processing scripts are labelled in sequential order and outputs are uploaded to run the analysis scripts.
 Numerical labels on processing scripts are arranged as follows:
-00 - large data proessing and API pulls
-01 - eBird dataset processing
-02 - Supplementary dataset processing
-03 - Calulating observer species accumualaton curves and checklist calibration indices
-04 - Calcualting observer reporting rates
-05 - Anonymising analysis data
+- 00 - large data proessing and API pulls
+- 01 - eBird dataset processing
+- 02 - Supplementary dataset processing
+- 03 - Calulating observer species accumualaton curves and checklist calibration indices
+- 04 - Calcualting observer reporting rates
+- 05 - Anonymising analysis data
 
 ### Data downloads
 Data for processing scripts should be downloaded centrally from eBird. 
@@ -25,7 +25,7 @@ Information about the use of Merlin sound identification within checklists is an
 Code is formatted such that all variables that need changed are at the top of the script, I don't recommend changing any of this because I'm not 100% certain
 that the folder tagging is the same throughout though I've tried to comment them as helpfully as possible.
 
-I highly recommend downloading the repository and running the analysis sccripts without changing anything in the headers for the smoothest experience.
+I highly recommend downloading the repository and running the analysis scripts without changing anything in the headers for the smoothest experience.
 
 
 ### Acknowledgements
